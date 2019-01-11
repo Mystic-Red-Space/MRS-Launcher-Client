@@ -1,5 +1,5 @@
 # MRSMinecraftLauncher
-MRS Custom Minecraft Launcher made with C#. 
+MRS Custom Minecraft Launcher made with Winform, using C#.
 Made by Lapis0875 & doohee1001
 
 1. UI design preview
