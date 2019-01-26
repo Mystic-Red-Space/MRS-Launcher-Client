@@ -38,6 +38,9 @@
     <ApplicationIcon>IcoMRS.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip">
+      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -58,6 +61,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="JavaDownloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -70,6 +77,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Core\JavaDownload.cs" />
+    <Compile Include="Core\WebDownload.cs" />
+    <Compile Include="JavaDownloadWindow.xaml.cs">
+      <DependentUpon>JavaDownloadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Launcher.cs" />
     <Compile Include="UI\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -139,5 +152,6 @@
   <ItemGroup>
     <Resource Include="IcoMRS.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
