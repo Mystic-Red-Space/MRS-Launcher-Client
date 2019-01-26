@@ -5,4 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MRSLauncherClient"
         mc:Ignorable="d"
-        Title="MRS Minecraft Launcher" Height="720" Width="1024" Foreground="{x:Null}" Background="#FF404040" UseLayoutRounding="False"/>
+        Title="MRS Minecraft Launcher"
+        WindowStartupLocation="CenterScreen"
+        Width="1024" Height="720"
+        MinWidth="1024" MinHeight="720"
+        Background="#FF404040"
+        Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#FFF14D24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="170"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Ellipse Fill="White" Height="150" Canvas.Left="10" Canvas.Top="20" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Image Height="100" Canvas.Left="35" Canvas.Top="45" Width="100" Source="Resources/LogoMRS.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <StackPanel x:Name="sideButtons" Grid.Row="1"/>
+        </Grid>
+
+        <Frame x:Name="contentViewer" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

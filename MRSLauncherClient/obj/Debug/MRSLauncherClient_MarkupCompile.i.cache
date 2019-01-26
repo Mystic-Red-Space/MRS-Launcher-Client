@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\Projects\MRSLauncher\src\MRSLauncherClient\MRSLauncherClient\obj\Debug\
+D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\obj\Debug\
 MRSLauncherClient
 none
 false
 DEBUG;TRACE
-F:\Projects\MRSLauncher\src\MRSLauncherClient\MRSLauncherClient\App.xaml
-31229087231
+D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\App.xaml
+5-1608747370
 
-11-1715893763
+14122457029
 131569487696
-MainWindow.xaml;Modpacks.xaml;Home.xaml;
+UI\AboutPage.xaml;UI\HomePage.xaml;MainWindow.xaml;UI\ModpacksPage.xaml;UI\SettingsPage.xaml;
 
-True
+False
 

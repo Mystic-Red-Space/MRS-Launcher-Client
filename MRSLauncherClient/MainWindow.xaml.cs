@@ -22,7 +22,38 @@ namespace MRSLauncherClient
     {
         public MainWindow()
         {
+            pageManager = new PageManager();
+            pageManager.PageList.AddRange(new Page[]
+            {
+                new HomePage(),
+                new ModpacksPage(),
+                new SettingsPage(),
+                new AboutPage()
+            });
+
             InitializeComponent();
+        }
+
+        PageManager pageManager;
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in pageManager.PageList)
+            {
+                var btn = new Button();
+                btn.Style = (Style)FindResource("flatButton");
+                btn.Content = item.Name;
+                btn.Click += SideButtons_Click;
+                btn.Padding = new Thickness(10, 0, 0, 0);
+                sideButtons.Children.Add(btn);
+            }
+        }
+
+        private void SideButtons_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            var name = btn.Content.ToString();
+            contentViewer.Content = pageManager.GetContent(name);
         }
     }
 }
