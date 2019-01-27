@@ -37,3 +37,8 @@ D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\obj\Debug\UI\AboutPag
 D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\obj\Debug\UI\HomePage.baml
 D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\obj\Debug\UI\ModpacksPage.baml
 D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\obj\Debug\UI\SettingsPage.baml
+D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\bin\Debug\DotNetZip.dll
+D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\bin\Debug\DotNetZip.xml
+D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\obj\Debug\JavaDownloadWindow.g.cs
+D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\obj\Debug\JavaDownloadWindow.baml
+D:\Programming\git_projects\MRS-Launcher\MRSLauncherClient\obj\Debug\MRSLauncherClient.csproj.CopyComplete

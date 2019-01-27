@@ -41,6 +41,9 @@
     <Reference Include="DotNetZip">
       <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\DotNetZip.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -78,7 +81,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Core\JavaDownload.cs" />
+    <Compile Include="Core\ModPack.cs" />
     <Compile Include="Core\WebDownload.cs" />
+    <Compile Include="Core\WebUtil.cs" />
     <Compile Include="JavaDownloadWindow.xaml.cs">
       <DependentUpon>JavaDownloadWindow.xaml</DependentUpon>
     </Compile>
