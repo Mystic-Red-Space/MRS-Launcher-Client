@@ -64,7 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="JavaDownloadWindow.xaml">
+    <Page Include="UI\JavaDownloadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,7 +76,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -84,7 +84,7 @@
     <Compile Include="Core\ModPack.cs" />
     <Compile Include="Core\WebDownload.cs" />
     <Compile Include="Core\WebUtil.cs" />
-    <Compile Include="JavaDownloadWindow.xaml.cs">
+    <Compile Include="UI\JavaDownloadWindow.xaml.cs">
       <DependentUpon>JavaDownloadWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Launcher.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="UI\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
