@@ -23,13 +23,6 @@ namespace MRSLauncherClient
         public MainWindow()
         {
             pageManager = new PageManager();
-            pageManager.PageList.AddRange(new Page[]
-            {
-                new HomePage(),
-                new ModpacksPage(),
-                new SettingsPage(),
-                new AboutPage()
-            });
 
             InitializeComponent();
         }
