@@ -7,10 +7,33 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ModpacksPage"
-      Name="Modpacks">
+      Name="Modpacks"
+      FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi"
+      Loaded="Modpacks_Loaded">
 
-    <Canvas>
-        <Button Content="DOWNLOAD" Canvas.Left="177" Canvas.Top="91" Height="148" Width="371"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-    </Canvas>
+        <Button x:Name="btnAddPack"
+                Content="+"
+                HorizontalAlignment="Right"
+                Width="30" Height="30"
+                Margin="10"
+                Click="btnAddPack_Click"/>
+
+        <Label x:Name="lvLoading"
+               Grid.Row="1"
+               Content="Loading modpacks..."
+               Foreground="White"
+               FontSize="18"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+
+        <WrapPanel x:Name="stPacks"
+                    Grid.Row="1" Orientation="Horizontal">
+        </WrapPanel>
+    </Grid>
 </Page>

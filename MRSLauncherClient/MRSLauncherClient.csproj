@@ -38,6 +38,9 @@
     <ApplicationIcon>IcoMRS.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CmlLib">
+      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\CmlLib.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetZip">
       <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\DotNetZip.dll</HintPath>
     </Reference>
@@ -64,6 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="UI\ModPackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\JavaDownloadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +91,9 @@
     <Compile Include="Core\ModPack.cs" />
     <Compile Include="Core\WebDownload.cs" />
     <Compile Include="Core\WebUtil.cs" />
+    <Compile Include="UI\ModPackControl.xaml.cs">
+      <DependentUpon>ModPackControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\JavaDownloadWindow.xaml.cs">
       <DependentUpon>JavaDownloadWindow.xaml</DependentUpon>
     </Compile>
@@ -157,6 +167,8 @@
   <ItemGroup>
     <Resource Include="IcoMRS.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Crafting_Table.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
