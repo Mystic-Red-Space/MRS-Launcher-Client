@@ -26,8 +26,13 @@ namespace MRSLauncherClient
             InitializeComponent();
         }
 
+        bool IsLoaded = false;
+
         private void Modpacks_Loaded(object sender, RoutedEventArgs e) // 모드팩 로딩
         {
+            if (IsLoaded) return;
+            IsLoaded = true;
+
             var th = new Thread(new ThreadStart(delegate
             {
                 var list = ModPackLoader.GetModPackList(); // API 서버 요청
