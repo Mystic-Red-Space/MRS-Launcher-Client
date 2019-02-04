@@ -91,6 +91,7 @@
     <Compile Include="Core\ModPack.cs" />
     <Compile Include="Core\WebDownload.cs" />
     <Compile Include="Core\WebUtil.cs" />
+    <Compile Include="Core\ModPackDownloader.cs" />
     <Compile Include="UI\ModPackControl.xaml.cs">
       <DependentUpon>ModPackControl.xaml</DependentUpon>
     </Compile>
