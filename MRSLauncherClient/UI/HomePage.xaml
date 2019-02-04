@@ -7,10 +7,28 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage"
-      Name="Home">
+      Name="Home"
+      FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi"
+      FontSize="20">
 
     <Grid>
-        <Image Source="/MRSLauncherClient;component/Resources/ImgMRSCafeMain.png" Margin="66,57,352,141"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="/MRSLauncherClient;component/Resources/ImgMRSCafeMain.png" MaxWidth="590" MaxHeight="332" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20"/>
+
+            <Label Grid.Column="1" Content="서버 공식 카페" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,39,0,146"/>
+            <Label Grid.Column="1" Content="https://cafe.naver.com/misticrs" FontSize="16" Foreground="LightBlue" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,72,0,119"/>
+            <Label Grid.Column="1" Content="서버 공식 디스코드" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,112,0,73"/>
+            <Label Grid.Column="1" Content="http://discord.gg/gdhjBVw" FontSize="16" Foreground="LightBlue" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,145,0,46"/>
+        </Grid>
     </Grid>
 </Page>

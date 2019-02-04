@@ -35,7 +35,16 @@ namespace MRSLauncherClient
 
             var th = new Thread(new ThreadStart(delegate
             {
-                var list = ModPackLoader.GetModPackList(); // API 서버 요청
+                string[] list = null;
+
+                try
+                {
+                    list = ModPackLoader.GetModPackList(); // API 서버 요청
+                }
+                catch (System.Net.WebException)
+                {
+                    list = new string[] { };
+                }
 
                 Dispatcher.Invoke(new Action(delegate
                 {
