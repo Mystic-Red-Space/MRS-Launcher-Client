@@ -12,7 +12,7 @@
     <Canvas>
         <Rectangle Fill="#404040" Canvas.Left="0" Canvas.Top="0" Height="450" Width="800"/>
         <Slider Canvas.Left="40" Canvas.Top="215" Height="15" Width="600"/>
-        <Label Content="Minecraft Settings" Canvas.Left="40" Canvas.Top="20 " FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly Bold" Foreground="White" />
+        <Label Content="Minecraft Settings" Canvas.Left="40" Canvas.Top="20" FontSize="20" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly Bold" Foreground="White" />
 
     </Canvas>
 </Page>
