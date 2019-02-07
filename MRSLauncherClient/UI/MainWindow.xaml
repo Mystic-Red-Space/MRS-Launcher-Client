@@ -24,8 +24,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Ellipse Fill="White" Height="150" Canvas.Left="10" Canvas.Top="20" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Image Height="100" Canvas.Left="35" Canvas.Top="45" Width="100" Source="Resources/LogoMRS.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Ellipse Fill="White" Canvas.Left="10" Canvas.Top="20" Height="150" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Image Height="100" Canvas.Left="35" Canvas.Top="35" Width="100" Source="/MRSLauncherClient;component/Resources/LogoMRS.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="33,41,37,29"/>
 
             <StackPanel x:Name="sideButtons" Grid.Row="1"/>
         </Grid>

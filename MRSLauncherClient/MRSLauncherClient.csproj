@@ -39,10 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CmlLib">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\CmlLib.dll</HintPath>
+      <HintPath>C:\Users\김민준\Downloads\CmlLib.dll</HintPath>
     </Reference>
     <Reference Include="DotNetZip">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\DotNetZip.dll</HintPath>
+      <HintPath>C:\Users\김민준\Downloads\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\Newtonsoft.Json.dll</HintPath>
@@ -151,6 +151,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Oligopoly Bold.ttf" />
     <Resource Include="Resources\HS두꺼비체.ttf" />
   </ItemGroup>
   <ItemGroup>
