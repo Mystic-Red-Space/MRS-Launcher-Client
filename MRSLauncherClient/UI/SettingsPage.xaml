@@ -11,8 +11,12 @@
 
     <Canvas>
         <Rectangle Fill="#404040" Canvas.Left="0" Canvas.Top="0" Height="450" Width="800"/>
-        <Slider Canvas.Left="40" Canvas.Top="215" Height="15" Width="600"/>
-        <Label Content="Minecraft Settings" Canvas.Left="40" Canvas.Top="20" FontSize="20" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly Bold" Foreground="White" />
+        <Label Content="Minecraft Settings" Canvas.Left="40" Canvas.Top="20" FontSize="22" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="White" Padding="0" />
+        <Label Content="RAM Settings" Canvas.Left="40" Canvas.Top="80" FontSize="20" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="White" Padding="0" />
+        <Slider Canvas.Left="40" Canvas.Top="120" Height="15" Width="730" ValueChanged="Slider_ValueChanged"/>
+        <TextBlock Canvas.Left="366" Canvas.Top="240" TextWrapping="Wrap" Text="TextBlock"  />
+
+
 
     </Canvas>
 </Page>
