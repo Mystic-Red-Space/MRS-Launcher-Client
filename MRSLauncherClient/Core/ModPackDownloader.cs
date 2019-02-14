@@ -33,7 +33,9 @@ namespace MRSLauncherClient
             for (int i = 0; i < fileCount; i++)
             {
                 var item = modPack.ModFiles[i];
-                var filepath = RootPath + "\\" + item.FileName;
+                var filepath = RootPath + item.Path + item.FileName;
+
+                Directory.CreateDirectory(Path.GetDirectoryName(filepath));
 
                 if (!File.Exists(filepath) || !CheckHash(filepath, item.MD5))
                     webDownload.DownloadFile(item.Url, filepath);
