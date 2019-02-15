@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using MRSLauncherClient.UI;
 
 namespace MRSLauncherClient
 {
@@ -70,10 +71,13 @@ namespace MRSLauncherClient
         private void Control_Click(object sender, EventArgs e) // 모드팩 클릭했을때
         {
             var control = (ModPackControl)sender;
-            MessageBox.Show(control.PackName);
+            var frm = new Frame();
+            var page = new ModpackInfoPage();
+            frm.Content = page;
+            grid.Children.Add(frm);
         }
 
-        private void btnAddPack_Click(object sender, RoutedEventArgs e)
+        private void btnAddPack_Click(object sender, EventArgs e)
         {
 
         }

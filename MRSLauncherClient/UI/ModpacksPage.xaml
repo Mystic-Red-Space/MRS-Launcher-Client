@@ -11,7 +11,7 @@
       FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi"
       Loaded="Modpacks_Loaded">
 
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>

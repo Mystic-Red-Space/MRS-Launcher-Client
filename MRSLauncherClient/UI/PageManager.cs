@@ -20,7 +20,6 @@ namespace MRSLauncherClient
                 new ModpacksPage(),
                 new SettingsPage(),
                 new AboutPage(),
-                new ModpackInfoPage()
             });
         }
 

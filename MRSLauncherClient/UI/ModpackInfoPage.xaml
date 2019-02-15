@@ -11,8 +11,8 @@
 
     <Canvas>
         <Rectangle Width="800" Height="450" Fill="#404040" />
-        <Label Content="Gregblock" Canvas.Left="55" Canvas.Top="65" />
-        <WebBrowser Canvas.Left="55" Canvas.Top="100" Width="100" Height="200"/>
+        <Label Content="Gregblock" Canvas.Left="35" Canvas.Top="50" Foreground="White" />
+        <WebBrowser Canvas.Left="35" Canvas.Top="100" Canvas.Right="35" Width="730" Height="250"/>
 
     </Canvas>
 </Page>
