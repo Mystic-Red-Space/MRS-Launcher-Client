@@ -9,8 +9,10 @@
       FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi"
       Title="ModpackInfo">
 
-    <Grid>
-        <Label Content="Gregblock"  />
+    <Canvas>
+        <Rectangle Width="800" Height="450" Fill="#404040" />
+        <Label Content="Gregblock" Canvas.Left="55" Canvas.Top="65" />
+        <WebBrowser Canvas.Left="55" Canvas.Top="100" Width="100" Height="200"/>
 
-    </Grid>
+    </Canvas>
 </Page>

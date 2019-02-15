@@ -19,7 +19,8 @@ namespace MRSLauncherClient
                 new HomePage(),
                 new ModpacksPage(),
                 new SettingsPage(),
-                new AboutPage()
+                new AboutPage(),
+                new ModpackInfoPage()
             });
         }
 
