@@ -12,7 +12,7 @@
     <Canvas>
         <Rectangle Width="800" Height="450" Fill="#404040" />
         <Label Content="Gregblock" Canvas.Left="35" Canvas.Top="50" Foreground="White" />
-        <WebBrowser Canvas.Left="35" Canvas.Top="100" Canvas.Right="35" Width="730" Height="250"/>
+        <WebBrowser x:Name="wbUpdateViewer" Canvas.Left="35" Canvas.Top="100" Canvas.Right="35" Width="730" Height="250"/>
 
     </Canvas>
 </Page>
