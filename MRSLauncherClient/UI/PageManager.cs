@@ -34,5 +34,10 @@ namespace MRSLauncherClient
             // 못 찾았을때
             return null;
         }
+
+        public Page GetContent(int index)
+        {
+            return PageList[index];
+        }
     }
 }

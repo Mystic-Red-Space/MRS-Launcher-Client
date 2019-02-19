@@ -40,6 +40,8 @@ namespace MRSLauncherClient
                 btn.Padding = new Thickness(10, 0, 0, 0);
                 sideButtons.Children.Add(btn);
             }
+
+            contentViewer.Content = pageManager.GetContent(0);
         }
 
         private void SideButtons_Click(object sender, RoutedEventArgs e)

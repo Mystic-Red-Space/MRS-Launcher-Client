@@ -12,17 +12,6 @@
       Loaded="Modpacks_Loaded">
 
     <Grid x:Name="grid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <Button x:Name="btnAddPack"
-                Content="+"
-                HorizontalAlignment="Right"
-                Width="30" Height="30"
-                Margin="10"
-                Click="btnAddPack_Click"/>
 
         <Label x:Name="lvLoading"
                Grid.Row="1"
