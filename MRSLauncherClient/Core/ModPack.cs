@@ -12,7 +12,7 @@ namespace MRSLauncherClient
         {
             var res = Web.Request(Launcher.ModPackListUrl);
 
-            return JObject.Parse(res)
+            return JArray.Parse(res)
                    .Select(x => x.ToString())
                    .ToArray();
         }
