@@ -57,7 +57,7 @@ namespace MRSLauncherClient
                     {
                         foreach (var item in list) // 모드팩 컨트롤 만들어서 화면에 표시
                         {
-                            var realitem= JObject.Parse(item).Item["name"];
+                            var realitem= JObject.Parse(item).GetValue("name");
                             var control = new ModPackControl(realitem, "");
                             control.Margin = new Thickness(100);
                             control.Click += Control_Click;
