@@ -23,6 +23,7 @@ namespace MRSLauncherClient.UI
         public ModpackInfoPage()
         {
             InitializeComponent();
+            //wbUpdateViewer : 업데이트 로그 뷰어
             wbUpdateViewer.Navigate("https://files.mysticrs.tk/update_test.html");
         }
     }
