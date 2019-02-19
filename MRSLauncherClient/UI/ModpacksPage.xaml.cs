@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
 using MRSLauncherClient.UI;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MRSLauncherClient
 {
@@ -55,8 +57,8 @@ namespace MRSLauncherClient
                     {
                         foreach (var item in list) // 모드팩 컨트롤 만들어서 화면에 표시
                         {
-                            item= JObject.Parse(item).Item["name"]
-                            var control = new ModPackControl(item, "");
+                            realitem= JObject.Parse(item).Item["name"] {get;}
+                            var control = new ModPackControl(realitem, "");
                             control.Margin = new Thickness(100);
                             control.Click += Control_Click;
                             stPacks.Children.Add(control);
