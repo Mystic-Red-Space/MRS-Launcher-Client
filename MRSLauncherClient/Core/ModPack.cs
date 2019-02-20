@@ -53,7 +53,7 @@ namespace MRSLauncherClient
         [JsonProperty("icon")]
         public string Icon { get; private set; }
 
-        [JsonProperty("profile")]
+        [JsonProperty("version")]
         public string StartProfile { get; private set; } = "1.12.2";
     }
 
