@@ -25,11 +25,11 @@ namespace MRSLauncherClient
         }
 
         // 특정 모드팩의 정보를 가져옴
-        public static ModPack GetModPack(string name)
+        public static ModPack GetModPack(ModPackInfo info)
         {
             var url = Launcher.ModPackDataUrl; // API 서버 요청할 데이터
             var query = new NameValueCollection(); // 쿼리
-            query.Add("name", name);
+            query.Add("name", info.Name);
 
             var json = Web.Request(url, Encoding.UTF8, query); // 응답 파싱
             var jarr = JArray.Parse(json);
@@ -40,7 +40,7 @@ namespace MRSLauncherClient
                 modFiles[i] = jarr[i].ToObject<ModFile>(); // 각 배열의 요소를 직렬화해서 저장
             }
 
-            var modPack = new ModPack(name, modFiles); // 모드팩 객체 생성
+            var modPack = new ModPack(info.Name, modFiles, info.StartProfile); // 모드팩 객체 생성
             return modPack;
         }
     }
@@ -52,18 +52,23 @@ namespace MRSLauncherClient
 
         [JsonProperty("icon")]
         public string Icon { get; private set; }
+
+        [JsonProperty("profile")]
+        public string StartProfile { get; private set; } = "1.12.2";
     }
 
     public class ModPack // 모드팩 클래스
     {
-        public ModPack(string name, ModFile[] modFiles)
+        public ModPack(string name, ModFile[] modFiles, string profile)
         {
             this.Name = name;
             this.ModFiles = modFiles;
+            this.StartProfile = profile;
         }
 
         public string Name { get; private set; }
         public ModFile[] ModFiles { get; private set; }
+        public string StartProfile { get; private set; }
     }
 
     public class ModFile // 모드 파일 클래스

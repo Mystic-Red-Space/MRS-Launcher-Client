@@ -87,6 +87,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Core\GamePatch.cs" />
+    <Compile Include="Core\GameProcess.cs" />
     <Compile Include="Core\JavaDownload.cs" />
     <Compile Include="Core\ModPack.cs" />
     <Compile Include="Core\WebDownload.cs" />
