@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System.Collections.Specialized;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
+using System.Web;
 
 namespace MRSLauncherClient
 {
@@ -20,20 +23,27 @@ namespace MRSLauncherClient
             }
         }
 
-        public static string Request(string url, Encoding enc, string post) // HTTP POST
+        public static string Request(string url, Encoding enc, NameValueCollection q) // HTTP GET QUERY
         {
-            var req = WebRequest.CreateHttp(url);
-
-            var reqStream = req.GetRequestStream();
-            var reqData = enc.GetBytes(post);
-            reqStream.Write(reqData, 0, reqData.Length);
-            reqStream.Dispose();
+            var query = ToQuery(q);
+            var req = WebRequest.CreateHttp(url + query);
 
             var res = req.GetResponse();
             var resStream = new StreamReader(res.GetResponseStream(), enc);
             var resData = resStream.ReadToEnd();
 
             return resData;
+        }
+
+        private static string ToQuery(NameValueCollection c)
+        {
+            var arr = from key in c.AllKeys
+                      from value in c.GetValues(key)
+                      select string.Format("{0}={1}", key, value); // LINQ
+
+            var str = string.Join("&", arr.ToArray());
+
+            return "?" + str;
         }
     }
 }

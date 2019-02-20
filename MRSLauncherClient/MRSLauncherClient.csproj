@@ -39,13 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CmlLib">
-      <HintPath>C:\Users\김민준\Downloads\CmlLib.dll</HintPath>
+      <HintPath>..\..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\CmlLib.dll</HintPath>
     </Reference>
     <Reference Include="DotNetZip">
-      <HintPath>C:\Users\김민준\Downloads\DotNetZip.dll</HintPath>
+      <HintPath>..\..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Release\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
