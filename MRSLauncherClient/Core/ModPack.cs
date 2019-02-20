@@ -48,10 +48,10 @@ namespace MRSLauncherClient
     public class ModPackInfo
     {
         [JsonProperty("name")]
-        public string Name;
+        public string Name { get; private set; }
 
         [JsonProperty("icon")]
-        public string Icon;
+        public string Icon { get; private set; }
     }
 
     public class ModPack // 모드팩 클래스

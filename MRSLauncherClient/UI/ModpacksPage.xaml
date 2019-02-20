@@ -13,6 +13,8 @@
 
     <Grid x:Name="grid">
 
+        <Frame x:Name="frmContent" NavigationUIVisibility="Hidden"/>
+
         <Label x:Name="lvLoading"
                Grid.Row="1"
                Content="Loading modpacks..."

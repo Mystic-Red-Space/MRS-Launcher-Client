@@ -20,16 +20,16 @@ namespace MRSLauncherClient
     /// </summary>
     public partial class ModPackControl : UserControl
     {
-        public string PackName;
+        public ModPackInfo ModPack;
         public event EventHandler Click; // 컨트롤 클릭 이벤트
 
-        public ModPackControl(string name, string imgUrl)
+        public ModPackControl(ModPackInfo pack)
         {
             InitializeComponent();
 
-            PackName = name;
-            lvName.Content = name;
-            //imgIcon.Source = new BitmapImage(new Uri(imgUrl));
+            ModPack = pack;
+            lvName.Content = pack.Name;
+            imgIcon.Source = new BitmapImage(new Uri(pack.Icon));
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

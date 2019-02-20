@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace MRSLauncherClient.UI
 {
@@ -20,11 +21,40 @@ namespace MRSLauncherClient.UI
     /// </summary>
     public partial class ModpackInfoPage : Page
     {
-        public ModpackInfoPage()
+        public ModpackInfoPage(string packname)
         {
             InitializeComponent();
-            //wbUpdateViewer : 업데이트 로그 뷰어
-            wbUpdateViewer.Navigate("https://files.mysticrs.tk/update_test.html");
+
+            PackName = packname;
+        }
+
+        public string PackName;
+        public ModPack Pack;
+        public event EventHandler PageReturned; // 뒤로가기 이벤트
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        {
+            PageReturned?.Invoke(this, new EventArgs());
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.IsEnabled = false;
+
+            var th = new Thread(new ThreadStart(delegate // 모드팩 로딩 스레드
+            {
+                Pack = ModPackLoader.GetModPack(PackName);
+
+                Dispatcher.Invoke(new Action(delegate
+                {
+                    this.IsEnabled = true;
+                    lvName.Content = PackName;
+
+                    //wbUpdateViewer : 업데이트 로그 뷰어
+                    wbUpdateViewer.Navigate("https://files.mysticrs.tk/update_test.html");
+                }));
+            }));
+            th.Start();
         }
     }
 }

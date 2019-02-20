@@ -29,16 +29,16 @@ namespace MRSLauncherClient
             InitializeComponent();
         }
 
-        bool IsLoaded = false;
+        bool IsPackLoaded = false;
 
         private void Modpacks_Loaded(object sender, RoutedEventArgs e) // 모드팩 로딩
         {
-            if (IsLoaded) return;
-            IsLoaded = true;
+            if (IsPackLoaded) return;
+            IsPackLoaded = true;
 
             var th = new Thread(new ThreadStart(delegate
             {
-                string[] list = null;
+                ModPackInfo[] list = null;
 
                 try
                 {
@@ -46,7 +46,7 @@ namespace MRSLauncherClient
                 }
                 catch (System.Net.WebException)
                 {
-                    list = new string[] { };
+                    list = new ModPackInfo[] { };
                 }
 
                 Dispatcher.Invoke(new Action(delegate
@@ -57,8 +57,7 @@ namespace MRSLauncherClient
                     {
                         foreach (var item in list) // 모드팩 컨트롤 만들어서 화면에 표시
                         {
-                            var realitem= JObject.Parse(item).GetValue("name").ToString();
-                            var control = new ModPackControl(realitem, "");
+                            var control = new ModPackControl(item);
                             control.Margin = new Thickness(100);
                             control.Click += Control_Click;
                             stPacks.Children.Add(control);
@@ -74,15 +73,14 @@ namespace MRSLauncherClient
         private void Control_Click(object sender, EventArgs e) // 모드팩 클릭했을때
         {
             var control = (ModPackControl)sender;
-            var frm = new Frame();
-            var page = new ModpackInfoPage();
-            frm.Content = page;
-            grid.Children.Add(frm);
+            var page = new ModpackInfoPage(control.ModPack.Name);
+            page.PageReturned += Page_PageReturned;
+            frmContent.Content = page;
         }
 
-        private void btnAddPack_Click(object sender, EventArgs e)
+        private void Page_PageReturned(object sender, EventArgs e)
         {
-
+            frmContent.Content = null;
         }
     }
 }
