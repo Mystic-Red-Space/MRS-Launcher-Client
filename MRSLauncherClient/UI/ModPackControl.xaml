@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MRSLauncherClient"
-             mc:Ignorable="d" Height="150" Width="150">
+             mc:Ignorable="d" Height="200" Width="200">
 
     <Canvas>
         <Border BorderThickness="0" Grid.Row="0" Grid.ColumnSpan="2"
-        CornerRadius="10,10,10,10" BorderBrush="Black" Background="White" Height="150" Width="150"
+        CornerRadius="10,10,10,10" BorderBrush="Black" Background="White" Height="200" Width="200"
                 MouseDown="Border_MouseDown" Cursor="Hand"/>
 
-        <Image x:Name="imgIcon" Width="100" Height="100" Canvas.Left="25" Canvas.Top="11" Source="/MRSLauncherClient;component/Resources/Crafting_Table.png" MouseDown="Border_MouseDown" Cursor="Hand"/>
-        <Label x:Name="lvName" FontSize="17" Content="Modpack" Canvas.Left="15" Canvas.Top="111" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi"/>
+        <Image x:Name="imgIcon" Width="150" Height="150" Canvas.Left="23" Canvas.Top="10" Source="/MRSLauncherClient;component/Resources/Crafting_Table.png" MouseDown="Border_MouseDown" Cursor="Hand"/>
+        <Label x:Name="lvName" FontSize="14" Content="Modpack" Canvas.Left="20" Canvas.Top="160" Width="160" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi" Height="40"/>
     </Canvas>
 </UserControl>
