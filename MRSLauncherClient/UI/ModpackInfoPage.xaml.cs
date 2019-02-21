@@ -25,7 +25,6 @@ namespace MRSLauncherClient.UI
         public ModpackInfoPage(ModPackInfo packname)
         {
             InitializeComponent();
-
             PackInfo = packname;
         }
 
