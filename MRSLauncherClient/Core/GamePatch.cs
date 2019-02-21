@@ -30,7 +30,7 @@ namespace MRSLauncherClient
             var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name);
             packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
             packDownloader.DownloadFiles();
-            packDownloader.DeleteInvalidFiles();
+            //packDownloader.DeleteInvalidFiles();
 
             statusChange("게임 다운로드 준비중");
 
@@ -54,9 +54,12 @@ namespace MRSLauncherClient
                 StartProfile = startProfile,
                 BaseProfile = baseProfile,
                 JavaPath = Launcher.JavaPath + "\\bin\\javaw.exe",
-                MaximumRamMb = 2048,
+                MaximumRamMb = Setting.Json.MaxRamMb,
                 Session = this.Session
             };
+
+            if (Setting.Json.UseCustomJVM)
+                option.CustomJavaParameter = Setting.Json.CustomJVMArguments;
 
             var launch = new MLaunch(option);
             return new GameProcess(launch.GetProcess());
