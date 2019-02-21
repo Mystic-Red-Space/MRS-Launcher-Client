@@ -30,7 +30,7 @@ namespace MRSLauncherClient
             var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name);
             packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
             packDownloader.DownloadFiles();
-            //packDownloader.DeleteInvalidFiles();
+            packDownloader.DeleteInvalidFiles();
 
             statusChange("게임 다운로드 준비중");
 
