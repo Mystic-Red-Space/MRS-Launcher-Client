@@ -15,7 +15,7 @@ namespace MRSLauncherClient
             LauncherPath = Environment.GetEnvironmentVariable("appdata") + "\\MRSLauncher", // 모든 파일이 저장되는 기본 경로
             GamePath = LauncherPath + "\\games\\", // saves, mods, screenshots 등이 저장되는 폴더
             JavaPath = LauncherPath + "\\runtime", // 자바가 설치되는 경로
-            CommonPath = LauncherPath + "\\commons\\", // 라이브러리, versions, assets 가 저장되는 폴더
+            SettingPath = LauncherPath + "\\launchersetting.json",
 
             ModPackListUrl = "https://api.mysticrs.tk/list", // 모드팩 리스트
             ModPackDataUrl = "https://api.mysticrs.tk/modpack"; // 모드팩 정보 (모드파일 등)

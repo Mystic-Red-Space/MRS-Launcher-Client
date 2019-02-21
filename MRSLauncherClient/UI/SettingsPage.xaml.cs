@@ -29,5 +29,24 @@ namespace MRSLauncherClient
         {
 
         }
+
+        private void Settings_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtRam.Text = Setting.Json.MaxRamMb.ToString();
+            rtJavaArgs.Document = new FlowDocument(new Paragraph(new Run(Setting.Json.CustomJVMArguments))); // richtextbox 사용법이 이상해짐
+            cbCustomJVM.IsChecked = Setting.Json.UseCustomJVM;
+        }
+
+        private void Settings_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("unloaded");
+
+            var ram = 0;
+            if (int.TryParse(txtRam.Text, out ram))
+                Setting.Json.MaxRamMb = ram;
+
+            Setting.Json.CustomJVMArguments = new TextRange(rtJavaArgs.Document.ContentStart, rtJavaArgs.Document.ContentEnd).Text;
+            Setting.Json.UseCustomJVM = cbCustomJVM.IsChecked ?? false; // 만약 값이 null 이라면 false 를 반환
+        }
     }
 }

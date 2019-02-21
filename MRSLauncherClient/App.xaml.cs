@@ -38,7 +38,7 @@ namespace MRSLauncherClient
         // 프로그램 종료
         public static void Stop()
         {
-            // 여기 나중에 프로그램 종료시 해야할작업 추가
+            Setting.SaveSetting(); // 설정 저장
             Environment.Exit(0);
         }
     }

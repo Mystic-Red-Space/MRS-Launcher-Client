@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SettingsPage"
-      Name="Settings">
+      Name="Settings"
+      Loaded="Settings_Loaded"
+      Unloaded="Settings_Unloaded">
 
     <Canvas>
         <Rectangle Fill="#404040" Canvas.Left="0" Canvas.Top="0" Height="450" Width="800"/>
@@ -15,6 +17,19 @@
         <Label Content="RAM Settings" Canvas.Left="40" Canvas.Top="80" FontSize="20" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="White" Padding="0" />
         <Slider Canvas.Left="40" Canvas.Top="120" Height="15" Width="730" ValueChanged="Slider_ValueChanged"/>
         <TextBlock Canvas.Left="366" Canvas.Top="240" TextWrapping="Wrap" Text="TextBlock"  />
+        <Label Content="태스트 전용 태스트 전용 태스트 전용" Canvas.Left="78" Canvas.Top="287"/>
+        <TextBox x:Name="txtRam" Height="23" Canvas.Left="144" TextWrapping="Wrap" Text="TextBox" Canvas.Top="345" Width="120"/>
+        <Label Content="램 (MB)" Canvas.Left="78" Canvas.Top="341"/>
+        <Label Content="커스텀" Canvas.Left="78" Canvas.Top="372"/>
+        <CheckBox x:Name="cbCustomJVM" Content="CheckBox" Canvas.Left="144" Canvas.Top="378"/>
+        <Label Content="커스텀자바파라미터" Canvas.Left="458" Canvas.Top="305"/>
+        <RichTextBox x:Name="rtJavaArgs" Height="70" Canvas.Left="458" Canvas.Top="336" Width="244">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
 
 
 

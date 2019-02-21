@@ -50,5 +50,10 @@ namespace MRSLauncherClient
             var name = btn.Content.ToString();
             contentViewer.Content = pageManager.GetContent(name);
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            App.Stop();
+        }
     }
 }

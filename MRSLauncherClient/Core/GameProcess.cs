@@ -14,6 +14,7 @@ namespace MRSLauncherClient
             process = p;
         }
 
+        public event EventHandler<string> GameOutput;
         Process process; // 마인크래프트 프로세스
 
         public void Start()
@@ -21,7 +22,7 @@ namespace MRSLauncherClient
             process.Start();
         }
 
-        private void StartDebug()
+        public void StartDebug()
         {
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardError = true;
@@ -47,6 +48,7 @@ namespace MRSLauncherClient
 
         void output(string msg)
         {
+            GameOutput?.Invoke(this, msg);
             Console.WriteLine(msg);
         }
     }

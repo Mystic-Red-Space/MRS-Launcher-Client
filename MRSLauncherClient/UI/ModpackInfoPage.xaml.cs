@@ -77,8 +77,8 @@ namespace MRSLauncherClient.UI
                 patch.ProgressChange += Patch_ProgressChange;
                 patch.StatusChange += Patch_StatusChange;
                 var process = patch.Patch();
-
-                process.Start();
+                process.GameOutput += Process_GameOutput;
+                process.StartDebug();
 
                 Dispatcher.Invoke(new Action(delegate
                 {
@@ -93,6 +93,15 @@ namespace MRSLauncherClient.UI
             {
                 MessageBox.Show("게임을 실행할 수 없습니다.\n"+ex.ToString());
             }
+        }
+
+        private void Process_GameOutput(object sender, string e)
+        {
+            Dispatcher.Invoke(new Action(delegate
+            {
+                rtLog.AppendText(e + "\n");
+                rtLog.ScrollToEnd();
+            }));
         }
 
         private void Patch_StatusChange(object sender, string e)

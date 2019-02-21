@@ -10,7 +10,8 @@
         Width="1024" Height="720"
         MinWidth="1024" MinHeight="720"
         Background="#FF404040"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
 
     <Grid>
         <Grid.ColumnDefinitions>
