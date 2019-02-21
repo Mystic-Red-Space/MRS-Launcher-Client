@@ -69,23 +69,30 @@ namespace MRSLauncherClient.UI
 
         private void Start()
         {
-            var testSession = MSession.GetOfflineSession("tester123"); // 태스트용 복돌세션
-
-            var patch = new GamePatch(Pack, testSession);
-            patch.ProgressChange += Patch_ProgressChange;
-            patch.StatusChange += Patch_StatusChange;
-            var process = patch.Patch();
-
-            process.Start();
-
-            Dispatcher.Invoke(new Action(delegate
+            try
             {
-                btnStart.IsEnabled = true;
-                btnReturn.IsEnabled = true;
+                var testSession = MSession.GetOfflineSession("tester123"); // 태스트용 복돌세션
 
-                pbPatch.Value = 100;
-                lvStatus.Content = "게임 실행 완료";
-            }));
+                var patch = new GamePatch(Pack, testSession);
+                patch.ProgressChange += Patch_ProgressChange;
+                patch.StatusChange += Patch_StatusChange;
+                var process = patch.Patch();
+
+                process.Start();
+
+                Dispatcher.Invoke(new Action(delegate
+                {
+                    btnStart.IsEnabled = true;
+                    btnReturn.IsEnabled = true;
+
+                    pbPatch.Value = 100;
+                    lvStatus.Content = "게임 실행 완료";
+                }));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("게임을 실행할 수 없습니다.\n"+ex.ToString());
+            }
         }
 
         private void Patch_StatusChange(object sender, string e)
