@@ -52,7 +52,7 @@ namespace MRSLauncherClient.UI
                     lvName.Content = PackInfo.Name;
 
                     //wbUpdateViewer : 업데이트 로그 뷰어
-                    wbUpdateViewer.Navigate("https://files.mysticrs.tk/update_test.html");
+                    wbUpdateViewer.Navigate("https://files.mysticrs.tk/update.html");
                 }));
             }));
             th.Start();
