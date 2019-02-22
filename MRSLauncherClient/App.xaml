@@ -9,7 +9,7 @@
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontFamily" Value="/MRSLauncherClient;component/Resources/#HSDuggobi"/>
+            <Setter Property="FontFamily" Value="/MRSLauncherClient;component/Resources/#Oligopoly"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Cursor" Value="Hand"/>

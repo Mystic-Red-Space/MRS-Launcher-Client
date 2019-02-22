@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MRSLauncherClient.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace MRSLauncherClient
         public MainWindow()
         {
             pageManager = new PageManager();
-
+            textAccountViewer.Text = LoginWindow.email;
             InitializeComponent();
         }
 
