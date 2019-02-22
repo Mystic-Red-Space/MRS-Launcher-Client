@@ -31,8 +31,7 @@ namespace MRSLauncherClient.UI
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //email = tbEmail.Text;
-            email = "lapis0875@gmail.com";
+            email = tbEmail.Text;
             pw = tbPassword.Text;
         }
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
