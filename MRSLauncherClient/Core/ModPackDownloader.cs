@@ -18,9 +18,15 @@ namespace MRSLauncherClient
 
         ModPack modPack;
         string RootPath = "";
+        string[] NoUpdate;
 
-        public ModPackDownloader(ModPack pack, string downloadPath)
+        public ModPackDownloader(ModPack pack, string downloadPath, string[] noUpdate)
         {
+            this.NoUpdate = noUpdate;
+
+            if (NoUpdate == null)
+                NoUpdate = new string[] { };
+
             this.RootPath = downloadPath;
             this.modPack = pack;
         }
@@ -51,16 +57,23 @@ namespace MRSLauncherClient
 
         public void DeleteInvalidFiles() // 서버에 없는 파일 삭제
         {
-            var localFiles = Directory.GetFiles(RootPath, "*.*", SearchOption.AllDirectories);
-            var serverFiles = modPack.ModFiles.Select(x => RootPath + "\\" + x.FileName);
+            var localFiles = GetFiles(RootPath);
+            var serverFiles = modPack.ModFiles.Select(x => RootPath + "\\" + x.Path + x.FileName);
 
             var invalidFile = localFiles
                               .Except(serverFiles) // 허용되지 않은 파일 목록
                               .ToArray();
 
+            foreach (var item in localFiles)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("invalid");
             foreach (var item in invalidFile)
             {
-                File.Delete(item);
+                //Console.WriteLine(item);
+                //File.Delete(item);
             }
         }
 
@@ -78,6 +91,37 @@ namespace MRSLauncherClient
             }
 
             return hash == compareHash;
+        }
+
+        private string[] GetFiles(string path)
+        {
+            return GetFiles(path, new List<string>()).ToArray();
+        }
+
+        private List<string> GetFiles(string path, List<string> result)
+        {
+            var dir = new DirectoryInfo(path);
+
+            var files = dir.GetFiles("*.*", SearchOption.TopDirectoryOnly)
+                       .Select(x => x.FullName)
+                       .ToArray();
+
+            result.AddRange(files);
+
+            var dirs = dir.GetDirectories("*.*", SearchOption.TopDirectoryOnly)
+                      .Select(x => x.Name)
+                      .ToArray();
+
+            foreach (var item in dirs)
+            {
+                var fullPath = path + "\\" + item;
+                if (NoUpdate.Contains(item))
+                    continue;
+
+                GetFiles(fullPath, result);
+            }
+
+            return result;
         }
     }
 

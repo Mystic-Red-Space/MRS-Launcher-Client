@@ -27,7 +27,13 @@ namespace MRSLauncherClient
         {
             statusChange("모드 패치중");
 
-            var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name);
+            var blackList = new string[] 
+            {
+                "libraries",
+                "versions"
+            };
+
+            var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name, blackList);
             packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
             packDownloader.DownloadFiles();
             packDownloader.DeleteInvalidFiles();

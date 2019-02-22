@@ -49,14 +49,7 @@ namespace MRSLauncherClient.UI
                 {
                     this.IsEnabled = true;
                     lvName.Content = PackInfo.Name;
-                    string[] strPackName = PackInfo.Name.Split(' ');
-                    string packUpdateLogURL = "https://api.mysticrs.tk/update?name=" + strPackName[0];
-                    for(int i=1; i<strPackName.Length; i++)
-                    {
-                        packUpdateLogURL = packUpdateLogURL+"%20"+strPackName[i];
-                    }
-                    Console.WriteLine("[ModpackInfoPage.xaml.cs] packUpdateLogURL = " + packUpdateLogURL);
-                    //wbUpdateViewer : 업데이트 로그 뷰어
+                    string packUpdateLogURL = "https://api.mysticrs.tk/update?name=" + Uri.EscapeDataString(PackInfo.Name);
                     wbUpdateViewer.Navigate(packUpdateLogURL);
                 }));
             }));
