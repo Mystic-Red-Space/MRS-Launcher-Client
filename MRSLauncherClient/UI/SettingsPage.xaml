@@ -9,17 +9,18 @@
       Title="SettingsPage"
       Name="Settings"
       Loaded="Settings_Loaded"
-      Unloaded="Settings_Unloaded">
+      Unloaded="Settings_Unloaded"
+      FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly">
 
     <Canvas>
         <Rectangle Fill="#404040" Canvas.Left="0" Canvas.Top="0" Height="450" Width="800"/>
-        <Label Content="Minecraft Settings" Canvas.Left="40" Canvas.Top="20" FontSize="22" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="White" Padding="0" />
-        <Label Content="RAM Settings" Canvas.Left="40" Canvas.Top="80" FontSize="20" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="White" Padding="0" />
+        <Label Content="Minecraft Settings" Canvas.Left="40" Canvas.Top="20" FontSize="22" Foreground="White" Padding="0" />
+        <Label Content="RAM Settings" Canvas.Left="40" Canvas.Top="80" FontSize="20" Foreground="White" Padding="0" />
         <Slider Canvas.Left="40" Canvas.Top="120" Height="15" Width="730" ValueChanged="Slider_ValueChanged"/>
-        <Label Content="RAM (MB)" Canvas.Left="40" Canvas.Top="150" Foreground="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly"/>
+        <Label Content="RAM (MB)" Canvas.Left="40" Canvas.Top="150" Foreground="White"/>
         <TextBox x:Name="txtRam" Height="23" TextWrapping="Wrap" Text="TextBox" Canvas.Top="150" Canvas.Left="110" Width="120"/>
-        <CheckBox x:Name="cbCustomJVM" Content="Enable" Canvas.Left="470" Canvas.Top="205" Foreground="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="15"/>
-        <Label Content="Custom Java Parameters (JVM Settings)" Canvas.Left="40" Canvas.Top="200" Foreground="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Padding="0" FontSize="20"/>
+        <CheckBox x:Name="cbCustomJVM" Content="Enable" Canvas.Left="470" Canvas.Top="205" Foreground="White" FontSize="15"/>
+        <Label Content="Custom Java Parameters (JVM Settings)" Canvas.Left="40" Canvas.Top="200" Foreground="White" Padding="0" FontSize="20"/>
         <RichTextBox x:Name="rtJavaArgs" Height="70" Canvas.Left="40" Canvas.Top="240" Width="244">
             <FlowDocument>
                 <Paragraph>
