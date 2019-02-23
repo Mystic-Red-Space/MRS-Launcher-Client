@@ -20,18 +20,19 @@
         </Grid.ColumnDefinitions>
 
         <Grid Background="#FFF14D24">
-            <Grid.RowDefinitions>
+            <Grid.RowDefinitions >
                 <RowDefinition Height="170"/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <Ellipse Fill="White" Canvas.Left="10" Canvas.Top="20" Height="150" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Ellipse Fill="White" Canvas.Left="10" Canvas.Top="20" Height="150" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center" />
             <Image Height="100" Canvas.Left="35" Canvas.Top="35" Width="100" Source="/MRSLauncherClient;component/Resources/LogoMRS.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="35,35,35,35"/>
 
-            <StackPanel x:Name="sideButtons" Grid.Row="1"/>
-            <Rectangle Fill="#FFB03112" HorizontalAlignment="Left" Width="170" Height="50" Margin="0,470,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <TextBlock x:Name="txtUsername" Text="Your Username" HorizontalAlignment="Left" Margin="50,480,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="12" Foreground="White"/>
-            <Image x:Name="imgProfile" HorizontalAlignment="Left" Width="30" Height="30" Margin="10,480,0,-71" Grid.Row="1" VerticalAlignment="Top"/>
+            <StackPanel x:Name="sideButtons" Grid.Row="1" Grid.Column="0" Background="#FFF14D24"/>
+            <Rectangle Fill="#FFB03112" Width="170" Height="50" Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txtUsername" Text="Your Username" Margin="0,0,10,-10" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="12" Foreground="White" HorizontalAlignment="Right" Width="103" Height="30"/>
+            <Image x:Name="imgProfile" HorizontalAlignment="Left" Width="30" Height="30" Margin="10,10,0,-71" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
 
         </Grid>
 
