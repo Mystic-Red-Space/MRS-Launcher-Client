@@ -37,7 +37,7 @@ namespace MRSLauncherClient
                 settingPage,
                 new AboutPage()
             });
-
+            textAccountViewer.Text = Session.Username;
             InitializeComponent();
         }
 

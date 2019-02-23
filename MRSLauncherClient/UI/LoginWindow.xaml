@@ -14,10 +14,23 @@
         <Ellipse Fill="White" Canvas.Left="362" Canvas.Top="50" Height="300" Width="300"/>
         <Image Height="180" Width="180" Canvas.Left="422" Canvas.Top="110" Source="/MRSLauncherClient;component/Resources/LogoMRS.png"/>
         <TextBlock Canvas.Top="390" Canvas.Left="311" TextWrapping="Wrap" Text="Log in with your Minecraft account" Foreground="White" FontSize="22"/>
-        <TextBox x:Name="tbEmail" Width="402" Height="35" TextWrapping="Wrap" Canvas.Top="450" Canvas.Left="315.3" FontSize="16" />
-        <PasswordBox x:Name="tbPassword" Width="402" Height="35" Canvas.Top="520" Canvas.Left="315.3" FontSize="16"/>
+        <TextBox x:Name="tbEmail" Width="402" Height="35" TextWrapping="Wrap" Canvas.Top="450" Canvas.Left="315.3" FontSize="20" GotFocus="txtEmail_GotFocus" LostFocus="txtEmail_LostFocus" Text="e-mail"/>
+        <PasswordBox x:Name="tbPassword" Width="402" Height="35" Canvas.Top="520" Canvas.Left="315.3" FontSize="20" GotFocus="txtPassword_GotFocus" LostFocus="txtPassword_LostFocus"/>
+        <Label
+            x:Name="LvPwHind"
+            Padding="0"
+            BorderThickness="0"
+            FontSize="20"
+            Background="Transparent"
+            Height="30"
+            Canvas.Left="318.3"
+            Canvas.Top="521"
+            Width="293"
+            Cursor="IBeam"
+            Content="password"
+            MouseUp="LvPwHind_MouseUp"/>
         <Button x:Name="btnLogin" Content="Log in" Canvas.Left="325" Canvas.Top="580" Width="75" Background="White" FontSize="16" Height="30" Click="BtnLogin_Click"/>
-        <Button x:Name="btnForgotPW" Content="Forgot Password?" Canvas.Left="422" Canvas.Top="583" Background="Transparent" FontSize="16" Height="23" BorderBrush="{x:Null}" Foreground="#FF6A92FF" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="BtnForgotPW_Click"/>
+        <Button x:Name="btnForgotPW" Content="Forgot Password?" Canvas.Left="422" Canvas.Top="583" Background="Transparent" FontSize="16" Height="23" BorderBrush="{x:Null}" Foreground="#FF6A92FF" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Hyperlink.Click="HyperlinkForgotPW_Click"/>
 
 
     </Canvas>

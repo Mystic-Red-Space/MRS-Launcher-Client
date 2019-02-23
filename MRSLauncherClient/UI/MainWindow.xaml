@@ -29,7 +29,11 @@
             <Image Height="100" Canvas.Left="35" Canvas.Top="35" Width="100" Source="/MRSLauncherClient;component/Resources/LogoMRS.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="33,41,37,29"/>
 
             <StackPanel x:Name="sideButtons" Grid.Row="1"/>
-            <TextBlock x:Name="textAccountViewer" Text="Your E-mail" HorizontalAlignment="Left" Margin="20,450,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="16" Foreground="White"/>
+            <Rectangle Fill="#FFB03112" HorizontalAlignment="Left" Width="170" Height="90" Margin="0,430,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBlock Text="You Logged in as..." FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="13" Foreground="White" Margin="10,450,0,0"/>
+            <TextBlock x:Name="textAccountViewer" Text="Your Username" HorizontalAlignment="Left" Margin="10,480,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="12" Foreground="White"/>
+            <TextBlock Text="You Logged in as :" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="13" Foreground="White" Margin="10,450,0,0" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
         </Grid>
 
         <Frame x:Name="contentViewer" Grid.Column="1" NavigationUIVisibility="Hidden"/>

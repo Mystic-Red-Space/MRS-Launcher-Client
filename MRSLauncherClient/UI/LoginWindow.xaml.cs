@@ -26,7 +26,7 @@ namespace MRSLauncherClient.UI
             InitializeComponent();
         }
 
-        private void BtnForgotPW_Click(object sender, RoutedEventArgs e)           //Forgot Password? 버튼 클릭.
+        private void HyperlinkForgotPW_Click(object sender, RoutedEventArgs e)           //Forgot Password? 버튼 클릭.
         {
             Console.WriteLine("[LoginWindow.xaml.cs] Redirecting into Minecraft Account Page for finding password.");
         }
@@ -48,6 +48,35 @@ namespace MRSLauncherClient.UI
                 }));
             }));
             loginth.Start();
+        }
+
+        private void txtEmail_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbEmail.Text == "email")
+                tbEmail.Clear();
+        }
+
+        private void txtEmail_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbEmail.Text == "")
+                tbEmail.Text = "email";
+        }
+
+        private void txtPassword_GotFocus(object sender, RoutedEventArgs e)
+        {
+            LvPwHind.Visibility = Visibility.Collapsed;
+        }
+
+        private void txtPassword_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbPassword.Password == "")
+                LvPwHind.Visibility = Visibility.Visible;
+        }
+
+        private void LvPwHind_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            LvPwHind.Visibility = Visibility.Collapsed;
+            tbPassword.Focus();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
