@@ -3,6 +3,7 @@ using MRSLauncherClient.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,8 +38,16 @@ namespace MRSLauncherClient
                 settingPage,
                 new AboutPage()
             });
-            textAccountViewer.Text = Session.Username;
             InitializeComponent();
+            txtUsername.Text = Session.Username;
+            getProfileImage();
+        }
+
+        private void getProfileImage()
+        {
+            var req = WebRequest.CreateHttp("https://crafatar.com/avatars/" + Session.UUID + "?size=" + 40 + "&default=MHF_Steve" + "&overlay");
+            req.GetResponse();
+
         }
 
         private void SettingPage_LogoutEvent(object sender, EventArgs e)
@@ -53,7 +62,7 @@ namespace MRSLauncherClient
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            textAccountViewer.Text = Setting.Json.Email;
+            txtUsername.Text = Setting.Json.Email;
 
             foreach (var item in pageManager.PageList)
             {
