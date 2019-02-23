@@ -20,9 +20,8 @@ namespace MRSLauncherClient.UI
     /// </summary>
     public partial class LoginWindow : Window
     {
-        //e-mail과 password 변수
-        public static string email = null;
-        private string pw = null;         
+        
+
 
         public LoginWindow()
         {
@@ -31,25 +30,15 @@ namespace MRSLauncherClient.UI
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            email = tbEmail.Text;
-            pw = tbPassword.Text;
+            Launcher.email= tbEmail.Text;
+            Launcher.password = tbPassword.Text;
         }
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            MLogin login = new MLogin();
-            MSession session = null;
-
-            session = login.TryAutoLogin();                     //자동로그인 시도
-            if (session.Result != MLoginResult.Success)         //자동로그인 실패시 이메일과 패스워드를 얻어 로그인 시도
-            {
-                session = login.Authenticate(email, pw);
-            }
-            if (session.Result != MLoginResult.Success)         //로그인 실패시 잘못된 계정이라는 오류 던짐.
-            {
-                throw new Exception("[LoginWindow.xaml.cs] You tried to log in using wrong account!");
-            }
-
-            Console.WriteLine("Hello, " + session.Username);
+            //윈도우 전환
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
         private void BtnForgotPW_Click(object sender, RoutedEventArgs e)           //Forgot Password? 버튼 클릭.
         {

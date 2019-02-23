@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Threading;
+using MRSLauncherClient.UI;
 
 namespace MRSLauncherClient
 {
@@ -29,8 +30,8 @@ namespace MRSLauncherClient
                 javaWindow.ShowDialog();
             }
 
-            var mainWindow = new MainWindow();
-            mainWindow.ShowDialog();
+            var loginWindow = new LoginWindow();
+            loginWindow.ShowDialog();
 
             App.Stop();
         }

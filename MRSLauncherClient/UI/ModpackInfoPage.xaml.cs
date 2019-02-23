@@ -69,9 +69,21 @@ namespace MRSLauncherClient.UI
         {
             try
             {
-                var testSession = MSession.GetOfflineSession("tester123"); // 태스트용 복돌세션
+                
+                MLogin login = new MLogin();
+                MSession session = null;
 
-                var patch = new GamePatch(Pack, testSession);
+                session = login.TryAutoLogin();
+                if (session.Result != MLoginResult.Success){
+                    session = login.Authenticate(Launcher.email, Launcher.password);
+                }
+                if (session.Result != MLoginResult.Success) {
+                        throw new Exception("Wrong Account");
+                }
+
+                Console.WriteLine("Hello, " + session.Username);
+
+                var patch = new GamePatch(Pack, session);
                 patch.ProgressChange += Patch_ProgressChange;
                 patch.StatusChange += Patch_StatusChange;
                 var process = patch.Patch();

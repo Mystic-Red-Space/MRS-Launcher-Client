@@ -24,7 +24,7 @@ namespace MRSLauncherClient
         public MainWindow()
         {
             pageManager = new PageManager();
-            textAccountViewer.Text = LoginWindow.email;
+            textAccountViewer.Text = Launcher.email;
             InitializeComponent();
         }
 
