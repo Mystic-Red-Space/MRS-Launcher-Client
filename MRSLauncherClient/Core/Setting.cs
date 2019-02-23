@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using CmlLib.Launcher;
 
 namespace MRSLauncherClient
 {
@@ -64,5 +65,8 @@ namespace MRSLauncherClient
 
         [JsonProperty]
         public string CustomJVMArguments { get; set; } = "";
+
+        [JsonProperty]
+        public string Email { get; set; } = "";
     }
 }

@@ -31,9 +31,7 @@ namespace MRSLauncherClient
             }
 
             var loginWindow = new LoginWindow();
-            loginWindow.ShowDialog();
-
-            App.Stop();
+            loginWindow.Show();
         }
 
         // 프로그램 종료

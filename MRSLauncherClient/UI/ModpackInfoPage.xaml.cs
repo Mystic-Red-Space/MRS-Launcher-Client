@@ -22,12 +22,14 @@ namespace MRSLauncherClient.UI
     /// </summary>
     public partial class ModpackInfoPage : Page
     {
-        public ModpackInfoPage(ModPackInfo packname)
+        public ModpackInfoPage(ModPackInfo packname, MSession session)
         {
+            Session = session;
             InitializeComponent();
             PackInfo = packname;
         }
 
+        MSession Session;
         public ModPackInfo PackInfo;
         public ModPack Pack;
         public event EventHandler PageReturned; // 뒤로가기 이벤트
@@ -69,21 +71,7 @@ namespace MRSLauncherClient.UI
         {
             try
             {
-                
-                MLogin login = new MLogin();
-                MSession session = null;
-
-                session = login.TryAutoLogin();
-                if (session.Result != MLoginResult.Success){
-                    session = login.Authenticate(Launcher.email, Launcher.password);
-                }
-                if (session.Result != MLoginResult.Success) {
-                        throw new Exception("Wrong Account");
-                }
-
-                Console.WriteLine("Hello, " + session.Username);
-
-                var patch = new GamePatch(Pack, session);
+                var patch = new GamePatch(Pack, Session);
                 patch.ProgressChange += Patch_ProgressChange;
                 patch.StatusChange += Patch_StatusChange;
                 var process = patch.Patch();

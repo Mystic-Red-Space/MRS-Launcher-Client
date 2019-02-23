@@ -11,7 +11,7 @@
         CornerRadius="10,10,10,10" BorderBrush="Black" Background="White" Height="200" Width="200"
                 MouseDown="Border_MouseDown" Cursor="Hand"/>
 
-        <Image x:Name="imgIcon" Width="150" Height="150" Canvas.Left="23" Canvas.Top="10" Source="/MRSLauncherClient;component/Resources/Crafting_Table.png" MouseDown="Border_MouseDown" Cursor="Hand"/>
+        <Image x:Name="imgIcon" Width="150" Height="150" Canvas.Left="23" Canvas.Top="10" MouseDown="Border_MouseDown" Cursor="Hand"/>
         <Label x:Name="lvName" FontSize="14" Content="Modpack" Canvas.Left="20" Canvas.Top="160" Width="160" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi" Height="40"/>
     </Canvas>
 </UserControl>

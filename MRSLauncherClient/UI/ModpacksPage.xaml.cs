@@ -16,6 +16,7 @@ using System.Threading;
 using MRSLauncherClient.UI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using CmlLib.Launcher;
 
 namespace MRSLauncherClient
 {
@@ -24,11 +25,13 @@ namespace MRSLauncherClient
     /// </summary>
     public partial class ModpacksPage : Page
     {
-        public ModpacksPage()
+        public ModpacksPage(MSession s)
         {
+            Session = s;
             InitializeComponent();
         }
 
+        MSession Session;
         bool IsPackLoaded = false;
 
         private void Modpacks_Loaded(object sender, RoutedEventArgs e) // 모드팩 로딩
@@ -73,7 +76,7 @@ namespace MRSLauncherClient
         private void Control_Click(object sender, EventArgs e) // 모드팩 클릭했을때
         {
             var control = (ModPackControl)sender;
-            var page = new ModpackInfoPage(control.ModPack);
+            var page = new ModpackInfoPage(control.ModPack, Session);
             page.PageReturned += Page_PageReturned;
             frmContent.Content = page;
         }

@@ -1,4 +1,5 @@
-﻿using MRSLauncherClient.UI;
+﻿using CmlLib.Launcher;
+using MRSLauncherClient.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +22,39 @@ namespace MRSLauncherClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(MSession s)
         {
+            this.Session = s;
+
+            var settingPage = new SettingsPage();
+            settingPage.LogoutEvent += SettingPage_LogoutEvent;
+
             pageManager = new PageManager();
-            textAccountViewer.Text = Launcher.email;
+            pageManager.PageList.AddRange(new Page[]
+            {
+                new HomePage(),
+                new ModpacksPage(s),
+                settingPage,
+                new AboutPage()
+            });
+
             InitializeComponent();
         }
 
+        private void SettingPage_LogoutEvent(object sender, EventArgs e)
+        {
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
+        }
+
+        MSession Session;
         PageManager pageManager;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            textAccountViewer.Text = Setting.Json.Email;
+
             foreach (var item in pageManager.PageList)
             {
                 var btn = new Button();

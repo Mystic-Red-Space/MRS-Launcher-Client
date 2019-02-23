@@ -94,6 +94,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Core\GameOption.cs" />
     <Compile Include="Core\GamePatch.cs" />
     <Compile Include="Core\GameProcess.cs" />
     <Compile Include="Core\JavaDownload.cs" />
@@ -101,7 +102,7 @@
     <Compile Include="Core\WebDownload.cs" />
     <Compile Include="Core\WebUtil.cs" />
     <Compile Include="Core\ModPackDownloader.cs" />
-    <Compile Include="Setting.cs" />
+    <Compile Include="Core\Setting.cs" />
     <Compile Include="UI\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -188,9 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IcoMRS.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Crafting_Table.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
