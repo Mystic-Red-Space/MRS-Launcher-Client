@@ -1,0 +1,101 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+
+                    xmlns:mwt ="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Add TargetType="{x:Type TextBox}" to make this style the default for all TextBoxes. -->
+
+    <Style x:Key="WatermarkedTextBox" >
+
+        <Setter Property="Control.Template" >
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="TextBox" >
+
+                    <!-- Template derived from Default TextBoxBase. -->
+
+                    <!-- Added the Label InternalWatermarkLabel together with the surrounding Grid. -->
+
+                    <Grid>
+
+                        <mwt:ListBoxChrome Name="Bd"
+
+                                           Background="{TemplateBinding Panel.Background}" 
+
+                                           BorderBrush="{TemplateBinding Border.BorderBrush}"
+
+                                           BorderThickness="{TemplateBinding Border.BorderThickness}"
+
+                                           RenderMouseOver="{TemplateBinding UIElement.IsMouseOver}" 
+
+                                           RenderFocused="{TemplateBinding UIElement.IsKeyboardFocusWithin}" 
+
+                                           SnapsToDevicePixels="True">
+
+                            <ScrollViewer Name="PART_ContentHost"
+
+                                          SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"
+
+                                          />
+
+                        </mwt:ListBoxChrome>
+
+                        <Label x:Name="InternalWatermarkLabel" 
+
+                               Content="{TemplateBinding Tag}" 
+
+                               Visibility="Collapsed" Focusable="False"
+
+                               Foreground="Gray"
+
+                               Background="Transparent"
+
+                               />
+
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+
+                        <!-- The multitrigger is responsible for showing and hiding the watermark. -->
+
+                        <MultiTrigger>
+
+                            <MultiTrigger.Conditions>
+
+                                <Condition Property="IsFocused" Value="False" />
+
+                                <Condition Property="Text" Value="" />
+
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+
+                                <Setter Property="Visibility" TargetName="InternalWatermarkLabel"
+
+                                        Value="Visible" />
+
+                            </MultiTrigger.Setters>
+
+                        </MultiTrigger>
+
+                        <!-- This trigger mimics the default behavior. -->
+
+                        <Trigger Property="UIElement.IsEnabled" Value="False" >
+
+                            <Setter Property="Panel.Background" TargetName="Bd"
+
+                                    Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+
+                            <Setter Property="TextElement.Foreground"
+
+                                    Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

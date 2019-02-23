@@ -30,7 +30,9 @@ namespace MRSLauncherClient
             var blackList = new string[] 
             {
                 "libraries",
-                "versions"
+                "versions",
+                "screenshots",
+                "saves"
             };
 
             var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name, blackList);
