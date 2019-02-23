@@ -30,8 +30,8 @@
 
             <StackPanel x:Name="sideButtons" Grid.Row="1"/>
             <Rectangle Fill="#FFB03112" HorizontalAlignment="Left" Width="170" Height="50" Margin="0,470,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-            <TextBlock x:Name="txtUsername" Text="Your Username" HorizontalAlignment="Left" Margin="90,480,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="8" Foreground="White"/>
-            <Image x:Name="imgProfile" HorizontalAlignment="Left" Width="40" Height="40" Margin="10,475,0,-71" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txtUsername" Text="Your Username" HorizontalAlignment="Left" Margin="50,480,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="12" Foreground="White"/>
+            <Image x:Name="imgProfile" HorizontalAlignment="Left" Width="30" Height="30" Margin="10,480,0,-71" Grid.Row="1" VerticalAlignment="Top"/>
 
         </Grid>
 

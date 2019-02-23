@@ -2,6 +2,7 @@
 using MRSLauncherClient.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -45,8 +46,18 @@ namespace MRSLauncherClient
 
         private void getProfileImage()
         {
-            var req = WebRequest.CreateHttp("https://crafatar.com/avatars/" + Session.UUID + "?size=" + 40 + "&default=MHF_Steve" + "&overlay");
-            req.GetResponse();
+            var imgUrl = new Uri("https://crafatar.com/avatars/" + Session.UUID + "?size=" + 30 + "&default=MHF_Steve" + "&overlay");
+            var imageData = new WebClient().DownloadData(imgUrl);
+
+            // or you can download it Async won't block your UI
+            // var imageData = await new WebClient().DownloadDataTaskAsync(imgUrl);
+
+            var bitmapImage = new BitmapImage { CacheOption = BitmapCacheOption.OnLoad };
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = new MemoryStream(imageData);
+            bitmapImage.EndInit();
+
+            imgProfile.Source = bitmapImage;
 
         }
 
@@ -62,8 +73,6 @@ namespace MRSLauncherClient
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            txtUsername.Text = Setting.Json.Email;
-
             foreach (var item in pageManager.PageList)
             {
                 var btn = new Button();

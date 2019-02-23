@@ -58,7 +58,7 @@ namespace MRSLauncherClient
         #endregion
 
         [JsonProperty]
-        public int MaxRamMb { get; set; } = 1024;
+        public int MaxRamMb { get; set; } = 2048;
 
         [JsonProperty]
         public bool UseCustomJVM { get; set; } = false;
