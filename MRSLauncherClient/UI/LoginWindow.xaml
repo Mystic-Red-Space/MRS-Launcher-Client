@@ -16,8 +16,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="#FFF14D24" Height="Auto" Grid.Column="1"/>
-        <Ellipse Fill="White" Height="300" Width="300" Grid.Column="1" Margin="213,50,213,340"/>
-        <Image Height="180" Width="180" Source="/MRSLauncherClient;component/Resources/LogoMRS.png" Grid.Column="1" Margin="273,110,273,399"/>
+        <Ellipse Fill="White" Height="300" Width="300" Grid.Column="1" Margin="213,50,213,339"/>
+        <Image Height="200" Width="200" Source="/MRSLauncherClient;component/Resources/LogoMRS.png" Grid.Column="1" Margin="281,100,281,390"/>
         <TextBlock TextWrapping="Wrap" Text="Log in with your Minecraft account" Foreground="White" FontSize="22" Grid.Column="1" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox x:Name="tbEmail" Width="402" Height="35" TextWrapping="Wrap" FontSize="20" GotFocus="txtEmail_GotFocus" LostFocus="txtEmail_LostFocus" Text="e-mail" Grid.Column="1" Margin="0,250,0,0"/>
         <PasswordBox x:Name="tbPassword" Width="402" Height="35" FontSize="20" GotFocus="txtPassword_GotFocus" LostFocus="txtPassword_LostFocus" Grid.Column="1" Margin="0,365,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
