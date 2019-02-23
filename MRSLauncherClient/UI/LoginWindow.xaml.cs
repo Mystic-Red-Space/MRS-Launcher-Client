@@ -79,6 +79,8 @@ namespace MRSLauncherClient.UI
             tbPassword.Focus();
         }
 
+        Thread th;
+
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             var email = tbEmail.Text;
@@ -86,7 +88,7 @@ namespace MRSLauncherClient.UI
 
             SetPanelEnable(false);
 
-            var th = new Thread(new ThreadStart(delegate
+            th = new Thread(new ThreadStart(delegate
             {
                 var login = new MLogin();
                 var result = login.Authenticate(email, pw);
@@ -133,9 +135,16 @@ namespace MRSLauncherClient.UI
         {
             //윈도우 전환
             var mainWindow = new MainWindow(s);
+            mainWindow.RenderSize = this.RenderSize;
             mainWindow.Show();
 
             this.Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            App.Stop();
+            th.Abort();
         }
     }
 }

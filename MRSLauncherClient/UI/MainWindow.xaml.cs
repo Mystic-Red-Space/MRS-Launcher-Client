@@ -27,22 +27,21 @@ namespace MRSLauncherClient
         public MainWindow(MSession s)
         {
             this.Session = s;
-
-            var settingPage = new SettingsPage();
-            settingPage.LogoutEvent += SettingPage_LogoutEvent;
-
+            this.LogoutEvent += MainWindow_LogoutEvent;
             pageManager = new PageManager();
             pageManager.PageList.AddRange(new Page[]
             {
                 new HomePage(),
                 new ModpacksPage(s),
-                settingPage,
+                new SettingsPage(),
                 new AboutPage()
             });
             InitializeComponent();
             txtUsername.Text = Session.Username;
             getProfileImage();
         }
+
+        public event EventHandler LogoutEvent;
 
         private void getProfileImage()
         {
@@ -61,7 +60,7 @@ namespace MRSLauncherClient
 
         }
 
-        private void SettingPage_LogoutEvent(object sender, EventArgs e)
+        private void MainWindow_LogoutEvent(object sender, EventArgs e)
         {
             var loginWindow = new LoginWindow();
             loginWindow.Show();
@@ -91,6 +90,18 @@ namespace MRSLauncherClient
             var btn = (Button)sender;
             var name = btn.Content.ToString();
             contentViewer.Content = pageManager.GetContent(name);
+        }
+
+        //LogOut
+        private void BtnLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("정말로 로그아웃을 하시겠습니까?", "주의", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                return;
+
+            var login = new MLogin();
+            login.DeleteTokenFile();
+
+            LogoutEvent?.Invoke(this, new EventArgs());
         }
 
         private void Window_Closed(object sender, EventArgs e)

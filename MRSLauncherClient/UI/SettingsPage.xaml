@@ -28,9 +28,5 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button Content="로그아웃" Canvas.Left="40" Canvas.Top="329" Width="75" Click="Button_Click"/>
-
-
-
     </Canvas>
 </Page>
