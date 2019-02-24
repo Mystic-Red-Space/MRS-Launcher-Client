@@ -54,14 +54,14 @@ namespace MRSLauncherClient.UI
 
         private void txtEmail_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (tbEmail.Text == "email")
+            if (tbEmail.Text == tbEmail.Tag.ToString())
                 tbEmail.Clear();
         }
 
         private void txtEmail_LostFocus(object sender, RoutedEventArgs e)
         {
             if (tbEmail.Text == "")
-                tbEmail.Text = "email";
+                tbEmail.Text = tbEmail.Tag.ToString();
         }
 
         private void txtPassword_GotFocus(object sender, RoutedEventArgs e)
