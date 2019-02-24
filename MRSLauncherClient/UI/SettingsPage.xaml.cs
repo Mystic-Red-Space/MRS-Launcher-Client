@@ -26,9 +26,6 @@ namespace MRSLauncherClient
             InitializeComponent();
         }
 
-
-        public event EventHandler LogoutEvent;
-
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
@@ -53,15 +50,5 @@ namespace MRSLauncherClient
             Setting.Json.UseCustomJVM = cbCustomJVM.IsChecked ?? false; // 만약 값이 null 이라면 false 를 반환
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("정말로 로그아웃을 할까요?", "주의", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
-                return;
-
-            var login = new MLogin();
-            login.DeleteTokenFile();
-
-            LogoutEvent?.Invoke(this, new EventArgs());
-        }
     }
 }

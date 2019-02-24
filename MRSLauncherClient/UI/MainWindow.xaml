@@ -20,16 +20,21 @@
         </Grid.ColumnDefinitions>
 
         <Grid Background="#FFF14D24">
-            <Grid.RowDefinitions>
+            <Grid.RowDefinitions >
                 <RowDefinition Height="170"/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
 
-            <Ellipse Fill="White" Canvas.Left="10" Canvas.Top="20" Height="150" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Image Height="100" Canvas.Left="35" Canvas.Top="35" Width="100" Source="/MRSLauncherClient;component/Resources/LogoMRS.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="33,41,37,29"/>
+            <Ellipse Fill="White" Canvas.Left="10" Canvas.Top="20" Height="150" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Image Height="100" Canvas.Left="35" Canvas.Top="35" Width="100" Source="/MRSLauncherClient;component/Resources/LogoMRS.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="35,35,35,35"/>
 
-            <StackPanel x:Name="sideButtons" Grid.Row="1"/>
-            <TextBlock x:Name="textAccountViewer" Text="Your E-mail" HorizontalAlignment="Left" Margin="20,450,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="16" Foreground="White"/>
+            <StackPanel x:Name="sideButtons" Grid.Row="1" Grid.Column="0" Background="#FFF14D24"/>
+            <Rectangle Fill="#FFB03112" Width="170" Height="70" Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txtUsername" Text="Your Username" Margin="0,-15,10,0" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="12" Foreground="White" HorizontalAlignment="Right" Width="94.45" Height="16"/>
+            <Image x:Name="imgProfile" HorizontalAlignment="Left" Width="40" Height="40" Margin="10,15,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
+            <Button Content="Log Out" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" FontSize="12" Foreground="White" Width="60" Height="20" Click="BtnLogOut_Click" Background="#FFF14D24" Margin="100,41,0,-1" Grid.Row="2"/>
+
         </Grid>
 
         <Frame x:Name="contentViewer" Grid.Column="1" NavigationUIVisibility="Hidden"/>

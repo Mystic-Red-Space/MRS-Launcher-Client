@@ -8,17 +8,34 @@
         Title="MRS Minecraft Launcher" Height="720" Width="1024"
         FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly"
         Loaded="Window_Loaded">
-    
-    <Canvas Background="#FF404040">
-        <Rectangle Fill="#FFF14D24" Width="760" Height="689" Canvas.Left="132"/>
-        <Ellipse Fill="White" Canvas.Left="362" Canvas.Top="50" Height="300" Width="300"/>
-        <Image Height="180" Width="180" Canvas.Left="422" Canvas.Top="110" Source="/MRSLauncherClient;component/Resources/LogoMRS.png"/>
-        <TextBlock Canvas.Top="390" Canvas.Left="311" TextWrapping="Wrap" Text="Log in with your Minecraft account" Foreground="White" FontSize="22"/>
-        <TextBox x:Name="tbEmail" Width="402" Height="35" TextWrapping="Wrap" Text="e-mail" Canvas.Top="450" Canvas.Left="315.3" FontSize="16"/>
-        <PasswordBox x:Name="tbPassword" Width="402" Height="35" Canvas.Top="520" Canvas.Left="315.3" FontSize="16"/>
-        <Button x:Name="btnLogin" Content="Log in" Canvas.Left="325" Canvas.Top="580" Width="75" Background="White" FontSize="16" Height="30" Click="BtnLogin_Click"/>
-        <Button x:Name="btnForgotPW" Content="Forgot Password?" Canvas.Left="422" Canvas.Top="583" Background="Transparent" FontSize="16" Height="23" BorderBrush="{x:Null}" Foreground="#FF6A92FF" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="BtnForgotPW_Click"/>
+
+    <Grid Background="#FF404040">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FFF14D24" Height="Auto" Grid.Column="1"/>
+        <Ellipse Fill="White" Height="300" Width="300" Grid.Column="1" Margin="213,50,213,339"/>
+        <Image Height="200" Width="200" Source="/MRSLauncherClient;component/Resources/LogoMRS.png" Grid.Column="1" Margin="281,100,281,390"/>
+        <TextBlock TextWrapping="Wrap" Text="Log in with your Minecraft account" Foreground="White" FontSize="22" Grid.Column="1" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="tbEmail" Width="402" Height="35" TextWrapping="Wrap" FontSize="20" GotFocus="txtEmail_GotFocus" LostFocus="txtEmail_LostFocus" Text="e-mail" Grid.Column="1" Margin="0,250,0,0"/>
+        <PasswordBox x:Name="tbPassword" Width="402" Height="35" FontSize="20" GotFocus="txtPassword_GotFocus" LostFocus="txtPassword_LostFocus" Grid.Column="1" Margin="0,365,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label
+            x:Name="LvPwHind"
+            Padding="0"
+            BorderThickness="0"
+            FontSize="20"
+            Background="Transparent"
+            Height="34"
+            Width="399"
+            Cursor="IBeam"
+            Content="password"
+            MouseUp="LvPwHind_MouseUp"
+            Grid.Column="1" Margin="0,365,0,0"/>
+        <Button x:Name="btnLogin" Content="Log in" Canvas.Left="325" Canvas.Top="580" Background="White" FontSize="16" Height="30" Click="BtnLogin_Click" Grid.Column="1" Margin="159,580,377,79" Width="190"/>
+        <Button x:Name="btnForgotPW" Content="Forgot Password?" Background="Transparent" FontSize="16" Height="23" BorderBrush="{x:Null}" Foreground="#FF6A92FF" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Hyperlink.Click="HyperlinkForgotPW_Click" Grid.Column="1" Margin="200,500,0,0" HorizontalAlignment="Center"/>
+    </Grid>
 
 
-    </Canvas>
 </Window>
