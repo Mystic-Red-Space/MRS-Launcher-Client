@@ -34,6 +34,7 @@ namespace MRSLauncherClient
         public void DownloadFiles() // 로컬에 없는 파일 혹은 해쉬 다른 파일 다운로드
         {
             var webDownload = new WebDownload();
+            webDownload.DownloadProgressChangedEvent += WebDownload_DownloadProgressChangedEvent;
 
             int fileCount = modPack.ModFiles.Length;
             for (int i = 0; i < fileCount; i++)
@@ -50,8 +51,20 @@ namespace MRSLauncherClient
             }
         }
 
+        int nowValue, maxValue;
+
+        private void WebDownload_DownloadProgressChangedEvent(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            int eValue = 0;
+            eValue = nowValue + e.ProgressPercentage;
+
+            DownloadModFileChanged?.Invoke(this, new DownloadModFileChangedEventArgs(maxValue,eValue));
+        }
+
         private void FireDownloadModFileChanged(int max, int current)
         {
+            nowValue = current * 100;
+            maxValue = max * 100;
             DownloadModFileChanged?.Invoke(this, new DownloadModFileChangedEventArgs(max, current));
         }
 

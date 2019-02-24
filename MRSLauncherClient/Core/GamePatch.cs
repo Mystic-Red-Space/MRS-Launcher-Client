@@ -18,7 +18,7 @@ namespace MRSLauncherClient
         }
 
         public event EventHandler<string> StatusChange;
-        public event ProgressChangedEventHandler ProgressChange;
+        public event DownloadModFileChangedEventHandler ProgressChange;
 
         MSession Session;
         ModPack Pack;
@@ -75,6 +75,7 @@ namespace MRSLauncherClient
 
         private void PackDownloader_DownloadModFileChanged(object sender, DownloadModFileChangedEventArgs e)
         {
+            Console.WriteLine("{0}/{1}", e.CurrentFiles,e.MaxFiles);
             progressChange(e.MaxFiles, e.CurrentFiles);
         }
 
@@ -139,14 +140,7 @@ namespace MRSLauncherClient
 
         private void progressChange(int max, int value)
         {
-            var progress = 0;
-
-            if (max == 100)
-                progress = value;
-            else
-                progress = (int)((float)value / max * 100);
-
-            ProgressChange?.Invoke(this, new ProgressChangedEventArgs(progress, null));
+            ProgressChange?.Invoke(this, new DownloadModFileChangedEventArgs(max, value));
         }
 
         private void statusChange(string msg)

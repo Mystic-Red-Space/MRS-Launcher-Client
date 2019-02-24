@@ -83,7 +83,8 @@ namespace MRSLauncherClient.UI
                     btnStart.IsEnabled = true;
                     btnReturn.IsEnabled = true;
 
-                    pbPatch.Value = 100;
+                    pbPatch.Maximum = 1;
+                    pbPatch.Value = 1;
                     lvStatus.Content = "게임 실행 완료";
                 }));
             }
@@ -110,11 +111,12 @@ namespace MRSLauncherClient.UI
             }));
         }
 
-        private void Patch_ProgressChange(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        private void Patch_ProgressChange(object sender, DownloadModFileChangedEventArgs e)
         {
             Dispatcher.Invoke(new Action(delegate
             {
-                pbPatch.Value = e.ProgressPercentage;
+                pbPatch.Maximum = e.MaxFiles;
+                pbPatch.Value = e.CurrentFiles;
             }));
         }
     }
