@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using CmlLib.Launcher;
 using System.Diagnostics;
+using System.IO;
 
 namespace MRSLauncherClient
 {
@@ -23,22 +24,43 @@ namespace MRSLauncherClient
         MSession Session;
         ModPack Pack;
 
+        public void RemovePackJson()
+        {
+            var localPack = Launcher.GamePath + Pack.Name + "\\launcher\\pack.json";
+            if (File.Exists(localPack))
+                File.Delete(localPack);
+        }
+
         public GameProcess Patch()
         {
-            statusChange("모드 패치중");
+            statusChange("모드 패치 준비중");
 
-            var blackList = new string[] 
+            var localPackContent = "";
+            var localPack = Launcher.GamePath + Pack.Name + "\\launcher\\pack.json";
+            if (File.Exists(localPack))
+                localPackContent = File.ReadAllText(localPack, Encoding.UTF8);
+
+            if (localPackContent != Pack.RawResponse)
             {
-                "libraries",
-                "versions",
-                "screenshots",
-                "saves"
-            };
+                statusChange("모드 패치 중");
 
-            var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name, blackList);
-            packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
-            packDownloader.DownloadFiles();
-            packDownloader.DeleteInvalidFiles();
+                var blackList = new string[]
+                {
+                    "libraries",
+                    "versions",
+                    "screenshots",
+                    "saves",
+                    "launcher"
+                };
+
+                var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name, blackList);
+                packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
+                packDownloader.DownloadFiles();
+                packDownloader.DeleteInvalidFiles();
+
+                Directory.CreateDirectory(Path.GetDirectoryName(localPack));
+                File.WriteAllText(localPack, Pack.RawResponse, Encoding.UTF8);
+            }
 
             statusChange("게임 다운로드 준비중");
 

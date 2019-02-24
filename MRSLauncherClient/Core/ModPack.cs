@@ -40,7 +40,7 @@ namespace MRSLauncherClient
                 modFiles[i] = jarr[i].ToObject<ModFile>(); // 각 배열의 요소를 직렬화해서 저장
             }
 
-            var modPack = new ModPack(info.Name, modFiles, info.StartProfile); // 모드팩 객체 생성
+            var modPack = new ModPack(info.Name, modFiles, info.StartProfile, json); // 모드팩 객체 생성
             return modPack;
         }
     }
@@ -54,21 +54,23 @@ namespace MRSLauncherClient
         public string Icon { get; private set; }
 
         [JsonProperty("profile")]
-        public string StartProfile { get; private set; } = "1.12.2";
+        public string StartProfile { get; private set; }
     }
 
     public class ModPack // 모드팩 클래스
     {
-        public ModPack(string name, ModFile[] modFiles, string profile)
+        public ModPack(string name, ModFile[] modFiles, string profile, string rawresponse)
         {
             this.Name = name;
             this.ModFiles = modFiles;
             this.StartProfile = profile;
+            this.RawResponse = rawresponse;
         }
 
         public string Name { get; private set; }
         public ModFile[] ModFiles { get; private set; }
         public string StartProfile { get; private set; }
+        public string RawResponse { get; private set; }
     }
 
     public class ModFile // 모드 파일 클래스
