@@ -12,7 +12,7 @@
     <Canvas Margin="0,0,0,-162">
         <Rectangle Width="800" Height="616" Fill="#404040" />
         <Label x:Name="lvName" Content="(Loading...)" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Canvas.Left="35" Canvas.Top="50" Foreground="White" />
-        <WebBrowser x:Name="wbUpdateViewer" Canvas.Left="35" Canvas.Top="100" Canvas.Right="35" Width="730" Height="250" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False"/>
+        <WebBrowser x:Name="wbUpdateViewer" Canvas.Left="35" Canvas.Top="100" LoadCompleted="wb_LoadCompleted" Canvas.Right="35" Width="730" Height="250" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"/>
         <Button x:Name="btnReturn" Content="뒤로가기" Canvas.Left="10" Canvas.Top="10" Width="75" Click="btnReturn_Click" Background="White" BorderBrush="#FF484848" FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi" Foreground="Black"/>
 
         <Button x:Name="btnStart" Content="Play" Height="27" Canvas.Left="35" Canvas.Top="362" Width="97" Click="btnStart_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>

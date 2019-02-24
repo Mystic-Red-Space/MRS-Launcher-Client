@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Threading;
 using CmlLib.Launcher;
+using mshtml;
 
 namespace MRSLauncherClient.UI
 {
@@ -57,7 +48,6 @@ namespace MRSLauncherClient.UI
             }));
             th.Start();
         }
-
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             btnStart.IsEnabled = false;
@@ -118,6 +108,16 @@ namespace MRSLauncherClient.UI
                 pbPatch.Maximum = e.MaxFiles;
                 pbPatch.Value = e.CurrentFiles;
             }));
+        }
+        private void AppLoaded(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            wbUpdateViewer.Width = wbUpdateViewer.ActualWidth + 16;
+        }
+        void wb_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            string script = "document.documentElement.style.overflow ='hidden'";
+            WebBrowser wb = (WebBrowser)sender;
+            wb.InvokeScript("execScript", new Object[] { script, "JavaScript" });
         }
     }
 }
