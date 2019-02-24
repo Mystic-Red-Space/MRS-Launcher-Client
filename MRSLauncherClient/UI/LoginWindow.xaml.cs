@@ -147,5 +147,19 @@ namespace MRSLauncherClient.UI
             if (userClose)
                 App.Stop();
         }
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                if (sender == tbEmail)
+                {
+                    tbPassword.Focus();
+                }
+                else if (sender == tbPassword)
+                {
+                    BtnLogin_Click(sender, e);
+                }
+            }
+        }
     }
 }

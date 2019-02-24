@@ -109,10 +109,6 @@ namespace MRSLauncherClient.UI
                 pbPatch.Value = e.CurrentFiles;
             }));
         }
-        private void AppLoaded(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-            wbUpdateViewer.Width = wbUpdateViewer.ActualWidth + 16;
-        }
         void wb_LoadCompleted(object sender, NavigationEventArgs e)
         {
             string script = "document.documentElement.style.overflow ='hidden'";
