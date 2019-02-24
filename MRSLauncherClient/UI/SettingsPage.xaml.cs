@@ -28,7 +28,8 @@ namespace MRSLauncherClient
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            txtRam.Text = ramSlider.Value.ToString();
+            Setting.Json.MaxRamMb = (int)ramSlider.Value;
         }
 
         private void Settings_Loaded(object sender, RoutedEventArgs e)
