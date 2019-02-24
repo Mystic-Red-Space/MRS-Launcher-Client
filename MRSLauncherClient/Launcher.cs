@@ -12,7 +12,7 @@ namespace MRSLauncherClient
             LauncherName = "MRS Minecraft Launcher",
             LauncherVersion = "test1",
 
-            LauncherPath = ".\\\\", // 모든 파일이 저장되는 기본 경로
+            LauncherPath = Environment.CurrentDirectory, // 모든 파일이 저장되는 기본 경로
             GamePath = LauncherPath + "\\games\\", // saves, mods, screenshots 등이 저장되는 폴더
             JavaPath = LauncherPath + "\\runtime", // 자바가 설치되는 경로
             SettingPath = LauncherPath + "\\launchersetting.json",
