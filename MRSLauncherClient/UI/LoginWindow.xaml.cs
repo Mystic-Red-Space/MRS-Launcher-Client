@@ -28,7 +28,7 @@ namespace MRSLauncherClient.UI
 
         bool userClose = true;
 
-        private void HyperlinkForgotPW_Click(object sender, RoutedEventArgs e)           //Forgot Password? 버튼 클릭.
+        private void btnForgotPW_MouseDown(object sender, MouseButtonEventArgs e)           //Forgot Password? 버튼 클릭.
         {
             Console.WriteLine("[LoginWindow.xaml.cs] Redirecting into Minecraft Account Page for finding password.");
         }
