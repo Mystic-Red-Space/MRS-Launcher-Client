@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MRS Minecraft Launcher" Height="720" Width="1024"
         FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
 
     <Grid Background="#FF404040">
         <Grid.ColumnDefinitions>

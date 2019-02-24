@@ -26,6 +26,8 @@ namespace MRSLauncherClient.UI
             InitializeComponent();
         }
 
+        bool userClose = true;
+
         private void HyperlinkForgotPW_Click(object sender, RoutedEventArgs e)           //Forgot Password? 버튼 클릭.
         {
             Console.WriteLine("[LoginWindow.xaml.cs] Redirecting into Minecraft Account Page for finding password.");
@@ -136,12 +138,14 @@ namespace MRSLauncherClient.UI
             mainWindow.RenderSize = this.RenderSize;
             mainWindow.Show();
 
+            userClose = false;
             this.Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            App.Stop();
+            if (userClose)
+                App.Stop();
         }
     }
 }

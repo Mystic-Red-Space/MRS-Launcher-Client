@@ -27,7 +27,6 @@ namespace MRSLauncherClient
         public MainWindow(MSession s)
         {
             this.Session = s;
-            this.LogoutEvent += MainWindow_LogoutEvent;
             pageManager = new PageManager();
             pageManager.PageList.AddRange(new Page[]
             {
@@ -37,35 +36,9 @@ namespace MRSLauncherClient
                 new AboutPage()
             });
             InitializeComponent();
-            txtUsername.Text = Session.Username;
-            getProfileImage();
         }
 
-        public event EventHandler LogoutEvent;
-
-        private void getProfileImage()
-        {
-            var imgUrl = new Uri("https://crafatar.com/avatars/" + Session.UUID + "?size=" + 30 + "&default=MHF_Steve" + "&overlay");
-            var imageData = new WebClient().DownloadData(imgUrl);
-
-            // or you can download it Async won't block your UI
-            // var imageData = await new WebClient().DownloadDataTaskAsync(imgUrl);
-
-            var bitmapImage = new BitmapImage { CacheOption = BitmapCacheOption.OnLoad };
-            bitmapImage.BeginInit();
-            bitmapImage.StreamSource = new MemoryStream(imageData);
-            bitmapImage.EndInit();
-
-            imgProfile.Source = bitmapImage;
-
-        }
-
-        private void MainWindow_LogoutEvent(object sender, EventArgs e)
-        {
-            var loginWindow = new LoginWindow();
-            loginWindow.Show();
-            this.Close();
-        }
+        bool userClose = true;
 
         MSession Session;
         PageManager pageManager;
@@ -83,6 +56,10 @@ namespace MRSLauncherClient
             }
 
             contentViewer.Content = pageManager.GetContent(0);
+
+            txtUsername.Text = Session.Username;
+            var uri = "https://crafatar.com/avatars/" + Session.UUID + "?size=" + 30 + "&default=MHF_Steve" + "&overlay";
+            imgProfile.Source = new BitmapImage(new Uri(uri));
         }
 
         private void SideButtons_Click(object sender, RoutedEventArgs e)
@@ -92,7 +69,6 @@ namespace MRSLauncherClient
             contentViewer.Content = pageManager.GetContent(name);
         }
 
-        //LogOut
         private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("정말로 로그아웃을 하시겠습니까?", "주의", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
@@ -101,12 +77,16 @@ namespace MRSLauncherClient
             var login = new MLogin();
             login.DeleteTokenFile();
 
-            LogoutEvent?.Invoke(this, new EventArgs());
+            userClose = false;
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            App.Stop();
+            if (userClose)
+                App.Stop();
         }
     }
 }
