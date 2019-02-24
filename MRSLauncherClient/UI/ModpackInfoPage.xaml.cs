@@ -114,6 +114,8 @@ namespace MRSLauncherClient.UI
             string script = "document.documentElement.style.overflow ='hidden'";
             WebBrowser wb = (WebBrowser)sender;
             wb.InvokeScript("execScript", new Object[] { script, "JavaScript" });
+            wb.Opacity = 1;
+            wb.OpacityMask = null;
         }
     }
 }
