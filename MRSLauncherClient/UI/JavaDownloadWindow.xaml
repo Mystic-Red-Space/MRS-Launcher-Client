@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="JavaDownloadWindow" Height="140" Width="300"
+        Title="" Height="140" Width="300"
         Loaded="Window_Loaded">
-    
+
     <Canvas>
         <ProgressBar Name="pbProgress" Height="23" Canvas.Left="21" Canvas.Top="55" Width="252"/>
-        <Label Name="lvStatus" Content="자바 다운로드 중" Canvas.Left="21" Canvas.Top="24" Width="252" HorizontalContentAlignment="Center"/>
+        <Label Name="lvStatus" Content="자바 다운로드 중" FontSize="15" Canvas.Left="21" Canvas.Top="3" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="47"/>
 
     </Canvas>
 </Window>
