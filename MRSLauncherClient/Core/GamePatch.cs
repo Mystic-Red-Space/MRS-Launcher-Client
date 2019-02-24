@@ -50,6 +50,7 @@ namespace MRSLauncherClient
                     "versions",
                     "screenshots",
                     "saves",
+                    "shaderpacks",
                     "launcher"
                 };
 
