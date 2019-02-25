@@ -26,7 +26,7 @@ namespace MRSLauncherClient
 
         public void AppendLog(string msg)
         {
-            rt.AppendText(msg + "\n");
+            rt.AppendText(msg);
             rt.ScrollToEnd();
         }
     }
