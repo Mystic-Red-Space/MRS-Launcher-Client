@@ -109,13 +109,13 @@ namespace MRSLauncherClient.UI
                 pbPatch.Value = e.CurrentFiles;
             }));
         }
+
         void wb_LoadCompleted(object sender, NavigationEventArgs e)
         {
             string script = "document.documentElement.style.overflow ='hidden'";
-            WebBrowser wb = (WebBrowser)sender;
-            wb.InvokeScript("execScript", new Object[] { script, "JavaScript" });
-            wb.Opacity = 1;
-            wb.OpacityMask = null;
+            wbUpdateViewer.InvokeScript("execScript", new object[] { script, "JavaScript" });
+            wbUpdateViewer.Opacity = 100;
+            wbUpdateViewer.OpacityMask = null;
         }
     }
 }

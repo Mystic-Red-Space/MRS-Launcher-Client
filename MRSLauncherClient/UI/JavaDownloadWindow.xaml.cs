@@ -23,6 +23,7 @@ namespace MRSLauncherClient
     public partial class JavaDownloadWindow : Window
     {
         JavaDownload javaDownload;
+
         private const int GWL_STYLE = -16;
         private const int WS_SYSMENU = 0x80000;
         [DllImport("user32.dll", SetLastError = true)]
@@ -40,10 +41,11 @@ namespace MRSLauncherClient
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var th = new Thread(InstallJava);
-            th.Start();
             var hwnd = new WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+
+            var th = new Thread(InstallJava);
+            th.Start();
         }
 
         private void InstallJava()
@@ -55,13 +57,12 @@ namespace MRSLauncherClient
                 javaDownload.UnzipCompleted += Java_UnzipCompleted;
                 javaDownload.InstallJava();
             }
-            catch (System.Net.WebException webEx)
+            catch (System.Net.WebException)
             {
                 MessageBox.Show("자바 다운로드 서버에 연결할 수 없습니다.");
-
-                App.Stop(); // 프로그램 종료
+                App.Stop();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("자바를 다운로드 할 수 없습니다.");
                 App.Stop();
