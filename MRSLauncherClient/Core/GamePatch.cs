@@ -51,7 +51,6 @@ namespace MRSLauncherClient
                     "screenshots",
                     "saves",
                     "shaderpacks",
-                    "launcher"
                 };
 
                 var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name, blackList);
