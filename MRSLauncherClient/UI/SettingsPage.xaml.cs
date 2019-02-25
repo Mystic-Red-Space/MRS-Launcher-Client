@@ -41,8 +41,6 @@ namespace MRSLauncherClient
 
         private void Settings_Unloaded(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("unloaded");
-
             var ram = 0;
             if (int.TryParse(txtRam.Text, out ram))
                 Setting.Json.MaxRamMb = ram;

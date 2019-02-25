@@ -49,7 +49,6 @@ namespace MRSLauncherClient
         void output(string msg)
         {
             GameOutput?.Invoke(this, msg);
-            Console.WriteLine(msg);
         }
     }
 }

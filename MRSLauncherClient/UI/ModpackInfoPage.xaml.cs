@@ -25,6 +25,8 @@ namespace MRSLauncherClient.UI
         public ModPack Pack;
         public event EventHandler PageReturned; // 뒤로가기 이벤트
 
+        LogWindow logWindow;
+
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             PageReturned?.Invoke(this, new EventArgs());
@@ -76,6 +78,12 @@ namespace MRSLauncherClient.UI
                     pbPatch.Maximum = 1;
                     pbPatch.Value = 1;
                     lvStatus.Content = "게임 실행 완료";
+
+                    if (logWindow != null)
+                        logWindow.Close();
+
+                    logWindow = new LogWindow();
+                    logWindow.Show();
                 }));
             }
             catch (Exception ex)
@@ -86,10 +94,12 @@ namespace MRSLauncherClient.UI
 
         private void Process_GameOutput(object sender, string e)
         {
+            if (logWindow == null)
+                return;
+
             Dispatcher.Invoke(new Action(delegate
             {
-                rtLog.AppendText(e + "\n");
-                rtLog.ScrollToEnd();
+                logWindow.AppendLog(e);
             }));
         }
 
@@ -114,7 +124,7 @@ namespace MRSLauncherClient.UI
         {
             string script = "document.documentElement.style.overflow ='hidden'";
             wbUpdateViewer.InvokeScript("execScript", new object[] { script, "JavaScript" });
-            wbUpdateViewer.Opacity = 100;
+            wbUpdateViewer.Opacity = 1;
             wbUpdateViewer.OpacityMask = null;
         }
     }
