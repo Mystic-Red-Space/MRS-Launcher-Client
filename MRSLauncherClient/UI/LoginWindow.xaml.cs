@@ -130,7 +130,7 @@ namespace MRSLauncherClient.UI
             tbPassword.IsEnabled = value;
             btnLogin.IsEnabled = value;
         }
-
+        //메인윈도우로 전환
         private void ShowWelcome(MSession s)
         {
             //윈도우 전환
@@ -141,12 +141,13 @@ namespace MRSLauncherClient.UI
             userClose = false;
             this.Close();
         }
-
+        //창 닫기
         private void Window_Closed(object sender, EventArgs e)
         {
             if (userClose)
                 App.Stop();
         }
+        //엔터키로 tbEmail -> tbPassword, tbPassword -> BtnLogin 으로 전환함.
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
