@@ -22,9 +22,10 @@ namespace MRSLauncherClient
 
             //자바 확인
             var java = new JavaDownload(Launcher.JavaPath);
+            var javaWorking = java.CheckJavaExist() && java.CheckJavaWork();
 
             //if (false) // 주석처리 해제시 자바설치 무시
-            if (!java.CheckJavaExist())
+            if (!javaWorking)
             {
                 var javaWindow = new JavaDownloadWindow(java);
                 javaWindow.ShowDialog();

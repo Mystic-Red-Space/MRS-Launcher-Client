@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Diagnostics;
 
 namespace MRSLauncherClient
 {
@@ -25,11 +26,34 @@ namespace MRSLauncherClient
             return File.Exists(exePath);
         }
 
+        public bool CheckJavaWork() // 잘 작동하는지 확인
+        {
+            var javaproc = new Process();
+            javaproc.StartInfo = new ProcessStartInfo
+            {
+                FileName = JavaPath + "\\bin\\java.exe",
+                Arguments = "-version",
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden,
+                UseShellExecute = false
+            };
+
+            javaproc.Start();
+
+            var exited = javaproc.WaitForExit(2);
+            if (exited)
+                return javaproc.ExitCode == 0;
+            else
+                return false;
+        }
+
         public void InstallJava() // 자바 설치
         {
             var tempJavaPath = Path.GetTempPath() + "\\javazip\\jre.zip"; // zip 파일 저장될 경로
             Directory.CreateDirectory(Path.GetDirectoryName(tempJavaPath)); // 임시폴더생성
 
+            if (Directory.Exists(JavaPath))
+                DeleteDirectory(JavaPath);
             Directory.CreateDirectory(JavaPath); // 자바가 설치될 폴더 생성
 
             var webDownload = new WebDownload(); // zip 파일 다운로드
@@ -71,6 +95,20 @@ namespace MRSLauncherClient
                 var eventArgs = new ProgressChangedEventArgs((int)percent, null);
                 ProgressChanged?.Invoke(this, eventArgs);
             }
+        }
+
+        private void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] directories = Directory.GetDirectories(target_dir);
+            foreach (string path in files)
+            {
+                File.SetAttributes(path, FileAttributes.Normal);
+                File.Delete(path);
+            }
+            foreach (string target_dir1 in directories)
+                DeleteDirectory(target_dir1);
+            Directory.Delete(target_dir, true);
         }
     }
 }
