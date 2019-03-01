@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.VisualBasic.Devices;
 
 namespace MRSLauncherClient
 {
@@ -37,6 +38,7 @@ namespace MRSLauncherClient
             txtRam.Text = Setting.Json.MaxRamMb.ToString();
             rtJavaArgs.Document = new FlowDocument(new Paragraph(new Run(Setting.Json.CustomJVMArguments))); // richtextbox 사용법이 이상해짐
             cbCustomJVM.IsChecked = Setting.Json.UseCustomJVM;
+
         }
 
         private void Settings_Unloaded(object sender, RoutedEventArgs e)
