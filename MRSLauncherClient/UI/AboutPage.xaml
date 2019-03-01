@@ -10,8 +10,8 @@
       Name="About">
 
     <Canvas>
-        <Label Content="Lapis : 런쳐 UI 목업 및 프로토타입 제작, 런쳐 UI 작업." Canvas.Left="50" Canvas.Top="70" Foreground="White" FontSize="20"/>
-        <Label Content="ksi123456ab : 런쳐 작업 및 런쳐 UI 작업" Canvas.Left="50" Canvas.Top="110" Foreground="White" FontSize="20"/>
+        <Label Content="Lapis : 런쳐 UI 및 간단한 로직 작업." Canvas.Left="50" Canvas.Top="70" Foreground="White" FontSize="20"/>
+        <Label Content="ksi123456ab : 런쳐 주요 작업 및 런쳐 UI 작업" Canvas.Left="50" Canvas.Top="110" Foreground="White" FontSize="20"/>
         <Label Content="Socio_path : 런쳐 작업 및 서버 작업" Canvas.Left="50" Canvas.Top="150" Foreground="White" FontSize="20"/>
         <Label Content="Neko_P : 서버 작업" Canvas.Left="50" Canvas.Top="190" Foreground="White" FontSize="20"/>
     </Canvas>

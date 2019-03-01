@@ -11,13 +11,11 @@
       Loaded="Settings_Loaded"
       Unloaded="Settings_Unloaded"
       FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly">
-
-    <Canvas>
-        <Rectangle Fill="#404040" Canvas.Left="0" Canvas.Top="0" Height="450" Width="800"/>
-        <Label Content="Minecraft Settings" Canvas.Left="40" Canvas.Top="20" FontSize="22" Foreground="White" Padding="0" />
+    <!--<Label Content="Minecraft Settings" Canvas.Left="40" Canvas.Top="20" FontSize="22" Foreground="White" Padding="0" />
         <Label Content="RAM Settings" Canvas.Left="40" Canvas.Top="80" FontSize="20" Foreground="White" Padding="0" />
-        <Slider x:Name="ramSlider"  Canvas.Left="40" Canvas.Top="120" Height="15" Width="730" ValueChanged="Slider_ValueChanged" TickFrequency="10" Foreground="White" BorderBrush="#FF606060"/>
+        <Slider x:Name="ramSlider"  Canvas.Left="40" Canvas.Top="120" Height="15" Width="730" ValueChanged="Slider_ValueChanged" Foreground="White" BorderBrush="#FF606060" TickFrequency="1024"/>
         <Label Content="RAM (MB)" Canvas.Left="40" Canvas.Top="150" Foreground="White"/>
+        
         <TextBox x:Name="txtRam" Height="23" TextWrapping="Wrap" Text="RAM (MB)" Canvas.Top="150" Canvas.Left="110" Width="120"/>
         <CheckBox x:Name="cbCustomJVM" Content="Enable" Canvas.Left="470" Canvas.Top="205" Foreground="White" FontSize="15"/>
         <Label Content="Custom Java Parameters (JVM Settings)" Canvas.Left="40" Canvas.Top="200" Foreground="White" Padding="0" FontSize="20"/>
@@ -28,5 +26,32 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-    </Canvas>
+        <Label x:Name="lvRamViewer" Content="( UsableRam / TotalRam )" Canvas.Left="200" Canvas.Top="80" Foreground="White" />
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.1*"/>
+        </Grid.RowDefinitions>
+        <!--Row0-->
+        <Label Grid.Row="0" Content="Minecraft Settings" FontSize="22" Foreground="White" Padding="0" Margin="40,20,0,0" />
+        <!--Row1-->
+        <Label Grid.Row="1" Content="RAM Settings"  FontSize="20" Foreground="White" Padding="0" Margin="40,10,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Label Grid.Row="1" x:Name="lvRamViewer" Content="( UsableRam / TotalRam )" Canvas.Left="200" Canvas.Top="80" Foreground="White" Margin="200,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Slider Grid.Row="1" x:Name="ramSlider" Height="15" Width="730" ValueChanged="Slider_ValueChanged" Foreground="White" BorderBrush="#FF606060" TickFrequency="1024" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="0" Margin="0,80,0,0"/>
+        <Label Grid.Row="1" Content="RAM (MB)" Foreground="White" Margin="40,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="1" x:Name="txtRam" Height="23" TextWrapping="Wrap" Text="RAM (MB)" Canvas.Top="150" Canvas.Left="110" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,100,0,0"/>
+        <!--Row2-->
+        <CheckBox Grid.Row="2" x:Name="cbCustomJVM" Content="Enable" Canvas.Left="470" Canvas.Top="205" Foreground="White" FontSize="15" Margin="470,10,0,0"/>
+        <Label Grid.Row="2" Content="Custom Java Parameters (JVM Settings)" Canvas.Left="40" Canvas.Top="200" Foreground="White" Padding="0" FontSize="20" Margin="40,4,0,0"/>
+        <RichTextBox Grid.Row="2" x:Name="rtJavaArgs" Height="70" Canvas.Left="40" Canvas.Top="240" Width="244" HorizontalAlignment="Left" Margin="40,30,0,0">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+    </Grid>
 </Page>

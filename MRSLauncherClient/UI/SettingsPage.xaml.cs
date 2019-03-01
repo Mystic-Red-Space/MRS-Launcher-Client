@@ -22,14 +22,19 @@ namespace MRSLauncherClient
     /// </summary>
     public partial class SettingsPage : Page
     {
+        ComputerInfo userPc = new ComputerInfo();
         public SettingsPage()
         {
             InitializeComponent();
+            ramSlider.Maximum = userPc.TotalPhysicalMemory/(1024*1024);
+            ramSlider.Minimum = 2048;
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            txtRam.Text = ramSlider.Value.ToString();
+            int ramValue = (int)ramSlider.Value;
+            txtRam.Text = ramValue.ToString();
+            lvRamViewer.Content = (ramValue + "MB / " + ramSlider.Maximum+"MB");
             Setting.Json.MaxRamMb = (int)ramSlider.Value;
         }
 
