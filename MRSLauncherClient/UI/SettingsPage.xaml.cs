@@ -96,5 +96,6 @@ namespace MRSLauncherClient
         {
             cbCustomJVM.Content = "disabled";
         }
+
     }
 }
