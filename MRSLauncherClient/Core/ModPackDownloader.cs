@@ -68,41 +68,9 @@ namespace MRSLauncherClient
             DownloadModFileChanged?.Invoke(this, new DownloadModFileChangedEventArgs(max, current));
         }
 
-        public void DeleteInvalidFiles() // 서버에 없는 파일 삭제
-        {
-            var localFiles = GetFiles(RootPath);
-            var serverFiles = modPack.ModFiles.Select(x => RootPath + "\\" + x.Path + x.FileName);
-
-            var invalidFile = localFiles
-                              .Except(serverFiles) // 허용되지 않은 파일 목록
-                              .ToArray();
-
-            foreach (var item in localFiles)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine("invalid");
-            foreach (var item in invalidFile)
-            {
-                //Console.WriteLine(item);
-                //File.Delete(item);
-            }
-        }
-
         private bool CheckHash(string filepath, string compareHash)
         {
-            var hash = "";
-
-            using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(filepath))
-                {
-                    var binaryHash = md5.ComputeHash(stream);
-                    hash = BitConverter.ToString(binaryHash).Replace("-", "").ToLower();
-                }
-            }
-
+            var hash = HashedFileEqualityCompaser.GetFileHash(filepath);
             return hash == compareHash;
         }
 
