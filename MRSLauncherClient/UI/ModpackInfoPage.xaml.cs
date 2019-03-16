@@ -63,7 +63,8 @@ namespace MRSLauncherClient.UI
         {
             try
             {
-                MessageBox.Show(Setting.Json.MaxRamMb.ToString());
+                Setting.Json.MaxRamMb = 6000;
+
                 var patch = new GamePatch(Pack, Session);
                 patch.ProgressChange += Patch_ProgressChange;
                 patch.StatusChange += Patch_StatusChange;
