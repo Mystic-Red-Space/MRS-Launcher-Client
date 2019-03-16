@@ -39,17 +39,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CmlLib">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\CmlLib.dll</HintPath>
+      <HintPath>C:\Users\김민준\Downloads\CmlLib.dll</HintPath>
     </Reference>
     <Reference Include="DotNetZip">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\DotNetZip.dll</HintPath>
+      <HintPath>C:\Users\김민준\Downloads\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\김민준\Downloads\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -201,6 +202,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IcoMRS.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="C:\Users\김민준\Downloads\CmlLib.dll" />
+    <Analyzer Include="C:\Users\김민준\Downloads\DotNetZip.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

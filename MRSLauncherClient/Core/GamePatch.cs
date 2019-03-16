@@ -56,7 +56,7 @@ namespace MRSLauncherClient
                 var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name, blackList);
                 packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
                 packDownloader.DownloadFiles();
-                packDownloader.DeleteInvalidFiles();
+                //packDownloader.DeleteInvalidFiles();
 
                 Directory.CreateDirectory(Path.GetDirectoryName(localPack));
                 File.WriteAllText(localPack, Pack.RawResponse, Encoding.UTF8);
