@@ -31,35 +31,46 @@ namespace MRSLauncherClient
                 File.Delete(localPack);
         }
 
-        public GameProcess Patch()
+        public GameProcess Patch(bool forceUpdate)
         {
             statusChange("모드 패치 준비중");
+
+            // 게임 폴더 만들기
+            SetGamePath();
 
             var whitelist = WhiteListLoader.GetWhiteList(Pack.Name);
 
             bool isPackDiff = CompareLocalTempFile("pack.json", Pack.RawResponse);
             bool isWhitelistDiff = CompareLocalTempFile("whitelist.json", whitelist.RawResponse);
 
-            //if (!isPackDiff || !isWhitelistDiff)
+            if (forceUpdate || !isPackDiff || !isWhitelistDiff)
             {
-                statusChange("모드 패치 중");
+                statusChange("파일 검사 중");
 
                 var rootPath = Launcher.GamePath + Pack.Name;
 
-                var packDownloader = new ModPackDownloader(Pack, rootPath);
-                packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
-                //packDownloader.DownloadFiles();
+                // 화이트 리스트 목록 가져오기
+                var whitelistManager = new WhiteListManager(whitelist);
+                whitelistManager.ParseWhiteList();
+                
+                // 화이트 리스트 DIRS 에 없는 파일만 가져옴
+                var localFileManager = new LocalFileManager(rootPath, whitelistManager.WhiteDirs);
+                var localFiles = localFileManager.GetLocalFiles();
 
-                var whitemanager = new WhiteListManager(rootPath, whitelist);
-                whitemanager.Filtering();
+                statusChange("모드 패치 중");
+
+                // 모드파일 다운로드
+                var packDownloader = new ModPackDownloader(Pack);
+                packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
+                packDownloader.DownloadFiles(rootPath, localFiles);
+
+                whitelistManager.Filtering(rootPath, localFiles);
 
                 SaveLocalTempFile("pack.json", Pack.RawResponse);
                 SaveLocalTempFile("whitelist.json", whitelist.RawResponse);
             }
 
             statusChange("게임 다운로드 준비중");
-
-            SetGamePath();
 
             var profileList = MProfileInfo.GetProfiles();
 
@@ -111,8 +122,7 @@ namespace MRSLauncherClient
 
         private void PackDownloader_DownloadModFileChanged(object sender, DownloadModFileChangedEventArgs e)
         {
-            Console.WriteLine("{0}/{1}", e.CurrentFiles,e.MaxFiles);
-            progressChange(e.MaxFiles, e.CurrentFiles);
+            progressChange(e.MaxFiles, e.CurrentFiles, e.FileName);
         }
 
         private void SetGamePath()
@@ -153,10 +163,11 @@ namespace MRSLauncherClient
         }
 
         int maxfile, nowfile;
+        string filename;
 
         private void Downloader_ChangeProgress(object sender, ProgressChangedEventArgs e)
         {
-            progressChange(maxfile, nowfile + e.ProgressPercentage);
+            progressChange(maxfile, nowfile + e.ProgressPercentage, filename);
         }
 
         private void Downloader_ChangeFile(DownloadFileChangedEventArgs e)
@@ -164,19 +175,21 @@ namespace MRSLauncherClient
             if (e.FileKind == MFile.Resource)
             {
                 statusChange("리소스 파일 다운로드 중...");
-                progressChange(e.MaxValue, e.CurrentValue);
+                filename = "resources";
+                progressChange(e.MaxValue, e.CurrentValue, filename);
             }
             else
             {
-                statusChange($"{e.FileKind.ToString()} 파일 다운로드 중... ({e.FileName})");
+                filename = e.FileName;
+                statusChange($"{e.FileKind.ToString()} 파일 다운로드 중...");
                 maxfile = e.MaxValue * 100;
                 nowfile = e.CurrentValue * 100;
             }
         }
 
-        private void progressChange(int max, int value)
+        private void progressChange(int max, int value, string name)
         {
-            ProgressChange?.Invoke(this, new DownloadModFileChangedEventArgs(max, value));
+            ProgressChange?.Invoke(this, new DownloadModFileChangedEventArgs(max, value, name));
         }
 
         private void statusChange(string msg)

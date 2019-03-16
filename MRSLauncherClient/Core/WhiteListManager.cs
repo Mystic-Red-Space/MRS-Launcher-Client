@@ -53,6 +53,7 @@ namespace MRSLauncherClient
             foreach (var item in compareLocal)
             {
                 Console.WriteLine(item);
+                File.Delete(item.Key);
             }
         }
     }

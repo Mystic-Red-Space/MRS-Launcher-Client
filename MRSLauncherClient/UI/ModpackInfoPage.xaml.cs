@@ -63,10 +63,11 @@ namespace MRSLauncherClient.UI
         {
             try
             {
+                MessageBox.Show(Setting.Json.MaxRamMb.ToString());
                 var patch = new GamePatch(Pack, Session);
                 patch.ProgressChange += Patch_ProgressChange;
                 patch.StatusChange += Patch_StatusChange;
-                var process = patch.Patch();
+                var process = patch.Patch(false);
                 process.GameOutput += Process_GameOutput;
                 process.StartDebug();
 
@@ -86,10 +87,31 @@ namespace MRSLauncherClient.UI
                     logWindow.Show();
                 }));
             }
+            catch (System.ComponentModel.Win32Exception ex)
+            {
+                FailLaunch("WIN32 파일실행에 오류가 발생했습니다.\n" +
+                    "주로 자바 실행을 실패할때 이 오류가 발생합니다. 자바를 초기화하세요.\n" + 
+                    ex.ToString());
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("게임을 실행할 수 없습니다.\n"+ex.ToString());
+                FailLaunch("알 수 없는 오류.\n" + ex.ToString());
             }
+        }
+
+        private void FailLaunch(string msg)
+        {
+            MessageBox.Show("게임을 실행할 수 없습니다.\n" + msg);
+
+            Dispatcher.Invoke(new Action(delegate
+            {
+                btnStart.IsEnabled = true;
+                btnReturn.IsEnabled = true;
+
+                pbPatch.Maximum = 1;
+                pbPatch.Value = 1;
+                lvStatus.Content = "게임 실행 실패";
+            }));
         }
 
         private void Process_GameOutput(object sender, string e)
@@ -99,7 +121,7 @@ namespace MRSLauncherClient.UI
 
             Dispatcher.Invoke(new Action(delegate
             {
-                logWindow.AppendLog(e);
+                logWindow.AppendLog(e+"\n");
             }));
         }
 
@@ -117,6 +139,7 @@ namespace MRSLauncherClient.UI
             {
                 pbPatch.Maximum = e.MaxFiles;
                 pbPatch.Value = e.CurrentFiles;
+                lvFileName.Content = e.FileName;
             }));
         }
 

@@ -38,7 +38,8 @@
     <ApplicationIcon>IcoMRS.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CmlLib">
+    <Reference Include="CmlLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\CmlLib.dll</HintPath>
     </Reference>
     <Reference Include="DotNetZip">
@@ -71,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\LocalFileManager.cs" />
     <Compile Include="Core\WhiteList.cs" />
     <Compile Include="Core\WhiteListManager.cs" />
     <Page Include="UI\LogWindow.xaml">
@@ -110,8 +112,6 @@
     <Compile Include="Core\WebUtil.cs" />
     <Compile Include="Core\ModPackDownloader.cs" />
     <Compile Include="Core\Setting.cs" />
-    <Compile Include="Core\HashedFile.cs" />
-    <Compile Include="Core\HashedFileEqualityCompaser.cs" />
     <Compile Include="UI\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>

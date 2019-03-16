@@ -17,15 +17,13 @@ namespace MRSLauncherClient
         public event DownloadModFileChangedEventHandler DownloadModFileChanged;
 
         ModPack modPack;
-        string RootPath = "";
 
-        public ModPackDownloader(ModPack pack, string downloadPath)
+        public ModPackDownloader(ModPack pack)
         {
-            this.RootPath = downloadPath;
             this.modPack = pack;
         }
 
-        public void DownloadFiles(Dictionary<string, string> localFiles) // 로컬에 없는 파일 혹은 해쉬 다른 파일 다운로드
+        public void DownloadFiles(string RootPath, Dictionary<string, string> localFiles) // 로컬에 없는 파일 혹은 해쉬 다른 파일 다운로드
         {
             var webDownload = new WebDownload(); // 파일 다운로더
             webDownload.DownloadProgressChangedEvent += WebDownload_DownloadProgressChangedEvent;
@@ -43,6 +41,7 @@ namespace MRSLauncherClient
                 if (!hasFile || localHash != item.MD5) // 로컬에 없으면 다운로드
                 {
                     Directory.CreateDirectory(RootPath + item.Path);
+                    Console.WriteLine("download " + item.Url);
                     webDownload.DownloadFile(item.Url, filepath);
                 }
 
