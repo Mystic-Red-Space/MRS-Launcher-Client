@@ -41,7 +41,6 @@ namespace MRSLauncherClient
                 if (!hasFile || localHash != item.MD5) // 로컬에 없으면 다운로드
                 {
                     Directory.CreateDirectory(RootPath + item.Path);
-                    Console.WriteLine("download " + item.Url);
                     webDownload.DownloadFile(item.Url, filepath);
                 }
 
