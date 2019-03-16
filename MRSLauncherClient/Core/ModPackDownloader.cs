@@ -18,104 +18,71 @@ namespace MRSLauncherClient
 
         ModPack modPack;
         string RootPath = "";
-        string[] NoUpdate;
 
-        public ModPackDownloader(ModPack pack, string downloadPath, string[] noUpdate)
+        public ModPackDownloader(ModPack pack, string downloadPath)
         {
-            this.NoUpdate = noUpdate;
-
-            if (NoUpdate == null)
-                NoUpdate = new string[] { };
-
             this.RootPath = downloadPath;
             this.modPack = pack;
         }
 
-        public void DownloadFiles() // 로컬에 없는 파일 혹은 해쉬 다른 파일 다운로드
+        public void DownloadFiles(Dictionary<string, string> localFiles) // 로컬에 없는 파일 혹은 해쉬 다른 파일 다운로드
         {
-            var webDownload = new WebDownload();
+            var webDownload = new WebDownload(); // 파일 다운로더
             webDownload.DownloadProgressChangedEvent += WebDownload_DownloadProgressChangedEvent;
 
-            int fileCount = modPack.ModFiles.Length;
-            for (int i = 0; i < fileCount; i++)
+            var count = modPack.ModFiles.Length; // 서버에 있는 파일들 반복 
+            for (int i = 0; i < count; i++)
             {
                 var item = modPack.ModFiles[i];
                 var filepath = RootPath + item.Path + item.FileName;
+                FireDownloadModFileChanged(count, i, item.FileName);
 
-                Directory.CreateDirectory(Path.GetDirectoryName(filepath));
+                var localHash = "";
+                var hasFile = localFiles.TryGetValue(filepath, out localHash);
 
-                if (!File.Exists(filepath) || !CheckHash(filepath, item.MD5))
+                if (!hasFile || localHash != item.MD5) // 로컬에 없으면 다운로드
+                {
+                    Directory.CreateDirectory(RootPath + item.Path);
                     webDownload.DownloadFile(item.Url, filepath);
+                }
 
-                FireDownloadModFileChanged(fileCount, i + 1); // 이벤트 발생
+                localFiles.Remove(filepath);
             }
         }
 
         int nowValue, maxValue;
+        string filename = "";
 
         private void WebDownload_DownloadProgressChangedEvent(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
             int eValue = 0;
             eValue = nowValue + e.ProgressPercentage;
 
-            DownloadModFileChanged?.Invoke(this, new DownloadModFileChangedEventArgs(maxValue,eValue));
+            DownloadModFileChanged?.Invoke(this, new DownloadModFileChangedEventArgs(maxValue, eValue, filename));
         }
 
-        private void FireDownloadModFileChanged(int max, int current)
+        private void FireDownloadModFileChanged(int max, int current, string fName)
         {
             nowValue = current * 100;
             maxValue = max * 100;
-            DownloadModFileChanged?.Invoke(this, new DownloadModFileChangedEventArgs(max, current));
-        }
-
-        private bool CheckHash(string filepath, string compareHash)
-        {
-            var hash = HashedFileEqualityCompaser.GetFileHash(filepath);
-            return hash == compareHash;
-        }
-
-        private string[] GetFiles(string path)
-        {
-            return GetFiles(path, new List<string>()).ToArray();
-        }
-
-        private List<string> GetFiles(string path, List<string> result)
-        {
-            var dir = new DirectoryInfo(path);
-
-            var files = dir.GetFiles("*.*", SearchOption.TopDirectoryOnly)
-                       .Select(x => x.FullName)
-                       .ToArray();
-
-            result.AddRange(files);
-
-            var dirs = dir.GetDirectories("*.*", SearchOption.TopDirectoryOnly)
-                      .Select(x => x.Name)
-                      .ToArray();
-
-            foreach (var item in dirs)
-            {
-                var fullPath = path + "\\" + item;
-                if (NoUpdate.Contains(item))
-                    continue;
-
-                GetFiles(fullPath, result);
-            }
-
-            return result;
+            filename = fName;
+            DownloadModFileChanged?.Invoke(this, new DownloadModFileChangedEventArgs(maxValue, nowValue, fName));
         }
     }
 
     // (진행률 표시용) 이벤트데이터 클래스
     public class DownloadModFileChangedEventArgs : EventArgs
     {
-        public DownloadModFileChangedEventArgs(int maxfiles, int currentfiles)
+        public DownloadModFileChangedEventArgs(int maxfiles, int currentfiles, string filename)
         {
             this.MaxFiles = maxfiles;
             this.CurrentFiles = currentfiles;
+            this.FileName = filename;
         }
 
         public int MaxFiles { get; private set; }
         public int CurrentFiles { get; private set; }
+
+        public string FileName { get; private set; }
     }
 }

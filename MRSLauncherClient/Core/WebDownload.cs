@@ -14,7 +14,11 @@ namespace MRSLauncherClient
         {
             var req = WebRequest.CreateHttp(url); // Request
             var response = req.GetResponse();
-            var filesize = long.Parse(response.Headers.Get("Content-Length")); // Get File Length
+            var contentLength = response.Headers.Get("Content-Length");
+            var canProgress = contentLength != null;
+            long filesize = 1;
+            if (canProgress)
+                filesize = long.Parse(contentLength); // Get File Length
 
             var webStream = response.GetResponseStream(); // Get NetworkStream
             var fileStream = File.Open(path, FileMode.Create); // Open FileStream
@@ -29,9 +33,12 @@ namespace MRSLauncherClient
             {
                 fileStream.Write(buffer, 0, length);
 
-                // raise event
-                processedBytes += length;
-                ProgressChanged(processedBytes, filesize);
+                if (canProgress)
+                {
+                    // raise event
+                    processedBytes += length;
+                    ProgressChanged(processedBytes, filesize);
+                }
             }
 
             webStream.Dispose(); // Close streams

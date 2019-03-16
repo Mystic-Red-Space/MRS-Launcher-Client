@@ -35,31 +35,26 @@ namespace MRSLauncherClient
         {
             statusChange("모드 패치 준비중");
 
-            var localPackContent = "";
-            var localPack = Launcher.GamePath + Pack.Name + "\\launcher\\pack.json";
-            if (File.Exists(localPack))
-                localPackContent = File.ReadAllText(localPack, Encoding.UTF8);
+            var whitelist = WhiteListLoader.GetWhiteList(Pack.Name);
 
-            if (localPackContent != Pack.RawResponse)
+            bool isPackDiff = CompareLocalTempFile("pack.json", Pack.RawResponse);
+            bool isWhitelistDiff = CompareLocalTempFile("whitelist.json", whitelist.RawResponse);
+
+            //if (!isPackDiff || !isWhitelistDiff)
             {
                 statusChange("모드 패치 중");
 
-                var blackList = new string[]
-                {
-                    "libraries",
-                    "versions",
-                    "screenshots",
-                    "saves",
-                    "shaderpacks",
-                };
+                var rootPath = Launcher.GamePath + Pack.Name;
 
-                var packDownloader = new ModPackDownloader(Pack, Launcher.GamePath + Pack.Name, blackList);
+                var packDownloader = new ModPackDownloader(Pack, rootPath);
                 packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
-                packDownloader.DownloadFiles();
-                packDownloader.DeleteInvalidFiles();
+                //packDownloader.DownloadFiles();
 
-                Directory.CreateDirectory(Path.GetDirectoryName(localPack));
-                File.WriteAllText(localPack, Pack.RawResponse, Encoding.UTF8);
+                var whitemanager = new WhiteListManager(rootPath, whitelist);
+                whitemanager.Filtering();
+
+                SaveLocalTempFile("pack.json", Pack.RawResponse);
+                SaveLocalTempFile("whitelist.json", whitelist.RawResponse);
             }
 
             statusChange("게임 다운로드 준비중");
@@ -93,6 +88,25 @@ namespace MRSLauncherClient
 
             var launch = new MLaunch(option);
             return new GameProcess(launch.GetProcess());
+        }
+
+        bool CompareLocalTempFile(string name, string content)
+        {
+            var localCheckFile = Launcher.GamePath + Pack.Name + "\\launcher\\";
+
+            var localContent = "";
+            var localFile = localCheckFile + name;
+            if (File.Exists(localFile))
+                localContent = File.ReadAllText(localFile, Encoding.UTF8);
+
+            return localContent == content;
+        }
+
+        void SaveLocalTempFile(string name, string content)
+        {
+            var path = Launcher.GamePath + Pack.Name + "\\launcher\\" + name;
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            File.WriteAllText(path, content, Encoding.UTF8);
         }
 
         private void PackDownloader_DownloadModFileChanged(object sender, DownloadModFileChangedEventArgs e)
