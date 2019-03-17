@@ -147,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\NumericUpdownControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +162,9 @@
     </Compile>
     <Compile Include="UI\ModpacksPage.xaml.cs">
       <DependentUpon>ModpacksPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NumericUpdownControl.xaml.cs">
+      <DependentUpon>NumericUpdownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\PageManager.cs" />
     <Compile Include="UI\SettingsPage.xaml.cs">

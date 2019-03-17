@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="MRSLauncherClient.NumericUpdownControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MRSLauncherClient"
+             mc:Ignorable="d" Height="30" Width="100"
+             Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="txtNumber" Text="0" VerticalContentAlignment="Center" PreviewKeyDown="TxtNumber_PreviewKeyDown" PreviewTextInput="TxtNumber_PreviewTextInput" TextChanged="TxtNumber_TextChanged"/>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" x:Name="btnUp" Content="△" Padding="0" Click="BtnUp_Click"/>
+            <Button Grid.Row="1" x:Name="btnDown" Content="▽" Padding="0" Click="BtnDown_Click"/>
+        </Grid>
+    </Grid>
+</UserControl>

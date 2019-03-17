@@ -23,79 +23,66 @@ namespace MRSLauncherClient
     public partial class SettingsPage : Page
     {
         ComputerInfo userPc = new ComputerInfo();
+        int maxRam, minRam;
+
         public SettingsPage()
         {
             InitializeComponent();
-            ramSlider.Maximum = userPc.TotalPhysicalMemory/(1024*1024);
-            ramSlider.Minimum = 2048;
+
+            maxRam = (int)(userPc.TotalPhysicalMemory / (1024 * 1024));
+            minRam = 2048;
+
+            ramSlider.Maximum = maxRam;
+            ramSlider.Minimum = minRam;
+
+            txtRam.Maximum = maxRam;
+            txtRam.Minimum = minRam;
+            txtRam.Interval = 256;
+            txtRam.ValueChanged += TxtRam_ValueChanged;
+
+            lvMin.Content = minRam.ToString();
+            lvMax.Content = maxRam.ToString();
         }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void TxtRam_ValueChanged(object sender, EventArgs e)
         {
-            int ramValue = (int)ramSlider.Value;
-            txtRam.Text = ramValue.ToString();
-            lvRamViewer.Content = (txtRam.Text+"MB / "+ramSlider.Maximum+"MB");
-        }
-        
-        private void TxtRam_GotFocus(object sender, RoutedEventArgs e)
-        {
-            txtRam.Clear();
-        }
-
-        private void TxtRam_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (int.Parse(txtRam.Text) > ramSlider.Maximum || int.Parse(txtRam.Text) < ramSlider.Minimum)
-                {
-                    txtRam.Text = ramSlider.Maximum.ToString();
-                    TxtRam_LostFocus(sender,e);
-                    return;
-                }
-                else{
-                    ramSlider.Value = int.Parse(txtRam.Text);
-                    lvRamViewer.Content = (ramSlider.Value + "MB / " + ramSlider.Maximum + "MB");
-                }
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine($"Unable to parse '{txtRam.Text}'");
-            }
-        }
-
-        private void TxtRam_LostFocus(object sender, RoutedEventArgs e)
-        {
-            int ramValue = int.Parse(txtRam.Text);
-            txtRam.Text = ramValue.ToString();
-            lvRamViewer.Content = (txtRam.Text + "MB / " + ramSlider.Maximum + "MB");
+            ramSlider.Value = txtRam.Value;
         }
 
         private void Settings_Loaded(object sender, RoutedEventArgs e)
         {
-            txtRam.Text = Setting.Json.MaxRamMb.ToString();
+            ramSlider.Focus();
+            ramSlider.Value = Setting.Json.MaxRamMb;
             rtJavaArgs.Document = new FlowDocument(new Paragraph(new Run(Setting.Json.CustomJVMArguments))); // richtextbox 사용법이 이상해짐
             cbCustomJVM.IsChecked = Setting.Json.UseCustomJVM;
-
         }
 
         private void Settings_Unloaded(object sender, RoutedEventArgs e)
         {
-            var ram = 0;
-            if (int.TryParse(txtRam.Text, out ram))
-                Setting.Json.MaxRamMb = ram;
-
+            Setting.Json.MaxRamMb = txtRam.Value;
             Setting.Json.CustomJVMArguments = new TextRange(rtJavaArgs.Document.ContentStart, rtJavaArgs.Document.ContentEnd).Text;
             Setting.Json.UseCustomJVM = cbCustomJVM.IsChecked ?? false; // 만약 값이 null 이라면 false 를 반환
         }
 
-        private void CbCustomJVM_Checked(object sender, RoutedEventArgs e)
+        private void RamSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            cbCustomJVM.Content = "enabled";
-        }
-        private void CbCustomJVM_Unchecked(object sender, RoutedEventArgs e)
-        {
-            cbCustomJVM.Content = "disabled";
+            if (ramSlider.IsFocused)
+                txtRam.Value = (int)ramSlider.Value;
         }
 
+        private void CbCustomJVM_Checked(object sender, RoutedEventArgs e)
+        {
+            rtJavaArgs.IsEnabled = true;
+        }
+
+        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Focus();
+        }
+
+        private void CbCustomJVM_Unchecked(object sender, RoutedEventArgs e)
+        {
+            rtJavaArgs.IsEnabled = false;
+        }
     }
 }
