@@ -21,9 +21,8 @@ namespace MRSLauncherClient
 
         public void ParseWhiteList()
         {
-            var initCount = whiteList.Length;
             WhiteFiles = new Dictionary<string, string>();
-            var whitedir = new List<string>();
+            var whitedir = new List<string>(5);
 
             foreach (var item in whiteList)
             {

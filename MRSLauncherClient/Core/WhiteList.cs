@@ -16,7 +16,7 @@ namespace MRSLauncherClient
             var query = new NameValueCollection();
             query.Add("name" , id);
 
-            var res = Web.Request("https://api.mysticrs.tk/whitelist", Encoding.UTF8, query);
+            var res = Web.Request(Launcher.WhiteListUrl, Encoding.UTF8, query);
             var json = JArray.Parse(res);
 
             var whitelist = new WhiteListFile[json.Count];
