@@ -50,32 +50,79 @@ namespace MRSLauncherClient.UI
             }));
             th.Start();
         }
+
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            btnStart.IsEnabled = false;
-            btnReturn.IsEnabled = false;
+            SetButtonsEnable(false);
 
-            var th = new Thread(Start);
+            var th = new Thread(new ThreadStart(delegate
+            {
+                Start(false);
+            }));
             th.Start();
         }
 
-        private void Start()
+        private void BtnForceUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            SetButtonsEnable(false);
+
+            var th = new Thread(new ThreadStart(delegate
+            {
+                Start(true);
+            }));
+            th.Start();
+        }
+
+        private void BtnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            SetButtonsEnable(false);
+            lvStatus.Content = "제거 중";
+
+            new Thread(new ThreadStart(delegate
+            {
+                try
+                {
+                    var patcher = new GamePatch(Pack, Session);
+                    patcher.RemovePack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("제거를 실패했습니다.\n" + ex.ToString());
+                }
+                finally
+                {
+                    Dispatcher.Invoke(new Action(delegate
+                    {
+                        SetButtonsEnable(true);
+                        lvStatus.Content = "제거 완료";
+                    }));
+                }
+            })).Start();
+        }
+
+        private void SetButtonsEnable(bool value)
+        {
+            btnStart.IsEnabled = value;
+            btnForceUpdate.IsEnabled = value;
+            btnRemove.IsEnabled = value;
+            btnReturn.IsEnabled = value;
+        }
+
+        private void Start(bool forceUpdate)
         {
             try
             {
-                Setting.Json.MaxRamMb = 6000;
-
                 var patch = new GamePatch(Pack, Session);
                 patch.ProgressChange += Patch_ProgressChange;
                 patch.StatusChange += Patch_StatusChange;
-                var process = patch.Patch(false);
+
+                var process = patch.Patch(forceUpdate);
                 process.GameOutput += Process_GameOutput;
                 process.StartDebug();
 
                 Dispatcher.Invoke(new Action(delegate
                 {
-                    btnStart.IsEnabled = true;
-                    btnReturn.IsEnabled = true;
+                    SetButtonsEnable(true);
 
                     pbPatch.Maximum = 1;
                     pbPatch.Value = 1;
@@ -106,11 +153,7 @@ namespace MRSLauncherClient.UI
 
             Dispatcher.Invoke(new Action(delegate
             {
-                btnStart.IsEnabled = true;
-                btnReturn.IsEnabled = true;
-
-                pbPatch.Maximum = 1;
-                pbPatch.Value = 1;
+                SetButtonsEnable(true);
                 lvStatus.Content = "게임 실행 실패";
             }));
         }

@@ -104,6 +104,11 @@ namespace MRSLauncherClient
             return new GameProcess(launch.GetProcess());
         }
 
+        public void RemovePack()
+        {
+            Utils.DeleteDirectory(RootPath);
+        }
+
         bool CompareLocalTempFile(string name, string content)
         {
             var localCheckFile = Launcher.GamePath + Pack.Name + "\\launcher\\";
