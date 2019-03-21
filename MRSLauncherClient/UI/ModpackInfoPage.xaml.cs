@@ -21,9 +21,10 @@ namespace MRSLauncherClient.UI
         }
 
         MSession Session;
-        public ModPackInfo PackInfo;
-        public ModPack Pack;
+        ModPackInfo PackInfo;
         public event EventHandler PageReturned; // 뒤로가기 이벤트
+
+        GamePatch Patcher;
 
         LogWindow logWindow;
 
@@ -38,7 +39,8 @@ namespace MRSLauncherClient.UI
 
             var th = new Thread(new ThreadStart(delegate // 모드팩 로딩 스레드
             {
-                Pack = ModPackLoader.GetModPack(PackInfo);
+                var pack = ModPackLoader.GetModPack(PackInfo);
+                Patcher = new GamePatch(pack, Session);
 
                 Dispatcher.Invoke(new Action(delegate
                 {
@@ -82,8 +84,7 @@ namespace MRSLauncherClient.UI
             {
                 try
                 {
-                    var patcher = new GamePatch(Pack, Session);
-                    patcher.RemovePack();
+                    Patcher.RemovePack();
                 }
                 catch (Exception ex)
                 {
@@ -100,6 +101,11 @@ namespace MRSLauncherClient.UI
             })).Start();
         }
 
+        private void BtnOpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+            Patcher.OpenFolder();
+        }
+
         private void SetButtonsEnable(bool value)
         {
             btnStart.IsEnabled = value;
@@ -112,11 +118,10 @@ namespace MRSLauncherClient.UI
         {
             try
             {
-                var patch = new GamePatch(Pack, Session);
-                patch.ProgressChange += Patch_ProgressChange;
-                patch.StatusChange += Patch_StatusChange;
+                Patcher.ProgressChange += Patch_ProgressChange;
+                Patcher.StatusChange += Patch_StatusChange;
 
-                var process = patch.Patch(forceUpdate);
+                var process = Patcher.Patch(forceUpdate);
                 process.GameOutput += Process_GameOutput;
                 process.StartDebug();
 

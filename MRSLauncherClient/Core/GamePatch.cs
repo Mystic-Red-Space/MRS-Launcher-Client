@@ -106,7 +106,20 @@ namespace MRSLauncherClient
 
         public void RemovePack()
         {
-            Utils.DeleteDirectory(RootPath);
+            if (Directory.Exists(RootPath))
+                Utils.DeleteDirectory(RootPath);
+        }
+
+        public void OpenFolder()
+        {
+            try
+            {
+                Process.Start("explorer.exe", $"\"{RootPath}\"");
+            }
+            catch
+            {
+
+            }
         }
 
         bool CompareLocalTempFile(string name, string content)
