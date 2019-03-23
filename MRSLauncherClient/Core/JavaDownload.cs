@@ -42,7 +42,7 @@ namespace MRSLauncherClient
 
                 javaproc.Start();
 
-                var exited = javaproc.WaitForExit(2);
+                var exited = javaproc.WaitForExit(5000);
                 if (exited)
                     return javaproc.ExitCode == 0;
                 else

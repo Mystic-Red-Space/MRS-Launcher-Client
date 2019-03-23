@@ -114,7 +114,8 @@ namespace MRSLauncherClient
         {
             try
             {
-                Process.Start("explorer.exe", $"\"{RootPath}\"");
+                if (Directory.Exists(RootPath))
+                    Process.Start("explorer.exe", $"\"{RootPath}\"");
             }
             catch
             {
