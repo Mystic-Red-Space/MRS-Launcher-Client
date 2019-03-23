@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="" Height="140" Width="300"
-        Loaded="Window_Loaded">
+        Title="" Height="130" Width="300"
+        Loaded="Window_Loaded"
+        WindowStyle="None">
 
     <Canvas>
-        <ProgressBar Name="pbProgress" Height="23" Canvas.Left="21" Canvas.Top="55" Width="252"/>
-        <Label Name="lvStatus" Content="자바 다운로드 중" FontSize="15" Canvas.Left="21" Canvas.Top="3" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="28"/>
-        <Label Name="lvWarn" Content="(강제로 창을 끄지 마세요)" FontSize="13" Canvas.Left="21" Canvas.Top="26" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="28"/>
+        <ProgressBar Name="pbProgress" Height="23" Canvas.Left="24" Canvas.Top="77" Width="252"/>
+        <Label Name="lvStatus" Content="자바 다운로드 중" FontSize="15" Canvas.Left="24" Canvas.Top="21" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="28"/>
+        <Label Name="lvWarn" Content="(강제로 창을 끄지 마세요)" FontSize="13" Canvas.Left="24" Canvas.Top="44" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Height="28"/>
 
     </Canvas>
 </Window>
