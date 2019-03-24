@@ -16,7 +16,7 @@ namespace MRSLauncherClient
             GamePath = LauncherPath + "\\games\\", // saves, mods, screenshots 등이 저장되는 폴더
             JavaPath = LauncherPath + "\\runtime", // 자바가 설치되는 경로
             SettingPath = LauncherPath + "\\launchersetting.json",
-            LisencePath = LauncherPath + "\\lisence.txt",
+            LisencePath = LauncherPath + "\\license.txt",
 
             ModPackListUrl = "https://api.mysticrs.tk/list", // 모드팩 리스트
             ModPackDataUrl = "https://api.mysticrs.tk/modpack", // 모드팩 정보 (모드파일 등)

@@ -29,7 +29,7 @@ namespace MRSLauncherClient
 
         private void About_Loaded(object sender, RoutedEventArgs e)
         {
-            lvLauncherVersion.Content = Launcher.LauncherVersion;
+            lvLauncherVersion.Content = "런처 버전 : " + Launcher.LauncherVersion;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

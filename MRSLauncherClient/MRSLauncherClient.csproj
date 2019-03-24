@@ -189,6 +189,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="build.bat" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -211,5 +212,13 @@
   <ItemGroup>
     <Resource Include="IcoMRS.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="license.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /y "$(ProjectDir)license.txt" "$(TargetDir)license.txt"
+copy /y "$(ProjectDir)build.bat" "$(TargetDir)build.bat"
+$(TargetDir)build.bat</PostBuildEvent>
+  </PropertyGroup>
 </Project>
