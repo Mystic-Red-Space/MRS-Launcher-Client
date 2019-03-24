@@ -7,12 +7,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AboutPage"
-      Name="About">
+      Name="About"
+      
+      Loaded="About_Loaded">
 
     <Canvas>
-        <Label Content="Lapis : 런쳐 UI 및 간단한 로직 작업." Canvas.Left="50" Canvas.Top="70" Foreground="White" FontSize="20"/>
-        <Label Content="ksi123456ab : 런쳐 주요 작업 및 런쳐 UI 작업" Canvas.Left="50" Canvas.Top="110" Foreground="White" FontSize="20"/>
-        <Label Content="Socio_path : 런쳐 작업 및 서버 작업" Canvas.Left="50" Canvas.Top="150" Foreground="White" FontSize="20"/>
-        <Label Content="Neko_P : 서버 작업" Canvas.Left="50" Canvas.Top="190" Foreground="White" FontSize="20"/>
+        <Label Content="Lapis : 런쳐 UI 및 간단한 로직 작업." Canvas.Left="52" Canvas.Top="83" Foreground="White" FontSize="20"/>
+        <Label Content="ksi123456ab : 런쳐 주요 작업 및 런쳐 UI 작업" Canvas.Left="52" Canvas.Top="123" Foreground="White" FontSize="20"/>
+        <Label Content="Socio_path : 런쳐 작업 및 서버 작업" Canvas.Left="52" Canvas.Top="163" Foreground="White" FontSize="20"/>
+        <Label Content="Neko_P : 서버 작업" Canvas.Left="52" Canvas.Top="203" Foreground="White" FontSize="20"/>
+        <Label x:Name="lvLauncherVersion" Content="런처 버전 : " Canvas.Left="52" Canvas.Top="41" Foreground="White" FontSize="20"/>
+        <Button Content="라이센스 정보 보기" Canvas.Left="52" Canvas.Top="258" Width="133" Height="33" Click="Button_Click"/>
     </Canvas>
 </Page>
