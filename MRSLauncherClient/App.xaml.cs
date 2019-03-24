@@ -18,6 +18,18 @@ namespace MRSLauncherClient
         // ENTRY POINT
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            // MUTEX Check
+            if (!MutexManager.CreateMutex())
+            {
+                MessageBox.Show(
+                    "이미 런처가 실행중입니다.",
+                    "MRSLauncher",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Stop);
+
+                Environment.Exit(0);
+            }
+
             Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown; // 창이 꺼져도 프로그램이 종료되지 않게
 
             //자바 확인

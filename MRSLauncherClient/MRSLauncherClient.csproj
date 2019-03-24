@@ -108,6 +108,7 @@
     <Compile Include="Core\GameProcess.cs" />
     <Compile Include="Core\JavaDownload.cs" />
     <Compile Include="Core\ModPack.cs" />
+    <Compile Include="Util\MutexManager.cs" />
     <Compile Include="Util\Utils.cs" />
     <Compile Include="Util\WebDownload.cs" />
     <Compile Include="Util\WebUtil.cs" />
