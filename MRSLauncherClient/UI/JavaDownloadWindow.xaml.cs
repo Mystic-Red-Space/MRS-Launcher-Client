@@ -22,9 +22,6 @@ namespace MRSLauncherClient
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var hwnd = new WindowInteropHelper(this).Handle;
-            Utils.SetWindowBorderNone(hwnd);
-
             var th = new Thread(InstallJava);
             th.Start();
         }

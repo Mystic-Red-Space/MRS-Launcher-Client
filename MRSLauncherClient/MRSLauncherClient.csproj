@@ -217,9 +217,6 @@
   <ItemGroup>
     <Resource Include="license.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /y "$(ProjectDir)license.txt" "$(TargetDir)license.txt"
