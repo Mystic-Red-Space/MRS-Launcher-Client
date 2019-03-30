@@ -14,6 +14,7 @@ copy CmlLib.dll %folderName%\CmlLib.dll
 copy DotNetZip.dll %folderName%\DotNetZip.dll
 copy %folderName%.exe %folderName%\%folderName%.exe
 copy Newtonsoft.Json.dll %folderName%\Newtonsoft.Json.dll
+copy license.txt %folderName%\license.txt
 
 echo Done.
 pause

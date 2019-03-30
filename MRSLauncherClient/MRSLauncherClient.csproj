@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\LocalFileManager.cs" />
+    <Compile Include="Core\Updater.cs" />
     <Compile Include="Core\WhiteList.cs" />
     <Compile Include="Core\WhiteListManager.cs" />
     <Page Include="UI\LogWindow.xaml">
