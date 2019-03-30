@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.IO;
 using System.Net;
+using System;
 
 namespace MRSUpdater
 {
@@ -12,7 +13,7 @@ namespace MRSUpdater
 
         public void DownloadFile(string url, string path)
         {
-            var req = WebRequest.CreateDefault(url); // Request
+            var req = WebRequest.CreateDefault(new Uri(url)); // Request
             var response = req.GetResponse();
             var contentLength = response.Headers.Get("Content-Length");
             var canProgress = contentLength != null;

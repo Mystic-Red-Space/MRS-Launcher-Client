@@ -10,7 +10,7 @@ namespace MRSUpdater
 {
     public class UpdateLoader
     {
-        const string UpdateServerUrl = "";
+        const string UpdateServerUrl = "https://api.mysticrs.tk/launcher";
 
         public static UpdateFile[] GetUpdateFiles()
         {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
+using System.IO;
 
 namespace MRSUpdater
 {
@@ -24,19 +25,33 @@ namespace MRSUpdater
             th.Start();
         }
 
-        const string RootPath = "";
-        const string LauncherFile = "launcher.exe";
+        readonly string RootPath = Environment.CurrentDirectory + "\\";
+        const string LauncherFile = "MRSLauncherClient.exe";
+
+        string[] notUpdate = new string[]
+        {
+            "updater.exe"
+        };
 
         void Start()
         {
             try
             {
-                var files = UpdateLoader.GetUpdateFiles();
+                Directory.CreateDirectory(RootPath);
+
+                var updateFiles = UpdateLoader.GetUpdateFiles();
+                var localFiles = new LocalFileManager(RootPath, notUpdate).GetLocalFiles();
 
                 var updater = new Updater(RootPath);
                 updater.FileChanged += Updater_FileChanged;
                 updater.ProgressChanged += Updater_ProgressChanged;
-                updater.Update(files);
+                updater.Update(localFiles, updateFiles);
+
+                foreach(var item in localFiles)
+                {
+                    Console.WriteLine(item.Key);
+                    //File.Delete(item.Key);
+                }
 
                 Process.Start(RootPath + LauncherFile);
 

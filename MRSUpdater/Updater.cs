@@ -13,30 +13,34 @@ namespace MRSUpdater
         public Updater(string root)
         {
             RootPath = root;
+            
         }
 
         public event FileChangeEventHandler FileChanged;
         public event ProgressChangedEventHandler ProgressChanged;
         string RootPath;
 
-        public void Update(UpdateFile[] files)
+        public void Update(Dictionary<string, string> local, UpdateFile[] update)
         {
             var downloader = new WebDownload();
             downloader.DownloadProgressChangedEvent += Downloader_DownloadProgressChangedEvent;
 
-            int max = files.Length;
-            int index = 1;
-            foreach (var item in files)
+            var count = update.Length; // 서버에 있는 파일들 반복 
+            for (int i = 0; i < count; i++)
             {
-                FileChange(max, index);
-
+                var item = update[i];
                 var filepath = RootPath + item.FileName;
-                if (!FileValidate(filepath, item.MD5))
+                FileChange(count, i);
+
+                var localHash = "";
+                var hasFile = local.TryGetValue(filepath, out localHash);
+
+                if (!hasFile || localHash != item.MD5) // 로컬에 없으면 다운로드
                 {
                     downloader.DownloadFile(item.Url, filepath);
                 }
 
-                index++;
+                local.Remove(filepath);
             }
         }
 
