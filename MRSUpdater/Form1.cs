@@ -37,6 +37,12 @@ namespace MRSUpdater
         {
             try
             {
+                var frameworkVersion = NetFramework.GetVersion();
+                if (frameworkVersion < (int)NetFrameworkVersion.v461)
+                {
+
+                }
+
                 Directory.CreateDirectory(RootPath);
 
                 var updateFiles = UpdateLoader.GetUpdateFiles();
