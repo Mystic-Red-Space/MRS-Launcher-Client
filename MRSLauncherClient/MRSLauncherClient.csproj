@@ -38,18 +38,18 @@
     <ApplicationIcon>IcoMRS.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CmlLib">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\CmlLib.dll</HintPath>
+      <Reference Include="CmlLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\..\..\Downloads\9d2fc135aac7199a\CmlLib.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetZip">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\DotNetZip.dll</HintPath>
+      <Reference Include="DotNetZip, Version=1.12.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745">
+          <HintPath>..\..\..\Downloads\9d2fc135aac7199a\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\MinecraftLauncherLibrary\CmlLib\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\..\..\Downloads\9d2fc135aac7199a\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

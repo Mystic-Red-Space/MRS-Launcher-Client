@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Interop;
 
 namespace MRSLauncherClient
@@ -24,6 +26,12 @@ namespace MRSLauncherClient
         {
             var th = new Thread(InstallJava);
             th.Start();
+        }
+
+        private void try_Closed(object sender, CancelEventArgs e)
+        {
+            Console.WriteLine(sender);
+            e.Cancel = true;
         }
 
         private void InstallJava()
@@ -58,18 +66,12 @@ namespace MRSLauncherClient
 
         private void Java_DownloadCompleted(object sender, EventArgs e)
         {
-            Dispatcher.Invoke(new Action(delegate
-            {
-                lvStatus.Content = "압축 해제 중";
-            }));
+            Dispatcher.Invoke(new Action(delegate { lvStatus.Content = "압축 해제 중"; }));
         }
 
         private void Java_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            Dispatcher.Invoke(new Action(delegate
-            {
-                pbProgress.Value = e.ProgressPercentage;
-            }));
+            Dispatcher.Invoke(new Action(delegate { pbProgress.Value = e.ProgressPercentage; }));
         }
     }
 }
