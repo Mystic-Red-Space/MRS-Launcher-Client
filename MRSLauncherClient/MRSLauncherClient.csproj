@@ -42,6 +42,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CmlLib.dll</HintPath>
     </Reference>
+    <Reference Include="CmlLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\Downloads\MRSLauncherClient\CmlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.12.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745">
+      <HintPath>..\..\..\Downloads\MRSLauncherClient\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetZip, Version=1.12.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DotNetZip.dll</HintPath>
@@ -50,6 +56,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\..\..\Downloads\MRSLauncherClient\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Newtonsoft.Json.dll</HintPath>
