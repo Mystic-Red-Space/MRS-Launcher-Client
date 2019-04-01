@@ -12,7 +12,7 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="txtNumber" Text="0" VerticalContentAlignment="Center" PreviewKeyDown="TxtNumber_PreviewKeyDown" PreviewTextInput="TxtNumber_PreviewTextInput" TextChanged="TxtNumber_TextChanged"/>
+        <TextBox x:Name="txtNumber" Text="2048" VerticalContentAlignment="Center" PreviewKeyDown="TxtNumber_PreviewKeyDown" PreviewTextInput="TxtNumber_PreviewTextInput" TextChanged="TxtNumber_TextChanged"/>
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

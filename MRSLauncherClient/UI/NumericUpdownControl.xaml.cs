@@ -26,6 +26,7 @@ namespace MRSLauncherClient
         }
 
         private int c_value = 0;
+
         public int Value
         {
             get => c_value;
@@ -36,7 +37,7 @@ namespace MRSLauncherClient
             }
         }
 
-        public int Minimum { get; set; } = 0;
+        public int Minimum { get; set; } = 2048;
         public int Maximum { get; set; } = int.MaxValue;
 
         public int Interval { get; set; } = 1;
@@ -51,13 +52,10 @@ namespace MRSLauncherClient
 
         private void TxtNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = true;
-
-            return;
-
-
             var regex = new System.Text.RegularExpressions.Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+
+            e.Handled = regex.IsMatch(e.Text) && Convert.ToInt32(e.Text) >= 2048;
+            return;
         }
 
         private void BtnUp_Click(object sender, RoutedEventArgs e)
@@ -79,7 +77,7 @@ namespace MRSLauncherClient
         private void TxtNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtNumber.Text == "" || txtNumber.Text == "\0")
-                txtNumber.Text = "0";
+                txtNumber.Text = "2048";
 
             c_value = int.Parse(txtNumber.Text);
 
