@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MRSLauncherClient"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         Title="" Height="130" Width="300"
         Loaded="Window_Loaded"
         WindowStyle="None"
+        KeyDown="JavaDownloadWindow_OnKeyDown"
         >
-
     <Grid>
-        <ProgressBar Name="pbProgress" Height="24" Width="252" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"/>
-        <Label Name="lvStatus" Content="자바 다운로드 중" FontSize="15" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top" Margin="0,15,0,0"/>
-        <Label Name="lvWarn" Content="(강제로 창을 끄지 마세요)" FontSize="13" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="28" Margin="0,0,0,10"/>
+        <ProgressBar Name="PbProgress" Height="24" Width="252" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"/>
+        <Label Name="LvStatus" Content="자바 다운로드 중" FontSize="15" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top" Margin="0,15,0,0"/>
+        <Label Name="LvWarn" Content="(강제로 창을 끄지 마세요)" FontSize="13" Width="252" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="28" Margin="0,0,0,10"/>
 
     </Grid>
 </Window>

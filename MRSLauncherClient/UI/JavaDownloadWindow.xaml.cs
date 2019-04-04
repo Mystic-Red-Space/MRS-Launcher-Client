@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Interop;
 
 namespace MRSLauncherClient
@@ -17,7 +20,7 @@ namespace MRSLauncherClient
             this.javaDownload = java;
 
             InitializeComponent();
-            this.pbProgress.Maximum = 100;
+            this.PbProgress.Maximum = 100;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -25,6 +28,12 @@ namespace MRSLauncherClient
             var th = new Thread(InstallJava);
             th.IsBackground = true;
             th.Start();
+        }
+
+        private void try_Closed(object sender, CancelEventArgs e)
+        {
+            Console.WriteLine(sender);
+            e.Cancel = true;
         }
 
         private void InstallJava()
@@ -52,25 +61,27 @@ namespace MRSLauncherClient
         {
             Dispatcher.Invoke(new Action(delegate
             {
-                lvStatus.Content = "다운로드가 완료되었습니다.";
+                LvStatus.Content = "다운로드가 완료되었습니다.";
                 this.Close();
             }));
         }
 
         private void Java_DownloadCompleted(object sender, EventArgs e)
         {
-            Dispatcher.Invoke(new Action(delegate
-            {
-                lvStatus.Content = "압축 해제 중";
-            }));
+            Dispatcher.Invoke(new Action(delegate { LvStatus.Content = "압축 해제 중"; }));
         }
 
         private void Java_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            Dispatcher.Invoke(new Action(delegate
+            Dispatcher.Invoke(new Action(delegate { PbProgress.Value = e.ProgressPercentage; }));
+        }
+
+        private void JavaDownloadWindow_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.System && e.SystemKey == Key.F4)
             {
-                pbProgress.Value = e.ProgressPercentage;
-            }));
+                e.Handled = true;
+            }
         }
     }
 }
