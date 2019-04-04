@@ -37,10 +37,29 @@ namespace MRSUpdater
 
                 if (!hasFile || localHash != item.MD5) // 로컬에 없으면 다운로드
                 {
-                    downloader.DownloadFile(item.Url, filepath);
+                    tryFileDownload(downloader, item.Url, filepath);
                 }
 
                 local.Remove(filepath);
+            }
+        }
+
+        void tryFileDownload(WebDownload downloader, string url, string path)
+        {
+            int tryCount = 3;
+
+            for (; ; tryCount--)
+            {
+                try
+                {
+                    downloader.DownloadFile(url, path);
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    if (tryCount == 0)
+                        throw ex;
+                }
             }
         }
 

@@ -23,6 +23,7 @@ namespace MRSLauncherClient
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var th = new Thread(InstallJava);
+            th.IsBackground = true;
             th.Start();
         }
 

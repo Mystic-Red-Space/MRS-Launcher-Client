@@ -19,6 +19,8 @@ namespace MRSUpdater
             AppDomain.CurrentDomain.AssemblyResolve
                 += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
 
+            System.Threading.Thread.Sleep(1000);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
