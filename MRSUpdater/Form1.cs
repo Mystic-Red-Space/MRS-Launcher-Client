@@ -30,7 +30,8 @@ namespace MRSUpdater
 
         string[] notUpdate = new string[]
         {
-            "updater.exe"
+            "updater.exe",
+            "version.dat"
         };
 
         void Start()
@@ -46,19 +47,21 @@ namespace MRSUpdater
                 }
 
                 Directory.CreateDirectory(RootPath);
-
-                var updateFiles = UpdateLoader.GetUpdateFiles();
-                var localFiles = new LocalFileManager(RootPath, notUpdate).GetLocalFiles();
-
                 var updater = new Updater(RootPath);
-                updater.FileChanged += Updater_FileChanged;
-                updater.ProgressChanged += Updater_ProgressChanged;
-                updater.Update(localFiles, updateFiles);
 
-                foreach(var item in localFiles)
+                if (updater.CheckHasNewVersion())
                 {
-                    //Console.WriteLine(item.Key);
-                    File.Delete(item.Key);
+                    var updateFiles = UpdateLoader.GetUpdateFiles();
+                    var localFiles = new LocalFileManager(RootPath, notUpdate).GetLocalFiles();
+
+                    updater.FileChanged += Updater_FileChanged;
+                    updater.ProgressChanged += Updater_ProgressChanged;
+                    updater.Update(localFiles, updateFiles);
+
+                    foreach (var item in localFiles)
+                    {
+                        File.Delete(item.Key);
+                    }
                 }
 
                 Process.Start(RootPath + LauncherFile);

@@ -13,12 +13,28 @@ namespace MRSUpdater
         public Updater(string root)
         {
             RootPath = root;
-
         }
 
         public event FileChangeEventHandler FileChanged;
         public event ProgressChangedEventHandler ProgressChanged;
         string RootPath;
+
+        string LocalVersionFilePath = "version.dat";
+        string WebVersion = "";
+
+        public bool CheckHasNewVersion()
+        {
+            var localVersion = "";
+            if (File.Exists(LocalVersionFilePath))
+                localVersion = File.ReadAllText(LocalVersionFilePath);
+
+            using (var wc = new System.Net.WebClient())
+            {
+                WebVersion = wc.DownloadString("https://api.mysticrs.tk/version");
+            }
+
+            return localVersion != WebVersion;
+        }
 
         public void Update(Dictionary<string, string> local, UpdateFile[] update)
         {
@@ -42,6 +58,8 @@ namespace MRSUpdater
 
                 local.Remove(filepath);
             }
+
+            File.WriteAllText(LocalVersionFilePath, WebVersion);
         }
 
         void tryFileDownload(WebDownload downloader, string url, string path)
