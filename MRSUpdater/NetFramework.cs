@@ -38,5 +38,7 @@ namespace MRSUpdater
                 }
             }
         }
+
+        public const string v461_DownloadLink = "https://www.microsoft.com/ko-KR/download/details.aspx?id=49981";
     }
 }

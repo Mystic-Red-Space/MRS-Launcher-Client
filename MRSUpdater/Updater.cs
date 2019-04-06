@@ -13,7 +13,7 @@ namespace MRSUpdater
         public Updater(string root)
         {
             RootPath = root;
-            
+
         }
 
         public event FileChangeEventHandler FileChanged;

@@ -32,24 +32,6 @@ namespace MRSLauncherClient
 
             Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown; // 창이 꺼져도 프로그램이 종료되지 않게
 
-            //업데이트 확인
-            var updateTh = new Thread(new ThreadStart(delegate
-            {
-                var updater = new Updater();
-                if (updater.CheckHasUpdate())
-                {
-                    var r = MessageBox.Show("업데이트할까요", "ㅇㅇ", MessageBoxButton.YesNo);
-
-                    if (r == MessageBoxResult.Yes)
-                    {
-                        updater.StartUpdater();
-                        Environment.Exit(0);
-                    }
-                }
-            }));
-            updateTh.IsBackground = true;
-            updateTh.Start();
-
             //자바 확인
             var java = new JavaDownload(Launcher.JavaPath);
             var javaWorking = java.CheckJavaExist() && java.CheckJavaWork();

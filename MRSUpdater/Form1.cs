@@ -40,7 +40,9 @@ namespace MRSUpdater
                 var frameworkVersion = NetFramework.GetVersion();
                 if (frameworkVersion < (int)NetFrameworkVersion.v461)
                 {
-
+                    MessageBox.Show("닷넷 프레임워크 4.6.1을 설치해 주세요.");
+                    startProcess(NetFramework.v461_DownloadLink);
+                    Environment.Exit(0);
                 }
 
                 Directory.CreateDirectory(RootPath);
@@ -55,8 +57,8 @@ namespace MRSUpdater
 
                 foreach(var item in localFiles)
                 {
-                    Console.WriteLine(item.Key);
-                    //File.Delete(item.Key);
+                    //Console.WriteLine(item.Key);
+                    File.Delete(item.Key);
                 }
 
                 Process.Start(RootPath + LauncherFile);
@@ -84,6 +86,18 @@ namespace MRSUpdater
             {
                 lvCount.Text = $"{e.NowCount} / {e.MaxCount}";
             }));
+        }
+
+        private void startProcess(string path)
+        {
+            try
+            {
+                Process.Start(path);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

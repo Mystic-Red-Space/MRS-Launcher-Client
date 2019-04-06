@@ -32,15 +32,15 @@ namespace MRSUpdater
 
         private Dictionary<string, string> GetLocalFiles(string path, Dictionary<string, string> result)
         {
-            if (filterDirs.Contains(path))
-                return result;
-
             var absolutePath = RootPath + path;
 
-            var files = Directory.GetFiles(absolutePath);
+            var files = new DirectoryInfo(absolutePath).GetFiles();
             foreach (var item in files)
             {
-                result.Add(item, GetFileHash(item));
+                if (filterDirs.Contains(item.Name))
+                    continue;
+
+                result.Add(item.FullName, GetFileHash(item.FullName));
             }
 
             //foreach (var item in new DirectoryInfo(absolutePath).GetDirectories("*.*", SearchOption.TopDirectoryOnly))

@@ -22,7 +22,6 @@ namespace MRSLauncherClient
 
             ModPackListUrl = "https://api.mysticrs.tk/list", // 모드팩 리스트
             ModPackDataUrl = "https://api.mysticrs.tk/modpack", // 모드팩 정보 (모드파일 등)
-            WhiteListUrl = "https://api.mysticrs.tk/whitelist",
-            VersionUrl = "https://api.mysticrs.tk/version";
+            WhiteListUrl = "https://api.mysticrs.tk/whitelist";
     }
 }
