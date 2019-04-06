@@ -29,7 +29,7 @@ namespace MRSLauncherClient
 
         private void About_Loaded(object sender, RoutedEventArgs e)
         {
-            lvLauncherVersion.Content = "런처 버전 : " + Launcher.LauncherVersion;
+            lvLauncherVersion.Content = "런처 버전 : " + Launcher.LauncherVersion.Replace("_","__"); // Label 에서 _ 를 표시하지 못하는것을 방지
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

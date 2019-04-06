@@ -10,7 +10,7 @@ namespace MRSLauncherClient
     {
         public static readonly string
             LauncherName = "MRS Minecraft Launcher",
-            LauncherVersion = "beta_build2",
+            LauncherVersion = "beta_build3",
             UpdateVersion = "8",
 
             LauncherPath = Environment.CurrentDirectory, // 모든 파일이 저장되는 기본 경로
