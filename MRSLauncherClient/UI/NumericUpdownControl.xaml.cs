@@ -52,6 +52,9 @@ namespace MRSLauncherClient
 
         private void TxtNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            e.Handled = true;
+            return;
+
             var regex = new System.Text.RegularExpressions.Regex("[^0-9]+");
 
             e.Handled = regex.IsMatch(e.Text) && Convert.ToInt32(e.Text) >= 2048;

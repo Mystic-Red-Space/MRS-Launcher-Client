@@ -58,7 +58,7 @@ namespace MRSLauncherClient
         #endregion
 
         [JsonProperty]
-        public int MaxRamMb { get; set; } = 2048;
+        public int MaxRamMb { get; set; } = 4096;
 
         [JsonProperty]
         public bool UseCustomJVM { get; set; } = false;
@@ -67,6 +67,6 @@ namespace MRSLauncherClient
         public string CustomJVMArguments { get; set; } = "";
 
         [JsonProperty]
-        public string Email { get; set; } = "";
+        public bool ShowLogWindow { get; set; } = false;
     }
 }

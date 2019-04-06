@@ -100,7 +100,6 @@ namespace MRSLauncherClient.UI
 
                     if (result.Result == MLoginResult.Success)
                     {
-                        Setting.Json.Email = email;
                         ShowWelcome(result);
                     }
                     else

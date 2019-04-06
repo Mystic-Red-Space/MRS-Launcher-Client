@@ -56,5 +56,6 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+        <CheckBox Grid.Row="3" x:Name="cbShowLogWindow" Content="로그 창 보이기" Foreground="White" FontSize="15"/>
     </Grid>
 </Page>

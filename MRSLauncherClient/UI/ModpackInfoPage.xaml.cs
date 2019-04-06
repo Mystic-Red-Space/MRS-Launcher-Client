@@ -133,11 +133,14 @@ namespace MRSLauncherClient.UI
                     pbPatch.Value = 1;
                     lvStatus.Content = "게임 실행 완료";
 
-                    if (logWindow != null)
-                        logWindow.Close();
+                    if (Setting.Json.ShowLogWindow)
+                    {
+                        if (logWindow != null)
+                            logWindow.Close();
 
-                    logWindow = new LogWindow();
-                    logWindow.Show();
+                        logWindow = new LogWindow();
+                        logWindow.Show();
+                    }
                 }));
             }
             catch (System.ComponentModel.Win32Exception ex)
