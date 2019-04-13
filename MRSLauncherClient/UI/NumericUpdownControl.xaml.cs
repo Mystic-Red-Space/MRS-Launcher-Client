@@ -79,8 +79,8 @@ namespace MRSLauncherClient
 
         private void TxtNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtNumber.Text == "" || txtNumber.Text == "\0")
-                txtNumber.Text = "2048";
+//            if (txtNumber.Text == "" || txtNumber.Text == "\0")
+//                txtNumber.Text = "2048";
 
             c_value = int.Parse(txtNumber.Text);
 
