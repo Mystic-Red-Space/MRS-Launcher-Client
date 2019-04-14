@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using log4net;
 
 namespace MRSLauncherClient.UI
 {
@@ -11,6 +12,7 @@ namespace MRSLauncherClient.UI
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private static ILog log = LogManager.GetLogger("LoginWindow");
 
         public LoginWindow()
         {
@@ -26,6 +28,8 @@ namespace MRSLauncherClient.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            log.Info("Auto Login");
+
             SetPanelEnable(false);
             var loginth = new Thread(new ThreadStart(delegate
             {
@@ -79,6 +83,7 @@ namespace MRSLauncherClient.UI
 
             SetPanelEnable(false);
 
+            log.Info("Start Login Thread");
             var th = new Thread(new ThreadStart(delegate
             {
                 var login = new MLogin();
@@ -104,9 +109,10 @@ namespace MRSLauncherClient.UI
                             case MLoginResult.BadRequest:
                             case MLoginResult.UnknownError:
                             default:
-                                errMsg = "잘못된 요청. 아래 내용을 캡처해서 런처 개발자에게 문의하세요.";
+                                errMsg = "잘못된 요청";
                                 break;
                         }
+                        log.Info("Failed login : " + errMsg);
                         MessageBox.Show("로그인 실패 : " + errMsg);
                     }
                 }));
@@ -120,10 +126,11 @@ namespace MRSLauncherClient.UI
             tbPassword.IsEnabled = value;
             btnLogin.IsEnabled = value;
         }
-        //메인윈도우로 전환
+
         private void ShowWelcome(MSession s)
         {
             //윈도우 전환
+            log.Info("Login Success : " + s.Username);
             var mainWindow = new MainWindow(s);
             mainWindow.RenderSize = this.RenderSize;
             mainWindow.Show();
@@ -131,12 +138,14 @@ namespace MRSLauncherClient.UI
             userClose = false;
             this.Close();
         }
+
         //창 닫기
         private void Window_Closed(object sender, EventArgs e)
         {
             if (userClose)
                 App.Stop();
         }
+
         //엔터키로 tbEmail -> tbPassword, tbPassword -> BtnLogin 으로 전환함.
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {

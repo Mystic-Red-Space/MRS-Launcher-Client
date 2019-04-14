@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.IO;
-using CmlLib.Launcher;
+using log4net;
 
 namespace MRSLauncherClient
 {
@@ -27,8 +22,12 @@ namespace MRSLauncherClient
 
         #region Setting IO
 
+        private static ILog log = LogManager.GetLogger("Setting");
+
         private static Setting LoadSetting()
         {
+            log.Info("Get Setting File");
+
             if (File.Exists(Launcher.SettingPath)) // 설정파일 있을때
             {
                 var filecontent = File.ReadAllText(Launcher.SettingPath);
@@ -38,11 +37,15 @@ namespace MRSLauncherClient
                     NullValueHandling = NullValueHandling.Ignore // JSON에 없는 값은 무시
                 };
 
+                log.Info("Deserializing");
                 var obj = JsonConvert.DeserializeObject<Setting>(filecontent, serializer); // 역직렬화
                 return obj;
             }
             else
+            {
+                log.Info("Create new Empty Setting");
                 return new Setting(); // 설정파일 없을때
+            }
         }
 
         public static void SaveSetting()
@@ -51,6 +54,7 @@ namespace MRSLauncherClient
 
             Directory.CreateDirectory(Path.GetDirectoryName(Launcher.SettingPath)); // 폴더 생성
 
+            log.Info("Save Setitng");
             var json = JsonConvert.SerializeObject(instance); // 직렬화 후 저장
             File.WriteAllText(Launcher.SettingPath, json);
         }

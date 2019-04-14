@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Security.Cryptography;
+using log4net;
 
 namespace MRSLauncherClient
 {
@@ -13,6 +10,8 @@ namespace MRSLauncherClient
 
     public class ModPackDownloader
     {
+        private static ILog log = LogManager.GetLogger("ModPackDownloader");
+
         // 진행률 표시용 이벤트
         public event DownloadModFileChangedEventHandler DownloadModFileChanged;
 
@@ -25,6 +24,8 @@ namespace MRSLauncherClient
 
         public void DownloadFiles(string RootPath, Dictionary<string, string> localFiles) // 로컬에 없는 파일 혹은 해쉬 다른 파일 다운로드
         {
+            log.Info("Start Download Files");
+
             var webDownload = new WebDownload(); // 파일 다운로더
             webDownload.DownloadProgressChangedEvent += WebDownload_DownloadProgressChangedEvent;
 
@@ -46,6 +47,8 @@ namespace MRSLauncherClient
 
                 localFiles.Remove(filepath);
             }
+
+            log.Info("Completed Download Files");
         }
 
         int nowValue, maxValue;

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Text;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -11,8 +8,12 @@ namespace MRSLauncherClient
 {
     public class WhiteListLoader
     {
+        private static ILog log = LogManager.GetLogger("WhiteListLoader");
+
         public static WhiteList GetWhiteList(string id)
         {
+            log.Info("Get WhiteList : " + id);
+
             var query = new NameValueCollection();
             query.Add("name" , id);
 

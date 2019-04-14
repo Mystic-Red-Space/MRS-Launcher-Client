@@ -1,23 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using CmlLib.Launcher;
 using System.Diagnostics;
 using System.IO;
+using log4net;
 
 namespace MRSLauncherClient
 {
     public class GamePatch
     {
+        private ILog log = LogManager.GetLogger("GamePatch");
+
         public GamePatch(ModPack server, MSession s)
         {
             Session = s;
             this.Pack = server;
 
             RootPath = Launcher.GamePath + Pack.Name;
+
+            log.Info($"New GamePatch : {Pack.Name} ({s.Username})");
         }
 
         public event EventHandler<string> StatusChange;
@@ -29,6 +31,8 @@ namespace MRSLauncherClient
 
         public void RemovePackJson()
         {
+            log.Info("Remove Pack Json");
+
             var localPack = Launcher.GamePath + Pack.Name + "\\launcher\\pack.json";
             if (File.Exists(localPack))
                 File.Delete(localPack);
@@ -36,58 +40,74 @@ namespace MRSLauncherClient
 
         public GameProcess Patch(bool forceUpdate)
         {
+            d("Start ModPack Patch. forceUpdate : " + forceUpdate);
             statusChange("모드 패치 준비중");
 
             // 게임 폴더 만들기
+            d("Initialize Game Path : " + RootPath);
             Minecraft.init(RootPath);
 
+            d("Get Whitelist");
             var whitelist = WhiteListLoader.GetWhiteList(Pack.Name);
 
+            d("Check LocalTempFile");
             bool isPackEqual = CompareLocalTempFile("pack.json", Pack.RawResponse);
             bool isWhitelistEqual = CompareLocalTempFile("whitelist.json", whitelist.RawResponse);
 
             if (forceUpdate || !isPackEqual || !isWhitelistEqual)
             {
+                d("Start File Patch");
                 statusChange("파일 검사 중");
 
                 // 화이트 리스트 목록 가져오기
+                d("Get WhiteList Files");
                 var whitelistManager = new WhiteListManager(whitelist);
                 whitelistManager.ParseWhiteList();
-                
+
                 // 화이트 리스트 DIRS 에 없는 파일만 가져옴
+                d("Get Local Files");
                 var localFileManager = new LocalFileManager(RootPath, whitelistManager.WhiteDirs);
                 var localFiles = localFileManager.GetLocalFiles();
 
                 statusChange("모드 패치 중");
 
                 // 모드파일 다운로드
+                d("Start File Checking and Downloading");
                 var packDownloader = new ModPackDownloader(Pack);
                 packDownloader.DownloadModFileChanged += PackDownloader_DownloadModFileChanged;
                 packDownloader.DownloadFiles(RootPath, localFiles);
 
                 statusChange("마무리 중");
 
+                d("Remove Filtered Files");
                 whitelistManager.Filtering(RootPath, localFiles);
 
+                d("Save LocalTempFile");
                 SaveLocalTempFile("pack.json", Pack.RawResponse);
                 SaveLocalTempFile("whitelist.json", whitelist.RawResponse);
             }
 
             statusChange("게임 다운로드 준비중");
 
+            d("Get Profiles");
             var profileList = MProfileInfo.GetProfiles();
 
+            d("Search StartProfile");
             MProfile startProfile = FindProfile(profileList, Pack.StartProfile);
             MProfile baseProfile = null;
 
             if (startProfile.IsForge)
             {
+                d("Search BaseProfile");
                 baseProfile = FindProfile(profileList, startProfile.InnerJarId);
+                d("Download BaseProfile");
                 DownloadProfile(baseProfile);
             }
-  
+
+            d("Download StartProfile");
             DownloadProfile(startProfile);
 
+            d("Create LaunchOption");
             var option = new MLaunchOption()
             {
                 StartProfile = startProfile,
@@ -100,27 +120,23 @@ namespace MRSLauncherClient
             if (Setting.Json.UseCustomJVM)
                 option.CustomJavaParameter = Setting.Json.CustomJVMArguments;
 
+            d("Create GameProcess");
             var launch = new MLaunch(option);
             return new GameProcess(launch.GetProcess());
         }
 
         public void RemovePack()
         {
+            d("Remove Pack");
+
             if (Directory.Exists(RootPath))
                 Utils.DeleteDirectory(RootPath);
         }
 
         public void OpenFolder()
         {
-            try
-            {
-                if (Directory.Exists(RootPath))
-                    Process.Start("explorer.exe", $"\"{RootPath}\"");
-            }
-            catch
-            {
-
-            }
+            if (Directory.Exists(RootPath))
+                Utils.ProcessStart("explorer.exe", $"\"{RootPath}\"");
         }
 
         bool CompareLocalTempFile(string name, string content)
@@ -167,6 +183,8 @@ namespace MRSLauncherClient
 
         private void DownloadProfile(MProfile profile)
         {
+            d("Download Profile : " + profile.Id);
+
             var downloader = new MDownloader(profile);
             downloader.ChangeFile += Downloader_ChangeFile;
             downloader.ChangeProgress += Downloader_ChangeProgress;
@@ -212,5 +230,9 @@ namespace MRSLauncherClient
 
         #endregion
 
+        void d(string msg)
+        {
+            log.Info($"[{Pack.Name}] {msg}");
+        }
     }
 }

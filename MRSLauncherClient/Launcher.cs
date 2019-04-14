@@ -11,7 +11,6 @@ namespace MRSLauncherClient
         public static readonly string
             LauncherName = "MRS Minecraft Launcher",
             LauncherVersion = "beta_build3",
-            UpdateVersion = "8",
 
             LauncherPath = Environment.CurrentDirectory, // 모든 파일이 저장되는 기본 경로
             GamePath = LauncherPath + "\\games\\", // saves, mods, screenshots 등이 저장되는 폴더
@@ -22,6 +21,8 @@ namespace MRSLauncherClient
 
             ModPackListUrl = "https://api.mysticrs.tk/list", // 모드팩 리스트
             ModPackDataUrl = "https://api.mysticrs.tk/modpack", // 모드팩 정보 (모드파일 등)
-            WhiteListUrl = "https://api.mysticrs.tk/whitelist";
+            WhiteListUrl = "https://api.mysticrs.tk/whitelist",
+
+            MojangForgotPassword = "https://account.mojang.com/password";
     }
 }

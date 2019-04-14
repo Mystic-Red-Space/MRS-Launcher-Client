@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
-using System.Diagnostics;
+using log4net;
 
 namespace MRSLauncherClient
 {
@@ -22,6 +12,8 @@ namespace MRSLauncherClient
     /// </summary>
     public partial class AboutPage : Page
     {
+        private static ILog log = LogManager.GetLogger("AboutPage");
+
         public AboutPage()
         {
             InitializeComponent();
@@ -32,7 +24,7 @@ namespace MRSLauncherClient
             lvLauncherVersion.Content = "런처 버전 : " + Launcher.LauncherVersion.Replace("_","__"); // Label 에서 _ 를 표시하지 못하는것을 방지
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) // 라이센스 파일 열기
         {
             if (!File.Exists(Launcher.LisencePath))
             {
@@ -40,7 +32,7 @@ namespace MRSLauncherClient
                 return;
             }
 
-            Process.Start("notepad.exe", $"\"{Launcher.LisencePath}\"");
+            Utils.ProcessStart("notepad.exe", $"\"{Launcher.LisencePath}\"");
         }
     }
 }

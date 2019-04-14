@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using log4net;
 
 namespace MRSLauncherClient
 {
     public class GameProcess // 게임 프로세스와 연동해 디스코드에 뭘표시하던가 등등등 나중에 쓰일수도
     {
+        private static ILog log = LogManager.GetLogger("GameProcess");
+
         public GameProcess(Process p)
         {
             process = p;
@@ -19,11 +18,8 @@ namespace MRSLauncherClient
 
         public void Start()
         {
-            process.Start();
-        }
+            log.Info("Start Minecraft");
 
-        public void StartDebug()
-        {
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardError = true;
             process.StartInfo.RedirectStandardOutput = true;

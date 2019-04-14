@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using System.Threading;
 using CmlLib.Launcher;
-using mshtml;
+using log4net;
 
 namespace MRSLauncherClient.UI
 {
@@ -13,6 +13,8 @@ namespace MRSLauncherClient.UI
     /// </summary>
     public partial class ModpackInfoPage : Page
     {
+        private static ILog log = LogManager.GetLogger("ModPackInfoPage");
+
         public ModpackInfoPage(ModPackInfo packname, MSession session)
         {
             Session = session;
@@ -37,6 +39,7 @@ namespace MRSLauncherClient.UI
         {
             this.IsEnabled = false;
 
+            log.Info("Start ModPackLoader Thread");
             var th = new Thread(new ThreadStart(delegate // 모드팩 로딩 스레드
             {
                 var pack = ModPackLoader.GetModPack(PackInfo);
@@ -57,6 +60,7 @@ namespace MRSLauncherClient.UI
         {
             SetButtonsEnable(false);
 
+            log.Info("Start GameStart Thread");
             var th = new Thread(new ThreadStart(delegate
             {
                 Start(false);
@@ -68,6 +72,7 @@ namespace MRSLauncherClient.UI
         {
             SetButtonsEnable(false);
 
+            log.Info("Start ForceUpdate Thread");
             var th = new Thread(new ThreadStart(delegate
             {
                 Start(true);
@@ -80,6 +85,7 @@ namespace MRSLauncherClient.UI
             SetButtonsEnable(false);
             lvStatus.Content = "제거 중";
 
+            log.Info("Start Remove Thread");
             new Thread(new ThreadStart(delegate
             {
                 try
@@ -88,6 +94,7 @@ namespace MRSLauncherClient.UI
                 }
                 catch (Exception ex)
                 {
+                    log.Info("Remove Exception", ex);
                     MessageBox.Show("제거를 실패했습니다.\n" + ex.ToString());
                 }
                 finally
@@ -121,9 +128,12 @@ namespace MRSLauncherClient.UI
                 Patcher.ProgressChange += Patch_ProgressChange;
                 Patcher.StatusChange += Patch_StatusChange;
 
+                log.Info("Start Patch");
                 var process = Patcher.Patch(forceUpdate);
                 process.GameOutput += Process_GameOutput;
-                process.StartDebug();
+
+                log.Info("Start Game Process");
+                process.Start();
 
                 Dispatcher.Invoke(new Action(delegate
                 {
@@ -145,12 +155,15 @@ namespace MRSLauncherClient.UI
             }
             catch (System.ComponentModel.Win32Exception ex)
             {
+                log.Info("GameStart Win32Exception", ex);
+
                 FailLaunch("WIN32 파일실행에 오류가 발생했습니다.\n" +
                     "주로 자바 실행을 실패할때 이 오류가 발생합니다. 자바를 초기화하세요.\n" + 
                     ex.ToString());
             }
             catch (Exception ex)
             {
+                log.Info("GameStart Exception", ex);
                 FailLaunch("알 수 없는 오류.\n" + ex.ToString());
             }
         }

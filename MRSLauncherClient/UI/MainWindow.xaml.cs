@@ -1,21 +1,10 @@
 ﻿using CmlLib.Launcher;
+using log4net;
 using MRSLauncherClient.UI;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MRSLauncherClient
 {
@@ -24,9 +13,13 @@ namespace MRSLauncherClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static ILog log = LogManager.GetLogger("MainWindow");
+
         public MainWindow(MSession s)
         {
             this.Session = s;
+
+            log.Info("Load Page");
             pageManager = new PageManager();
             pageManager.PageList.AddRange(new Page[]
             {
@@ -35,6 +28,8 @@ namespace MRSLauncherClient
                 new SettingsPage(),
                 new AboutPage()
             });
+
+            log.Info("Load Component");
             InitializeComponent();
         }
 
@@ -45,6 +40,8 @@ namespace MRSLauncherClient
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            log.Info("Window Loaded");
+
             foreach (var item in pageManager.PageList)
             {
                 var btn = new Button();
@@ -74,9 +71,11 @@ namespace MRSLauncherClient
             if (MessageBox.Show("정말로 로그아웃을 하시겠습니까?", "주의", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
                 return;
 
+            log.Info("Delete Token File");
             var login = new MLogin();
             login.DeleteTokenFile();
 
+            log.Info("Show LoginWindow");
             userClose = false;
             var loginWindow = new LoginWindow();
             loginWindow.Show();

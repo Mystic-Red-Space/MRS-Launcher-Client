@@ -1,21 +1,26 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Text;
+using log4net;
 
 namespace MRSLauncherClient
 {
     public class ModPackLoader // 모드팩을 불러오는 클래스
     {
+        private static ILog log = LogManager.GetLogger("ModPackLoader");
+
         // 모든 모드팩 리스트를 불러옴
         public static ModPackInfo[] GetModPackList()
         {
+            log.Info("Get ModPackList");
+
             var res = Web.Request(Launcher.ModPackListUrl); // 요청
 
             var jarr = JArray.Parse(res); // 파싱
             var infos = new ModPackInfo[jarr.Count];
-            
+
+            log.Info("There are " + jarr.Count + " of modpacks");
             for(int i = 0; i < infos.Length; i++)
             {
                 infos[i] = jarr[i].ToObject<ModPackInfo>(); // 배열 각 요소를 ModPackInfo 로 직렬화
@@ -27,6 +32,8 @@ namespace MRSLauncherClient
         // 특정 모드팩의 정보를 가져옴
         public static ModPack GetModPack(ModPackInfo info)
         {
+            log.Info("Get ModPack : " + info.Name);
+
             var url = Launcher.ModPackDataUrl; // API 서버 요청할 데이터
             var query = new NameValueCollection(); // 쿼리
             query.Add("name", info.Name);
