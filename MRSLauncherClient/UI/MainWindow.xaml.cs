@@ -55,8 +55,7 @@ namespace MRSLauncherClient
             contentViewer.Content = pageManager.GetContent(0);
 
             txtUsername.Text = Session.Username;
-            var uri = "https://crafatar.com/avatars/" + Session.UUID + "?size=" + 30 + "&default=MHF_Steve" + "&overlay";
-            imgProfile.Source = new BitmapImage(new Uri(uri));
+            imgProfile.Source = MAvatar.GetAvatarImage(Session.UUID);
         }
 
         private void SideButtons_Click(object sender, RoutedEventArgs e)
