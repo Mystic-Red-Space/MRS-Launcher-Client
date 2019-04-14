@@ -31,7 +31,9 @@ namespace MRSUpdater
         string[] notUpdate = new string[]
         {
             "updater.exe",
-            "version.dat"
+            "version.dat",
+            "log.txt",
+            "uninst.exe"
         };
 
         void Start()

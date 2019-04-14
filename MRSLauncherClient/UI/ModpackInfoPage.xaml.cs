@@ -152,9 +152,6 @@ namespace MRSLauncherClient.UI
                         logWindow = new LogWindow();
                         logWindow.Show();
                     }
-
-                    if (Setting.Json.HideLauncher)
-                        this.Visibility = Visibility.Collapsed;
                 }));
             }
             catch (System.ComponentModel.Win32Exception ex)
@@ -196,8 +193,7 @@ namespace MRSLauncherClient.UI
 
         private void Process_GameExited(object sender, EventArgs e)
         {
-            if (this.parent)
-                this.Visibility = Visibility.Visible;
+
         }
 
         private void Patch_StatusChange(object sender, string e)
