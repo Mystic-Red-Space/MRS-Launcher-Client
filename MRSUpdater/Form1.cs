@@ -38,6 +38,12 @@ namespace MRSUpdater
         {
             try
             {
+                if (!Environment.Is64BitOperatingSystem)
+                {
+                    MessageBox.Show("32비트 운영체제는 지원하지 않습니다.");
+                    Environment.Exit(0);
+                }
+
                 var frameworkVersion = NetFramework.GetVersion();
                 if (frameworkVersion < (int)NetFrameworkVersion.v461)
                 {
