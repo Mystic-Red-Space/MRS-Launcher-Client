@@ -15,6 +15,7 @@ copy DotNetZip.dll %folderName%\DotNetZip.dll
 copy %folderName%.exe %folderName%\%folderName%.exe
 copy Newtonsoft.Json.dll %folderName%\Newtonsoft.Json.dll
 copy license.txt %folderName%\license.txt
+copy log4net.dll %folderName%\log4net.dll
 
 echo Done.
 pause
