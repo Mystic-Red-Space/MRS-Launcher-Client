@@ -72,5 +72,8 @@ namespace MRSLauncherClient
 
         [JsonProperty]
         public bool ShowLogWindow { get; set; } = false;
+
+        [JsonProperty]
+        public bool HideLauncher { get; set; } = true;
     }
 }

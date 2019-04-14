@@ -57,6 +57,7 @@ namespace MRSLauncherClient
             rtJavaArgs.IsEnabled = Setting.Json.UseCustomJVM;
             cbCustomJVM.IsChecked = Setting.Json.UseCustomJVM;
             cbShowLogWindow.IsChecked = Setting.Json.ShowLogWindow;
+            cbHideLauncher.IsChecked = Setting.Json.HideLauncher;
         }
 
         private void Settings_Unloaded(object sender, RoutedEventArgs e)
@@ -65,6 +66,7 @@ namespace MRSLauncherClient
             Setting.Json.CustomJVMArguments = new TextRange(rtJavaArgs.Document.ContentStart, rtJavaArgs.Document.ContentEnd).Text;
             Setting.Json.UseCustomJVM = cbCustomJVM.IsChecked ?? false; // 만약 값이 null 이라면 false 를 반환
             Setting.Json.ShowLogWindow = cbShowLogWindow.IsChecked ?? false;
+            Setting.Json.HideLauncher = cbHideLauncher.IsChecked ?? false;
         }
 
         private void RamSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
