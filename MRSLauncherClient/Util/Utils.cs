@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
 
 namespace MRSLauncherClient
 {
@@ -22,6 +23,30 @@ namespace MRSLauncherClient
             foreach (string target_dir1 in directories)
                 DeleteDirectory(target_dir1);
             Directory.Delete(target_dir, true);
+        }
+
+        public static void ProcessStart(string path)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(path);
+            }
+            catch (Exception ex)
+            {
+                LogManager.GetLogger("Utils").Info("Process Start Exception" , ex);
+            }
+        }
+
+        public static void ProcessStart(string path, string argument)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(path, argument);
+            }
+            catch (Exception ex)
+            {
+                LogManager.GetLogger("Utils").Info("Process Start Exception", ex);
+            }
         }
     }
 }

@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CmlLib.Launcher;
+using System;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using CmlLib.Launcher;
 
 namespace MRSLauncherClient.UI
 {
@@ -21,6 +11,7 @@ namespace MRSLauncherClient.UI
     /// </summary>
     public partial class LoginWindow : Window
     {
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -28,9 +19,9 @@ namespace MRSLauncherClient.UI
 
         bool userClose = true;
 
-        private void btnForgotPW_MouseDown(object sender, MouseButtonEventArgs e)           //Forgot Password? 버튼 클릭.
+        private void btnForgotPW_MouseDown(object sender, MouseButtonEventArgs e) // 비밀번호 잊었을때
         {
-            Console.WriteLine("[LoginWindow.xaml.cs] Redirecting into Minecraft Account Page for finding password.");
+            Utils.ProcessStart(Launcher.MojangForgotPassword);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
