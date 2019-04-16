@@ -14,6 +14,8 @@ namespace MRSLauncherClient
         }
 
         public event EventHandler<string> GameOutput;
+        public event EventHandler GameExited;
+
         Process process; // 마인크래프트 프로세스
 
         public void Start()
@@ -26,10 +28,16 @@ namespace MRSLauncherClient
             process.EnableRaisingEvents = true;
             process.ErrorDataReceived += Process_ErrorDataReceived;
             process.OutputDataReceived += Process_OutputDataReceived;
+            process.Exited += Process_Exited;
 
             process.Start();
             process.BeginErrorReadLine();
             process.BeginOutputReadLine();
+        }
+
+        private void Process_Exited(object sender, EventArgs e)
+        {
+            GameExited?.Invoke(this, new EventArgs());
         }
 
         private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)

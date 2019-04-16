@@ -37,6 +37,7 @@
 
         </Grid>
 
-        <Frame x:Name="contentViewer" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="contentViewer" Grid.Column="1" NavigationUIVisibility="Hidden" VerticalContentAlignment="Top" HorizontalContentAlignment="Left">
+        </Frame>
     </Grid>
 </Window>

@@ -4,8 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MRSLauncherClient"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      mc:Ignorable="d" d:DesignWidth="800"
       Title="SettingsPage"
       Name="Settings"
       Loaded="Settings_Loaded"
@@ -14,32 +13,37 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="1.1*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <!--Row0-->
-        <Label Grid.Row="0" Content="Minecraft Settings" FontSize="22" Foreground="White" Padding="0" Margin="40,20,0,0" />
-        <!--Row1-->
-        <Canvas Grid.Row="1">
-            <Label Content="RAM Settings"  FontSize="20" Foreground="White" Padding="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="40" Canvas.Top="9" />
-            <Slider IsSnapToTickEnabled="True" x:Name="ramSlider" Height="15" Width="730" Foreground="White" BorderBrush="#FF606060" TickFrequency="256" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="0" ValueChanged="RamSlider_ValueChanged" Canvas.Left="36" Canvas.Top="50"/>
-            <Label Content="RAM (MB)" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="35" Canvas.Top="92"/>
-            <Label x:Name="lvMin" Content="Minimum" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Width="144" Canvas.Left="35" Canvas.Top="66"/>
-            <Label x:Name="lvMax" Content="Maximum" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Right" Width="144" Canvas.Left="622" Canvas.Top="66"/>
-            <local:NumericUpdownControl Grid.Row="1" x:Name="txtRam" Width="120" Height="23" Canvas.Left="107" Canvas.Top="94"/>
-        </Canvas>
-        <!--Row2-->
-        <CheckBox Grid.Row="2" x:Name="cbCustomJVM" Content="Enable" Canvas.Left="470" Canvas.Top="205" Foreground="White" FontSize="15" Margin="310,44,410,66" Checked="CbCustomJVM_Checked" Unchecked="CbCustomJVM_Unchecked"/>
-        <Label Grid.Row="2" Content="Custom Java Parameters (JVM Settings)" Canvas.Left="40" Canvas.Top="200" Foreground="White" Padding="0" FontSize="20" Margin="40,4,335,101"/>
-        <RichTextBox Grid.Row="2" x:Name="rtJavaArgs" Height="70" Canvas.Left="40" Canvas.Top="240" Width="244" HorizontalAlignment="Left" Margin="40,30,0,0">
+
+        <Label Grid.Row="1" Content="Ram Setting" FontSize="20" Foreground="White" Margin="40,20,0,0"/>
+
+        <Slider x:Name="ramSlider" Grid.Row="2" Height="15" VerticalAlignment="Top" IsSnapToTickEnabled="True" TickFrequency="256" ValueChanged="RamSlider_ValueChanged" Margin="30,0"/>
+        <Label x:Name="lvMin" Grid.Row="2" Content="Minimum" Foreground="White" Margin="20,20,10,10" HorizontalAlignment="Left"/>
+        <Label x:Name="lvMax" Grid.Row="2" Content="Maximum" Foreground="White" Margin="10,20,20,10" HorizontalAlignment="Right"/>
+        <Label Grid.Row="2" Content="RAM (MB) : " Foreground="White" VerticalAlignment="Bottom" Margin="20,0,0,0"/>
+        <local:NumericUpdownControl x:Name="txtRam" Grid.Row="2" Width="120" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="120,0,0,0"/>
+
+        <Label Grid.Row="3" Content="JVM Argument Setting" Foreground="White" FontSize="20" Margin="40,10,0,20"/>
+
+        <CheckBox x:Name="cbCustomJVM" Grid.Row="3" Content="Use Custom JVM Argument" Foreground="White" FontSize="15" Margin="40,5,5,10" VerticalAlignment="Bottom" Checked="CbCustomJVM_Checked" Unchecked="CbCustomJVM_Unchecked"/>
+
+        <RichTextBox x:Name="rtJavaArgs" Grid.Row="4" Margin="40,0,40,20">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <CheckBox Grid.Row="3" x:Name="cbShowLogWindow" Margin="40,5,5,5" Content="로그 창 보이기" Foreground="White" FontSize="20"/>
+
+        <CheckBox x:Name="cbShowLogWindow" Grid.Row="5" Content="Show Log Window" Foreground="White" FontSize="18" Margin="40,0,0,0"/>
+
+        <CheckBox x:Name="cbHideLauncher" Grid.Row="6" Content="Hide Launcher at Game Launched" Foreground="White" FontSize="18" Margin="40,0,0,0"/>
     </Grid>
 </Page>
