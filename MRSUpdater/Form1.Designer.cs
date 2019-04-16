@@ -42,6 +42,7 @@
             this.label1.Size = new System.Drawing.Size(97, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "업데이트 확인 중";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             // 
             // progressBar1
             // 

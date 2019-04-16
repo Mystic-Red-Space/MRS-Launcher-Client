@@ -16,6 +16,7 @@ copy %folderName%.exe %folderName%\%folderName%.exe
 copy Newtonsoft.Json.dll %folderName%\Newtonsoft.Json.dll
 copy license.txt %folderName%\license.txt
 copy log4net.dll %folderName%\log4net.dll
+copy %folderName%.exe.config %folderName%\%folderName%.exe.config
 
 echo Done.
 pause
