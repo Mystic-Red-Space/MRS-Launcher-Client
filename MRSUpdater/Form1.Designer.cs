@@ -77,10 +77,15 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+            
 
         }
 
         #endregion
+        private void Form1_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            if(e.CloseReason == System.Windows.Forms.CloseReason.UserClosing) {e.Cancel = true;}
+        }
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ProgressBar progressBar1;
