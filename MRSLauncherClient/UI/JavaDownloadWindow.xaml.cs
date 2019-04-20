@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using log4net;
 
 namespace MRSLauncherClient
 {
@@ -12,6 +13,7 @@ namespace MRSLauncherClient
     public partial class JavaDownloadWindow : Window
     {
         JavaDownload javaDownload;
+        private static ILog log = LogManager.GetLogger("JavaDownloadWindow");
 
         public JavaDownloadWindow(JavaDownload java)
         {
@@ -30,7 +32,6 @@ namespace MRSLauncherClient
 
         private void try_Closed(object sender, CancelEventArgs e)
         {
-            Console.WriteLine(sender);
             e.Cancel = true;
         }
 
@@ -43,13 +44,15 @@ namespace MRSLauncherClient
                 javaDownload.UnzipCompleted += Java_UnzipCompleted;
                 javaDownload.InstallJava();
             }
-            catch (System.Net.WebException)
+            catch (System.Net.WebException ex)
             {
+                log.Info("WebException", ex);
                 MessageBox.Show("자바 다운로드 서버에 연결할 수 없습니다.");
                 App.Stop();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.Info("JavaInstall Exception", ex);
                 MessageBox.Show("자바를 다운로드 할 수 없습니다.");
                 App.Stop();
             }

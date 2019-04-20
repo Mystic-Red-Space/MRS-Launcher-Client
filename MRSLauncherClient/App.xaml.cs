@@ -34,6 +34,7 @@ namespace MRSLauncherClient
                 Environment.Exit(0);
             }
 
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown; // 창이 꺼져도 프로그램이 종료되지 않게
 
             log4net.Config.XmlConfigurator.Configure();
@@ -57,6 +58,11 @@ namespace MRSLauncherClient
             log.Info("Start LoginWindow");
             var loginWindow = new LoginWindow();
             loginWindow.Show();
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            log.Error("UnhandledException. IsTerm : " + e.IsTerminating, (Exception)e.ExceptionObject);
         }
 
         // 프로그램 종료
