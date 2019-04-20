@@ -48,6 +48,9 @@ namespace MRSLauncherClient
                 var hash = "";
                 var hasFile = compareLocal.TryGetValue(path, out hash);
 
+                if (hash == null || hash == "")
+                    continue;
+
                 if (hasFile && hash == item.Value)
                     compareLocal.Remove(path);
             }
