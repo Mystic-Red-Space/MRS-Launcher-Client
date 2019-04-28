@@ -29,7 +29,7 @@ namespace MRSLauncherClient
 
         public int Value
         {
-            get => c_value;
+            get {return c_value};
             set
             {
                 c_value = value;
