@@ -11,6 +11,7 @@ mkdir %folderName%
 
 echo Copy files
 copy CmlLib.dll %folderName%\CmlLib.dll
+copy DiscordRPC.dll %folderName%\DiscordRPC.dll
 copy DotNetZip.dll %folderName%\DotNetZip.dll
 copy %folderName%.exe %folderName%\%folderName%.exe
 copy Newtonsoft.Json.dll %folderName%\Newtonsoft.Json.dll
