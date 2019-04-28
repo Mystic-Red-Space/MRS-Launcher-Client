@@ -55,6 +55,9 @@ namespace MRSLauncherClient
                 javaWindow.ShowDialog();
             }
 
+            log.Info("Start Discord RPC");
+            Discord.App.Initialize();
+
             log.Info("Start LoginWindow");
             var loginWindow = new LoginWindow();
             loginWindow.Show();
@@ -69,6 +72,7 @@ namespace MRSLauncherClient
         public static void Stop()
         {
             Setting.SaveSetting(); // 설정 저장
+            Discord.App.DeInitialize();
 
             log.Info("Stopping Program");
             Environment.Exit(0);

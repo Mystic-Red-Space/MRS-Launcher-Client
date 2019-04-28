@@ -56,6 +56,7 @@ namespace MRSLauncherClient
 
             txtUsername.Text = Session.Username;
             imgProfile.Source = MAvatar.GetAvatarImage(Session.UUID);
+            Discord.App.Presence.State = Session.Username + " 으로 플레이 중";
         }
 
         private void SideButtons_Click(object sender, RoutedEventArgs e)

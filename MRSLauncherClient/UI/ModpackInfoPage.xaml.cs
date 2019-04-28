@@ -144,6 +144,8 @@ namespace MRSLauncherClient.UI
                     pbPatch.Value = 1;
                     lvStatus.Content = "게임 실행 완료";
 
+                    Discord.App.Presence.Details = PackInfo.Name + " 플레이 중";
+
                     if (Setting.Json.ShowLogWindow)
                     {
                         if (logWindow != null)
