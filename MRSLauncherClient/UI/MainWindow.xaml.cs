@@ -14,6 +14,7 @@ namespace MRSLauncherClient
     public partial class MainWindow : Window
     {
         private static ILog log = LogManager.GetLogger("MainWindow");
+        
 
         public MainWindow(MSession s)
         {
