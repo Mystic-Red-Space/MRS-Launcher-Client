@@ -29,13 +29,11 @@ namespace MRSLauncherClient
 
         public int Value
         {
-            {
             get => c_value;
             set
             {
                 c_value = value;
                 updateControl();
-            }
             }
         }
 
