@@ -20,7 +20,7 @@ copy log4net.dll %folderName%\log4net.dll
 copy %folderName%.exe.config %folderName%\%folderName%.exe.config
 
 cd %folderName%
-..\..\..\zip.exe MRSLauncher *
+..\..\..\..\zip.exe MRSLauncher *
 
 echo Done.
 pause
