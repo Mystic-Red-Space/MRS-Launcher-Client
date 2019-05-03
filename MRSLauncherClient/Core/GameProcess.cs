@@ -43,9 +43,7 @@ namespace MRSLauncherClient
 
         private void Process_Exited(object sender, EventArgs e)
         {
-            Discord.App.LoopAction = null;
-            Discord.App.Presence.Timestamps = null;
-            Discord.App.Presence.Details = "";
+            App.SetDiscordIdleStatus();
             GameExited?.Invoke(this, new EventArgs());
         }
 

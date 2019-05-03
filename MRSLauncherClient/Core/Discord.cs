@@ -28,7 +28,7 @@ namespace MRSLauncherClient
 
         #endregion
 
-        public DiscordRpcClient client;
+        private DiscordRpcClient client;
         private const string CLIENT_ID = "504570440317141013";
         Thread InvokeThread;
         bool IsWorking = false;
@@ -51,7 +51,6 @@ namespace MRSLauncherClient
             client.Initialize();
 
             Presence = new RichPresence();
-            Presence.Details = "Launcher";
             Presence.Assets = new Assets()
             {
                 LargeImageKey = "mrsbig",

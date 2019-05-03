@@ -17,6 +17,7 @@ namespace MRSLauncherClient
     public partial class App : Application
     {
         private static ILog log = LogManager.GetLogger("App");
+        private static DateTime StartTime = DateTime.UtcNow;
 
         // ENTRY POINT
         private void Application_Startup(object sender, StartupEventArgs e)
@@ -56,6 +57,7 @@ namespace MRSLauncherClient
 
             log.Info("Start Discord RPC");
             Discord.App.Initialize();
+            SetDiscordIdleStatus();
 
             log.Info("Start LoginWindow");
             var loginWindow = new LoginWindow();
@@ -75,6 +77,19 @@ namespace MRSLauncherClient
 
             log.Info("Stopping Program");
             Environment.Exit(0);
+        }
+
+        public static void SetDiscordIdleStatus()
+        {
+            Discord.App.Presence = new DiscordRPC.RichPresence()
+            {
+                Details = "런처 대기 중",
+                Timestamps = new DiscordRPC.Timestamps
+                {
+                    Start = StartTime,
+                    End = null
+                }
+            };
         }
     }
 }
