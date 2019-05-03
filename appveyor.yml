@@ -8,12 +8,24 @@ build:
   include_nuget_references: true
   verbosity: minimal
 artifacts:
-- path: MRSLauncherClient/bin/release/MRSLauncherClient/MRSLauncher.zip
-  name: MRSLauncher
+- path: MRSLauncherClient/bin/release/MRSLauncherClient/*
+  name: server
+  type: WebDeployPackage
+- path: MRSLauncherClient/bin/release/MRSLauncher.zip
+  name: github
+  type: WebDeployPackage
 deploy:
 - provider: GitHub
   auth_token:
     secure: IJp3zcmEhlKtoWDr5j6RGXpHopkDzij1PtmS2FcL0XQasT/aV2snbPb4AkEX5lN5
   repository: Socio-path/MRS-Launcher-Client
-  artifact: MRSLauncher
+  artifact: github
   force_update: true
+- provider: FTP
+  host: mysticrs.tk
+  protocol: ftps
+  username: ubuntu
+  password:
+    secure: fV6DoYlXcH35T671hUYeDA==
+  folder: /home/ubuntu/files/launcher
+  artifact: server
