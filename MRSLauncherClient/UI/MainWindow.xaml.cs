@@ -1,10 +1,9 @@
 ﻿using CmlLib.Launcher;
 using log4net;
-using MRSLauncherClient.UI;
+using MRSLauncherClient.Core;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 
 namespace MRSLauncherClient
 {

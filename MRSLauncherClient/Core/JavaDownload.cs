@@ -5,7 +5,7 @@ using System.Diagnostics;
 using Ionic.Zip;
 using log4net;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     public class JavaDownload
     {

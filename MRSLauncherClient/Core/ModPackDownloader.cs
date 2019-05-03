@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using log4net;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     // 진행률 표시용 델리게이트
     public delegate void DownloadModFileChangedEventHandler(object sender, DownloadModFileChangedEventArgs e);

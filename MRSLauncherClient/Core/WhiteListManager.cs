@@ -2,7 +2,7 @@
 using System.IO;
 using log4net;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     public class WhiteListManager
     {

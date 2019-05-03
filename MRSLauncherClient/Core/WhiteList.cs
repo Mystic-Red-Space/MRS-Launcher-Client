@@ -4,7 +4,7 @@ using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     public class WhiteListLoader
     {

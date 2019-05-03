@@ -1,12 +1,13 @@
-﻿using System;
+﻿using CmlLib.Launcher;
+using log4net;
+using MRSLauncherClient.Core;
+using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using System.Threading;
-using CmlLib.Launcher;
-using log4net;
 
-namespace MRSLauncherClient.UI
+namespace MRSLauncherClient
 {
     /// <summary>
     /// ModpackInfoPage.xaml에 대한 상호 작용 논리

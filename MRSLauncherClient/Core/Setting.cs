@@ -2,7 +2,7 @@
 using System.IO;
 using log4net;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     public class Setting // 각종 설정들을 JSON파일로 저장
     {

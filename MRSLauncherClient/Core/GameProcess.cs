@@ -1,8 +1,8 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Diagnostics;
-using log4net;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     public class GameProcess // 게임 프로세스와 연동해 디스코드에 뭘표시하던가 등등등 나중에 쓰일수도
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     class LocalFileManager
     {

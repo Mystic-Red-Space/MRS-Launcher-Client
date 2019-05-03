@@ -1,9 +1,10 @@
-﻿using System;
+﻿using log4net;
+using MRSLauncherClient.Core;
+using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using log4net;
 
 namespace MRSLauncherClient
 {

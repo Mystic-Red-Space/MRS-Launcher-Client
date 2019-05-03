@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DiscordRPC;
+﻿using DiscordRPC;
 using log4net;
 using System.Threading;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     public class Discord
     {

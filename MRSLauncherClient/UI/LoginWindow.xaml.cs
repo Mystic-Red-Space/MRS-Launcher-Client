@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using log4net;
 
-namespace MRSLauncherClient.UI
+namespace MRSLauncherClient
 {
     /// <summary>
     /// LoginWindow.xaml에 대한 상호 작용 논리

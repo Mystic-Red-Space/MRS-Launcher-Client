@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MRSLauncherClient.Core;
+using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;

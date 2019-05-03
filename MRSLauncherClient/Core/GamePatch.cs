@@ -1,12 +1,11 @@
-﻿using System;
-using System.Text;
-using System.ComponentModel;
-using CmlLib.Launcher;
-using System.Diagnostics;
-using System.IO;
+﻿using CmlLib.Launcher;
 using log4net;
+using System;
+using System.ComponentModel;
+using System.IO;
+using System.Text;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     public class GamePatch
     {

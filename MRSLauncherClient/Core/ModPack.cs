@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using log4net;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Specialized;
 using System.Text;
-using log4net;
 
-namespace MRSLauncherClient
+namespace MRSLauncherClient.Core
 {
     public class ModPackLoader // 모드팩을 불러오는 클래스
     {
