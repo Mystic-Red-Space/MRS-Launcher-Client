@@ -193,9 +193,20 @@ namespace MRSLauncherClient.UI
             }));
         }
 
-        private void Process_GameExited(object sender, EventArgs e)
+        private void Process_GameExited(object sender, int e)
         {
+            if (e != 0)
+            {
+                var r = MessageBox.Show(
+                    "게임이 비정상적으로 종료되었습니다.\n" +
+                    "'예' 버튼을 누르면 로그파일이 저장된 폴더가 열립니다. " +
+                    "log.txt 파일을 개발자에게 보내주세요.", 
+                    "MRS Launcher", 
+                    MessageBoxButton.YesNo);
 
+                if (r == MessageBoxResult.Yes)
+                    Utils.ProcessStart(Launcher.LauncherPath);
+            }
         }
 
         private void Patch_StatusChange(object sender, string e)

@@ -14,7 +14,7 @@ namespace MRSLauncherClient
         }
 
         public event EventHandler<string> GameOutput;
-        public event EventHandler GameExited;
+        public event EventHandler<int> GameExited;
 
         Process process; // 마인크래프트 프로세스
 
@@ -44,7 +44,7 @@ namespace MRSLauncherClient
         private void Process_Exited(object sender, EventArgs e)
         {
             App.SetDiscordIdleStatus();
-            GameExited?.Invoke(this, new EventArgs());
+            GameExited?.Invoke(this, process.ExitCode);
         }
 
         private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
@@ -59,6 +59,7 @@ namespace MRSLauncherClient
 
         void output(string msg)
         {
+            log.Info(msg);
             GameOutput?.Invoke(this, msg);
         }
 
