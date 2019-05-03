@@ -21,6 +21,7 @@ copy %folderName%.exe.config %folderName%\%folderName%.exe.config
 
 cd %folderName%
 ..\..\..\..\zip.exe MRSLauncher *
+mv MRSLauncher.zip ..
 
 echo Done.
 pause
