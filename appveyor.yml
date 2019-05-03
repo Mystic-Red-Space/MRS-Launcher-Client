@@ -1,0 +1,19 @@
+version: 1.0.{build}
+configuration: Release
+before_build:
+- cmd: nuget restore MRSLauncherClient.sln
+build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  include_nuget_references: true
+  verbosity: minimal
+artifacts:
+- path: MRSLauncherClient/bin/release/MRSLauncherClient/MRSLauncher.zip
+  name: MRSLauncher
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: IJp3zcmEhlKtoWDr5j6RGXpHopkDzij1PtmS2FcL0XQasT/aV2snbPb4AkEX5lN5
+  repository: Socio-path/MRS-Launcher-Client
+  artifact: MRSLauncher
+  force_update: true
