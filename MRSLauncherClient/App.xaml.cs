@@ -16,10 +16,9 @@ namespace MRSLauncherClient
     /// </summary>
     public partial class App : Application
     {
-        // ENTRY POINT
-
         private static ILog log = LogManager.GetLogger("App");
 
+        // ENTRY POINT
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             // MUTEX Check

@@ -32,17 +32,18 @@ namespace MRSLauncherClient
 
             process.Start();
             process.BeginErrorReadLine();
-            process.BeginOutputReadLine();
+            process.BeginOutputReadLine();;
 
             Discord.App.Presence.Timestamps = new DiscordRPC.Timestamps()
             {
-                Start = process.StartTime,
+                Start = process.StartTime.ToUniversalTime(),
                 End = null
             };
         }
 
         private void Process_Exited(object sender, EventArgs e)
         {
+            Discord.App.LoopAction = null;
             Discord.App.Presence.Timestamps = null;
             Discord.App.Presence.Details = "";
             GameExited?.Invoke(this, new EventArgs());
