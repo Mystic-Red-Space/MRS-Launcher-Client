@@ -30,7 +30,7 @@ namespace MRSLauncherClient.Core
 
         private static ILog log = LogManager.GetLogger("Discord");
 
-        public RichPresence Presence { get; set; }
+        public RichPresence Presence { get; private set; }
 
         public void Initialize()
         {

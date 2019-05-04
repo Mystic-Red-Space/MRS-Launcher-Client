@@ -75,14 +75,11 @@ namespace MRSLauncherClient
 
         public static void SetDiscordIdleStatus()
         {
-            Discord.App.Presence = new DiscordRPC.RichPresence()
+            Discord.App.Presence.Details = "";
+            Discord.App.Presence.Timestamps = new DiscordRPC.Timestamps
             {
-                Details = "런처 대기 중",
-                Timestamps = new DiscordRPC.Timestamps
-                {
-                    Start = StartTime,
-                    End = null
-                }
+                Start = StartTime,
+                End = null
             };
         }
     }
