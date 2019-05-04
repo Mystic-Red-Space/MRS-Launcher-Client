@@ -11,30 +11,24 @@
       Unloaded="Settings_Unloaded"
       FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <StackPanel>
+        <Label Content="Ram Setting" FontSize="20" Foreground="White" Margin="40,20,0,0"/>
 
-        <Label Grid.Row="1" Content="Ram Setting" FontSize="20" Foreground="White" Margin="40,20,0,0"/>
-
-        <Slider x:Name="ramSlider" Grid.Row="2" Height="15" VerticalAlignment="Top" IsSnapToTickEnabled="True" TickFrequency="256" ValueChanged="RamSlider_ValueChanged" Margin="30,0"/>
-        <Label x:Name="lvMin" Grid.Row="2" Content="Minimum" Foreground="White" Margin="20,20,10,10" HorizontalAlignment="Left"/>
-        <Label x:Name="lvMax" Grid.Row="2" Content="Maximum" Foreground="White" Margin="10,20,20,10" HorizontalAlignment="Right"/>
-        <Label Grid.Row="2" Content="RAM (MB) : " Foreground="White" VerticalAlignment="Bottom" Margin="20,0,0,0"/>
-        <local:NumericUpdownControl x:Name="txtRam" Grid.Row="2" Width="120" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="120,0,0,0"/>
+        <Slider x:Name="ramSlider" Height="15" VerticalAlignment="Top" IsSnapToTickEnabled="True" TickFrequency="256" ValueChanged="RamSlider_ValueChanged" Margin="30, 20, 30, 0"/>
+        <Grid>
+            <Label x:Name="lvMin" Grid.Row="2" Content="Minimum" Foreground="White" Margin="30,10,10,10" HorizontalAlignment="Left"/>
+            <Label x:Name="lvMax" Grid.Row="2" Content="Maximum" Foreground="White" Margin="10,10,30,10" HorizontalAlignment="Right"/>
+        </Grid>
+        <Canvas Height="30">
+            <Label Content="RAM (MB) : " Foreground="White" VerticalAlignment="Bottom" Canvas.Left="60" Canvas.Top="0"/>
+            <local:NumericUpdownControl x:Name="txtRam" Width="120" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Canvas.Left="142"/>
+        </Canvas>
 
         <Label Grid.Row="3" Content="JVM Argument Setting" Foreground="White" FontSize="20" Margin="40,10,0,20"/>
 
-        <CheckBox x:Name="cbCustomJVM" Grid.Row="3" Content="Use Custom JVM Argument" Foreground="White" FontSize="15" Margin="40,5,5,10" VerticalAlignment="Bottom" Checked="CbCustomJVM_Checked" Unchecked="CbCustomJVM_Unchecked"/>
+        <CheckBox x:Name="cbCustomJVM" Grid.Row="3" Content="Use Custom JVM Argument" Foreground="White" FontSize="15" Margin="60,5,5,10" VerticalAlignment="Bottom" Checked="CbCustomJVM_Checked" Unchecked="CbCustomJVM_Unchecked"/>
 
-        <RichTextBox x:Name="rtJavaArgs" Grid.Row="4" Margin="40,0,40,20">
+        <RichTextBox x:Name="rtJavaArgs" Grid.Row="4" Margin="60,0,40,20" Height="60">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
@@ -42,8 +36,8 @@
             </FlowDocument>
         </RichTextBox>
 
-        <CheckBox x:Name="cbShowLogWindow" Grid.Row="5" Content="Show Log Window" Foreground="White" FontSize="18" Margin="40,0,0,0"/>
+        <CheckBox x:Name="cbShowLogWindow" Grid.Row="5" Content="Show Log Window" Foreground="White" FontSize="18" Margin="40,20,0,0"/>
 
-        <CheckBox x:Name="cbHideLauncher" Grid.Row="6" Content="Hide Launcher at Game Launched" Foreground="White" FontSize="18" Margin="40,0,0,0"/>
-    </Grid>
+        <CheckBox x:Name="cbHideLauncher" Grid.Row="6" Content="Hide Launcher at Game Launched" Foreground="White" FontSize="18" Margin="40,20,0,0"/>
+    </StackPanel>
 </Page>
