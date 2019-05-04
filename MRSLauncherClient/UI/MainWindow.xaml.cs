@@ -32,7 +32,7 @@ namespace MRSLauncherClient
                 new ModpacksPage(s),
                 new SettingsPage(),
                 new AboutPage()
-            });
+            };
 
             log.Info("Load Component");
             InitializeComponent();
