@@ -26,7 +26,7 @@ namespace MRSLauncherClient
 
             log.Info("Load Page");
             pageManager = new PageManager();
-            pageManager.PageList.AddRange(new Page[]
+            pageManager.PageList.AddRange(new Page[])
             {
                 new HomePage(),
                 new ModpacksPage(s),
