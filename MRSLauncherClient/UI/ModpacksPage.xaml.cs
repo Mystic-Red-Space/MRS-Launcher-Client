@@ -48,7 +48,7 @@ namespace MRSLauncherClient
                         foreach (var item in list) // 모드팩 컨트롤 만들어서 화면에 표시
                         {
                             var control = new ModPackControl(item);
-                            control.Margin = new Thickness(100);
+                            control.Margin = new Thickness(40);
                             control.Click += Control_Click;
                             stPacks.Children.Add(control);
                         }

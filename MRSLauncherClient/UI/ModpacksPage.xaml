@@ -12,9 +12,7 @@
       Loaded="Modpacks_Loaded">
 
     <Grid x:Name="grid">
-
-        <Frame x:Name="frmContent" NavigationUIVisibility="Hidden"/>
-
+        
         <Label x:Name="lvLoading"
                Grid.Row="1"
                Content="Loading modpacks..."
@@ -26,5 +24,7 @@
         <WrapPanel x:Name="stPacks"
                     Grid.Row="1" Orientation="Horizontal">
         </WrapPanel>
+
+        <Frame x:Name="frmContent" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

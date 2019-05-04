@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="MRS Minecraft Launcher"
         WindowStartupLocation="CenterScreen"
-        Width="1024" Height="720"
-        MinWidth="1024" MinHeight="720"
+        Width="1040" Height="720"
+        MinWidth="1040" MinHeight="720"
         Background="#FF404040"
         Loaded="Window_Loaded"
         Closed="Window_Closed">
