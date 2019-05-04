@@ -162,7 +162,7 @@ namespace MRSLauncherClient
 
                 Dispatcher.Invoke(new Action(delegate
                 {
-                    if (Setting.Json.HideLauncher)
+                    if (MainWindow.Window.Visibility == Visibility.Visible && Setting.Json.HideLauncher)
                         MainWindow.Window.Visibility = Visibility.Hidden;
                 }));
             }
