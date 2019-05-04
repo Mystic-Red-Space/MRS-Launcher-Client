@@ -12,11 +12,16 @@ namespace MRSLauncherClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Singleton
+        private static MainWindow instance;
+        public static MainWindow Window { get => instance; }
+        #endregion
+
         private static ILog log = LogManager.GetLogger("MainWindow");
-        
 
         public MainWindow(MSession s)
         {
+            instance = this;
             this.Session = s;
 
             log.Info("Load Page");
