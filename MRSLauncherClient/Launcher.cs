@@ -18,6 +18,7 @@ namespace MRSLauncherClient
             SettingPath = LauncherPath + "\\launcher\\launchersetting.json",
             LisencePath = LauncherPath + "\\license.txt",
             UpdaterPath = LauncherPath + "\\updater.exe",
+            SecurityPath = LauncherPath + "\\launcher\\user.dat",
 
             ModPackListUrl = "https://api.mysticrs.tk/list", // 모드팩 리스트
             ModPackDataUrl = "https://api.mysticrs.tk/modpack", // 모드팩 정보 (모드파일 등)

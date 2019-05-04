@@ -75,5 +75,11 @@ namespace MRSLauncherClient.Core
 
         [JsonProperty]
         public bool HideLauncher { get; set; } = true;
+
+        [JsonProperty]
+        public bool SavePassword { get; set; } = false;
+
+        [JsonProperty]
+        public string Email { get; set; } = "";
     }
 }

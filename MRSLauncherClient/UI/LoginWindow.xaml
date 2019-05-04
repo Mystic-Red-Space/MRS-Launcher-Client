@@ -37,6 +37,7 @@
             Grid.Column="1" Margin="0,365,0,0" VerticalContentAlignment="Center"/>
         <Button x:Name="btnLogin" Content="Log in" Canvas.Left="325" Canvas.Top="580" Background="White" FontSize="16" Height="30" Click="BtnLogin_Click" Grid.Column="1" Margin="159,580,377,79" Width="190"/>
         <Label x:Name="btnForgotPW" Content="Forgot Password?" Background="Transparent" FontSize="16" Foreground="#FF6A92FF" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MouseDown="btnForgotPW_MouseDown" Grid.Column="1" Margin="401,580,201,83" HorizontalAlignment="Center" Padding="0"/>
+        <CheckBox x:Name="cbSavePw" Grid.Column="1" Content="Save Password" FontSize="18" HorizontalAlignment="Left" Margin="180,553,0,0" VerticalAlignment="Top" Width="187" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
     </Grid>
 
 

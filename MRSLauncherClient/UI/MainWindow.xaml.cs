@@ -75,6 +75,8 @@ namespace MRSLauncherClient
             var login = new MLogin();
             login.DeleteTokenFile();
 
+            LoginCache.ClearPassword();
+
             log.Info("Show LoginWindow");
             userClose = false;
             var loginWindow = new LoginWindow();

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using log4net;
+using MRSLauncherClient.Core;
+using System;
 using System.Windows;
-using System.Threading;
-using MRSLauncherClient.UI;
-using log4net;
 
 namespace MRSLauncherClient
 {

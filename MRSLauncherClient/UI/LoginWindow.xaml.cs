@@ -1,9 +1,10 @@
 ﻿using CmlLib.Launcher;
+using log4net;
 using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using log4net;
+using MRSLauncherClient.Core;
 
 namespace MRSLauncherClient
 {
@@ -13,6 +14,8 @@ namespace MRSLauncherClient
     public partial class LoginWindow : Window
     {
         private static ILog log = LogManager.GetLogger("LoginWindow");
+        private LoginCache loginCache;
+        bool isUserCheckSavePw = false;
 
         public LoginWindow()
         {
@@ -28,7 +31,12 @@ namespace MRSLauncherClient
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            loginCache = new LoginCache();
+
             log.Info("Auto Login");
+
+            isUserCheckSavePw = true;
+            cbSavePw.IsChecked = Setting.Json.SavePassword;
 
             SetPanelEnable(false);
             var loginth = new Thread(new ThreadStart(delegate
@@ -40,7 +48,14 @@ namespace MRSLauncherClient
                     SetPanelEnable(true);
                     if (result.Result == MLoginResult.Success)
                     {
-                        ShowWelcome(result);
+                        ShowWelcome(result, false);
+                    }
+                    else
+                    {
+                        tbEmail.Text = Setting.Json.Email;
+
+                        if (Setting.Json.SavePassword)
+                            Auth(Setting.Json.Email, loginCache.ReadPassword(), false);
                     }
                 }));
             }));
@@ -81,6 +96,14 @@ namespace MRSLauncherClient
             var email = tbEmail.Text;
             var pw = tbPassword.Password;
 
+            Auth(email, pw, true);
+        }
+
+        private void Auth(string email, string pw, bool savePw)
+        {
+            if (email == "" || pw == "")
+                return;
+
             SetPanelEnable(false);
 
             log.Info("Start Login Thread");
@@ -91,15 +114,16 @@ namespace MRSLauncherClient
 
                 Dispatcher.Invoke(new Action(delegate
                 {
-                    tbPassword.Clear();
                     SetPanelEnable(true);
 
                     if (result.Result == MLoginResult.Success)
                     {
-                        ShowWelcome(result);
+                        ShowWelcome(result, savePw);
                     }
                     else
                     {
+                        tbPassword.Clear();
+
                         var errMsg = "";
                         switch (result.Result)
                         {
@@ -127,8 +151,12 @@ namespace MRSLauncherClient
             btnLogin.IsEnabled = value;
         }
 
-        private void ShowWelcome(MSession s)
+        private void ShowWelcome(MSession s, bool savePw)
         {
+            Setting.Json.Email = tbEmail.Text;
+            if (savePw && Setting.Json.SavePassword)
+                loginCache.SavePassword(tbPassword.Password);
+
             //윈도우 전환
             log.Info("Login Success : " + s.Username);
             var mainWindow = new MainWindow(s);
@@ -160,6 +188,32 @@ namespace MRSLauncherClient
                     BtnLogin_Click(sender, e);
                 }
             }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (isUserCheckSavePw)
+            {
+                isUserCheckSavePw = false;
+                return;
+            }
+
+            var r = MessageBox.Show(
+                "이 기능을 사용할 시 사용자의 비밀번호가 암호화되어 컴퓨터에 저장됩니다. 해킹 위험이 있습니다. \n" +
+                "이 기능을 사용하지 않아도 로그인 세션이 저장되어 안전하게 자동 로그인 기능을 사용할 수 있습니다.",
+                "경고",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (r == MessageBoxResult.Yes)
+                Setting.Json.SavePassword = true;
+            else
+                cbSavePw.IsChecked = false;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Setting.Json.SavePassword = false;
         }
     }
 }
