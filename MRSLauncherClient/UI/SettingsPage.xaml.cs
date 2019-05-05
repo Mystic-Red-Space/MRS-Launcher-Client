@@ -54,7 +54,13 @@ namespace MRSLauncherClient
         private void Settings_Unloaded(object sender, RoutedEventArgs e)
         {
             Setting.Json.MaxRamMb = txtRam.Value;
-            Setting.Json.CustomJVMArguments = new TextRange(rtJavaArgs.Document.ContentStart, rtJavaArgs.Document.ContentEnd).Text;
+
+            Setting.Json.CustomJVMArguments =
+    new TextRange(rtJavaArgs.Document.ContentStart, rtJavaArgs.Document.ContentEnd)
+    .Text
+    .Replace("\n", "")
+    .Replace("\r", "");
+
             Setting.Json.UseCustomJVM = cbCustomJVM.IsChecked ?? false; // 만약 값이 null 이라면 false 를 반환
             Setting.Json.ShowLogWindow = cbShowLogWindow.IsChecked ?? false;
             Setting.Json.HideLauncher = cbHideLauncher.IsChecked ?? false;
