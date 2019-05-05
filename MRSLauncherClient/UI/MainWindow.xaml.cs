@@ -14,7 +14,7 @@ namespace MRSLauncherClient
     {
         #region Singleton
         private static MainWindow instance;
-        public static MainWindow Window { get => instance; }
+        public static MainWindow Window { get {return instance;} }
         #endregion
 
         private static ILog log = LogManager.GetLogger("MainWindow");
