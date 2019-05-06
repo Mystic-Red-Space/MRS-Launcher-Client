@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace MRSLauncherClient
 {
@@ -10,7 +7,7 @@ namespace MRSLauncherClient
     {
         public static readonly string
             LauncherName = "MRS Minecraft Launcher",
-            LauncherVersion = "beta_build4",
+            LauncherVersion = Assembly.GetEntryAssembly().GetName().Version.ToString(),
 
             LauncherPath = Environment.CurrentDirectory, // 모든 파일이 저장되는 기본 경로
             GamePath = LauncherPath + "\\games\\", // saves, mods, screenshots 등이 저장되는 폴더
