@@ -245,8 +245,10 @@ namespace MRSLauncherClient
 
         void wb_LoadCompleted(object sender, NavigationEventArgs e)
         {
-            string script = "document.documentElement.style.overflow ='hidden'";
-            wbUpdateViewer.InvokeScript("execScript", new object[] { script, "JavaScript" });
+            string scripty = "document.documentElement.style.overflowY ='auto'";
+            string scriptx = "document.documentElement.style.overflowX ='hidden'";
+            wbUpdateViewer.InvokeScript("execScript", new object[] { scriptx, "JavaScript" });
+            wbUpdateViewer.InvokeScript("execScript", new object[] { scripty, "JavaScript" });
             wbUpdateViewer.Opacity = 1;
             wbUpdateViewer.OpacityMask = null;
         }
