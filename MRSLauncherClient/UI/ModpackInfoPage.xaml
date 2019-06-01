@@ -22,6 +22,7 @@
         <Button x:Name="btnForceUpdate" Content="Force Update" Height="27" Canvas.Left="137" Canvas.Top="362" Width="97" Click="BtnForceUpdate_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
         <Button x:Name="btnRemove" Content="Remove" Height="27" Canvas.Left="239" Canvas.Top="362" Width="97" Click="BtnRemove_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
         <Button x:Name="btnOpenFolder" Content="Game Folder" Height="27" Canvas.Left="341" Canvas.Top="362" Width="97" Click="BtnOpenFolder_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
+        <Button x:Name="btnOption" Content="Option" Height="27" Canvas.Left="444" Canvas.Top="362" Width="97" Click="BtnOption_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
 
     </Canvas>
 </Page>

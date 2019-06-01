@@ -250,5 +250,10 @@ namespace MRSLauncherClient
             wbUpdateViewer.Opacity = 1;
             wbUpdateViewer.OpacityMask = null;
         }
+
+        private void BtnOption_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

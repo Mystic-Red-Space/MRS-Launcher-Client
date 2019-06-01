@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Collections.Generic;
 
 namespace MRSLauncherClient.Core
 {
@@ -11,36 +12,34 @@ namespace MRSLauncherClient.Core
 
         public string OptionPath { get; private set; }
 
-        public string GetOption(string searchKey)
+        public Dictionary<string, string> GetOption()
         {
             if (!File.Exists(OptionPath))
-                return null;
+                return new Dictionary<string, string>();
 
-            var file = File.ReadAllLines(OptionPath);
-            foreach (var item in file)
+            var dict = new Dictionary<string, string>();
+            foreach (var item in File.ReadAllLines(OptionPath))
             {
-                var spl = item.Split(':');
-                var key = spl[0];
-                var value = spl[1];
+                if (!item.Contains(":"))
+                    continue;
 
-                if (key == searchKey)
-                    return value;
+                var spl = item.Split(':');
+                dict.Add(spl[0], spl[1]);
             }
 
-            return null;
+            return dict;
         }
 
-        public void SetOption(string setKey, string setValue)
+        public void SetOption(Dictionary<string, string> dict)
         {
-            if (!File.Exists(OptionPath))
+            using (var sr = new StreamWriter(OptionPath, false, System.Text.Encoding.ASCII))
             {
-                var content = KeyValue(setKey, setValue);
-                File.WriteAllText(OptionPath,content);
-                return;
+                sr.NewLine = "\r\n";
+                foreach (var item in dict)
+                {
+                    sr.WriteLine(KeyValue(item.Key, item.Value));
+                }
             }
-
-
-
         }
 
         private string KeyValue(string key, string value)
