@@ -5,24 +5,46 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MRSLauncherClient"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignWidth="700"
+      d:DesignHeight="450"
       Title="ModpackInfo"
-      Loaded="Page_Loaded">
+      Loaded="Page_Loaded"
+      FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi">
 
-    <Canvas Margin="0,0,0,-162">
-        <Rectangle Width="800" Height="616" Fill="#404040" />
-        <Label x:Name="lvName" Content="(Loading...)" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Canvas.Left="35" Canvas.Top="50" Foreground="White" />
-        <WebBrowser x:Name="wbUpdateViewer" Opacity="0" Canvas.Left="35" Canvas.Top="100" LoadCompleted="wb_LoadCompleted" Canvas.Right="35" Width="730" Height="250" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"/>
-        <Button x:Name="btnReturn" Content="뒤로가기" Canvas.Left="10" Canvas.Top="10" Width="75" Click="btnReturn_Click" Background="White" BorderBrush="#FF484848" FontFamily="/MRSLauncherClient;component/Resources/#HSDuggobi" Foreground="Black"/>
+    <Grid Background="#404040">
 
-        <Button x:Name="btnStart" Content="Play" Height="27" Canvas.Left="35" Canvas.Top="362" Width="97" Click="btnStart_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
-        <ProgressBar x:Name="pbPatch" Height="23" Canvas.Left="35" Canvas.Top="400" Width="730" Background="White" BorderBrush="#FF484848"/>
-        <Label x:Name="lvStatus" Content="" Canvas.Left="35" Canvas.Top="428" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="White" FontSize="13"/>
-        <Label x:Name="lvFileName" Content="..." HorizontalContentAlignment="Right" FontSize="16" Canvas.Left="511" Canvas.Top="428" Width="249"/>
-        <Button x:Name="btnForceUpdate" Content="Force Update" Height="27" Canvas.Left="137" Canvas.Top="362" Width="97" Click="BtnForceUpdate_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
-        <Button x:Name="btnRemove" Content="Remove" Height="27" Canvas.Left="239" Canvas.Top="362" Width="97" Click="BtnRemove_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
-        <Button x:Name="btnOpenFolder" Content="Game Folder" Height="27" Canvas.Left="341" Canvas.Top="362" Width="97" Click="BtnOpenFolder_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
-        <Button x:Name="btnOption" Content="Option" Height="27" Canvas.Left="444" Canvas.Top="362" Width="97" Click="BtnOption_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        
+        <Button Grid.Row="0" x:Name="btnReturn" Content="뒤로가기" Width="75" Height="25" Click="btnReturn_Click" Background="White" BorderBrush="#FF484848"  Foreground="Black" HorizontalAlignment="Left" Margin="30,10,0,0"/>
+        <Label Grid.Row="1" x:Name="lvName" Content="(Loading...)" Foreground="White" Margin="30,10,0,10" />
+        <WebBrowser Grid.Row="2" x:Name="wbUpdateViewer" Opacity="0" LoadCompleted="wb_LoadCompleted" Margin="30,10,30,30" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"/>
+        
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="15,0,0,10">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="20,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            
+            <Button x:Name="btnStart" Content="Play" Height="27" Canvas.Left="35" Canvas.Top="362" Width="97" Click="btnStart_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
+            <Button x:Name="btnForceUpdate" Content="Force Update" Height="27" Canvas.Left="137" Canvas.Top="362" Width="97" Click="BtnForceUpdate_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
+            <Button x:Name="btnRemove" Content="Remove" Height="27" Canvas.Left="239" Canvas.Top="362" Width="97" Click="BtnRemove_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
+            <Button x:Name="btnOpenFolder" Content="Game Folder" Height="27" Canvas.Left="341" Canvas.Top="362" Width="97" Click="BtnOpenFolder_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
+            <Button x:Name="btnOption" Content="Option" Height="27" Canvas.Left="444" Canvas.Top="362" Width="97" Click="BtnOption_Click" BorderBrush="#FF484848" Background="White" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="Black"/>
+        </StackPanel>
+        
+        <ProgressBar Grid.Row="4" x:Name="pbPatch" Height="23" Background="White" BorderBrush="#FF484848" Margin="30,0" VerticalAlignment="Center"/>
 
-    </Canvas>
+        <Grid Grid.Row="5" Margin="0,0,0,10">
+            <Label x:Name="lvStatus" Content="asdf" FontFamily="/MRSLauncherClient;component/Resources/#Oligopoly" Foreground="White" FontSize="13" Margin="30,0,0,0"/>
+            <Label x:Name="lvFileName" Content="..." HorizontalContentAlignment="Right" FontSize="16" HorizontalAlignment="Right" Foreground="White" Margin="0,0,30,0"/>
+        </Grid>
+    </Grid>
 </Page>

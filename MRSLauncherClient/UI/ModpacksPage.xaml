@@ -21,6 +21,8 @@
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
 
+        <Button x:Name="btnRefresh" Width="80" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,30,0" Content="Refresh" Click="BtnRefresh_Click"/>
+
         <WrapPanel x:Name="stPacks"
                     Grid.Row="1" Orientation="Horizontal">
         </WrapPanel>
