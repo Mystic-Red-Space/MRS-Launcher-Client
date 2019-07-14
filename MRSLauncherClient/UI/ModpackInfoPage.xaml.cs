@@ -45,6 +45,8 @@ namespace MRSLauncherClient
             {
                 var pack = ModPackLoader.GetModPack(PackInfo);
                 Patcher = new GamePatch(pack, Session);
+                Patcher.ProgressChange += Patch_ProgressChange;
+                Patcher.StatusChange += Patch_StatusChange;
 
                 Dispatcher.Invoke(new Action(delegate
                 {
@@ -126,9 +128,6 @@ namespace MRSLauncherClient
         {
             try
             {
-                Patcher.ProgressChange += Patch_ProgressChange;
-                Patcher.StatusChange += Patch_StatusChange;
-
                 log.Info("Start Patch");
                 var process = Patcher.Patch(forceUpdate);
 
