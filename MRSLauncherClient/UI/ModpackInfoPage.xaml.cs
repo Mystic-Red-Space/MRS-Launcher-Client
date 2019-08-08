@@ -159,11 +159,15 @@ namespace MRSLauncherClient
 
                 Thread.Sleep(3000);
 
-                Dispatcher.Invoke(new Action(delegate
+                if (!process.process.HasExited)
                 {
-                    if (MainWindow.Window.Visibility == Visibility.Visible && Setting.Json.HideLauncher)
-                        MainWindow.Window.Visibility = Visibility.Hidden;
-                }));
+                    Dispatcher.Invoke(new Action(delegate
+                    {
+
+                        if (MainWindow.Window.Visibility == Visibility.Visible && Setting.Json.HideLauncher)
+                            MainWindow.Window.Visibility = Visibility.Hidden;
+                    }));
+                }
             }
             catch (System.ComponentModel.Win32Exception ex)
             {

@@ -16,7 +16,7 @@ namespace MRSLauncherClient.Core
         public event EventHandler<string> GameOutput;
         public event EventHandler<int> GameExited;
 
-        Process process; // 마인크래프트 프로세스
+        public Process process { get; private set; } // 마인크래프트 프로세스
 
         public void Start()
         {
