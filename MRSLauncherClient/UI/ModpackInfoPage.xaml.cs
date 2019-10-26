@@ -52,8 +52,16 @@ namespace MRSLauncherClient
                 {
                     this.IsEnabled = true;
                     lvName.Content = PackInfo.Name;
-                    string packUpdateLogURL = "https://api.mysticrs.tk/update?name=" + Uri.EscapeDataString(PackInfo.Name);
-                    wbUpdateViewer.Navigate(packUpdateLogURL);
+
+                    try
+                    {
+                        string packUpdateLogURL = "https://api.mysticrs.tk/update?name=" + Uri.EscapeDataString(PackInfo.Name);
+                        wbUpdateViewer.Navigate(packUpdateLogURL);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Info("Cannot load update log", ex);
+                    }
                 }));
             }));
             th.Start();
