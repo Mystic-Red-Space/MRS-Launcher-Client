@@ -44,7 +44,7 @@ namespace MRSLauncherClient.Core
 
             // 게임 폴더 만들기
             d("Initialize Game Path : " + RootPath);
-            Minecraft.init(RootPath);
+            Minecraft.Initialize(RootPath);
 
             d("Get Whitelist");
             var whitelist = WhiteListLoader.GetWhiteList(Pack.Name);
@@ -92,16 +92,7 @@ namespace MRSLauncherClient.Core
             var profileList = MProfileInfo.GetProfiles();
 
             d("Search StartProfile");
-            MProfile startProfile = FindProfile(profileList, Pack.StartProfile);
-            MProfile baseProfile = null;
-
-            if (startProfile.IsForge)
-            {
-                d("Search BaseProfile");
-                baseProfile = FindProfile(profileList, startProfile.InnerJarId);
-                d("Download BaseProfile");
-                DownloadProfile(baseProfile);
-            }
+            MProfile startProfile = MProfile.GetProfile(profileList, Pack.StartProfile);
 
             d("Download StartProfile");
             DownloadProfile(startProfile);
@@ -110,7 +101,6 @@ namespace MRSLauncherClient.Core
             var option = new MLaunchOption()
             {
                 StartProfile = startProfile,
-                BaseProfile = baseProfile,
                 JavaPath = Launcher.JavaPath + "\\bin\\javaw.exe",
                 MaximumRamMb = Setting.Json.MaxRamMb,
                 Session = this.Session
